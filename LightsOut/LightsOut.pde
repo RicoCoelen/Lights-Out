@@ -1,3 +1,5 @@
+// object for background image
+PImage bg;
 // added challenger 1
 SmallEnemy c1 = new SmallEnemy();
 // added challenger 2
@@ -8,7 +10,7 @@ BigEnemy c3 = new BigEnemy();
 void setup() {
   frameRate(60);  // 60 fps
   size(640, 480);  // size determined by company
-  background(0);  // white background
+  bg = loadImage("assets/background.jpg");
 }
 
 void draw() {
@@ -25,6 +27,8 @@ void updateGame() {
 }
 
 void updateDraw() {
+  // drawing background
+  background(bg);
   // update draw here
   c1.draw();
   c2.draw();

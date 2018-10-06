@@ -13,7 +13,7 @@ class MediumEnemy {
     x = 500;
     y = 200;
     // velocity
-    vx = -0.6;
+    vx = -0.4;
     vy = 0;
   }
 

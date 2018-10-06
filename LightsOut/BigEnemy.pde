@@ -13,7 +13,7 @@ class BigEnemy {
     x = 500;
     y = 30;
     // velocity
-    vx = -0.6;
+    vx = -0.2;
     vy = 0;
   }
 
