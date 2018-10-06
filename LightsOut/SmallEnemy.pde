@@ -32,7 +32,5 @@ class SmallEnemy {
   void draw() {
     // draw body
     rect(x, y, w, h);
-    // draw line of collision
-    rect(x, (y + h) - 5, -170, 5);
   }
 }
