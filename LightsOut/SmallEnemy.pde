@@ -2,8 +2,8 @@ class SmallEnemy {
   
   // vars
   float x, y, vx, vy;
-  int h = 50;
-  int w = 25;
+  int h = 100;
+  int w = 60;
 
   /*
   Function to instantiate the enemy
@@ -13,7 +13,7 @@ class SmallEnemy {
     x = 500;
     y = 350;
     // velocity
-    vx = -0.6;
+    vx = -0.5;
     vy = 0;
   }
 
@@ -30,6 +30,9 @@ class SmallEnemy {
   Function to draw the  on the screen
   */
   void draw() {
+    // draw body
     rect(x, y, w, h);
+    // draw line of collision
+    rect(x, (y + h) - 5, -170, 5);
   }
 }

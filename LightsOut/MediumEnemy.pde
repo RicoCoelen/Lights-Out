@@ -2,8 +2,8 @@ class MediumEnemy {
   
   // vars
   float x, y, vx, vy;
-  int h = 75;
-  int w = 45;
+  int h = 130;
+  int w = 75;
 
   /*
   Function to instantiate the enemy
@@ -13,7 +13,7 @@ class MediumEnemy {
     x = 500;
     y = 200;
     // velocity
-    vx = -0.4;
+    vx = -0.3;
     vy = 0;
   }
 
@@ -30,6 +30,9 @@ class MediumEnemy {
   Function to draw the  on the screen
   */
   void draw() {
+    // draw body
     rect(x, y, w, h);
+    // draw line of collision
+    rect(x, (y + h) - 5, -170, 5);
   }
 }

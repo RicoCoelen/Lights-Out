@@ -2,8 +2,8 @@ class BigEnemy {
   
   // vars
   float x, y, vx, vy;
-  int h = 100;
-  int w = 50;
+  int h = 175;
+  int w = 100;
 
   /*
   Function to instantiate the enemy
@@ -30,6 +30,9 @@ class BigEnemy {
   Function to draw the enemy on the screen
   */
   void draw() {
+    // draw body
     rect(x, y, w, h);
+    // draw line of collision
+    rect(x, (y + h) - 5, -170, 5);
   }
 }
