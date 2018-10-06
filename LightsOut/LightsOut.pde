@@ -5,5 +5,14 @@ void setup() {
 }
 
 void draw() {
-  println("Test!");
+  updateGame();
+  updateDraw();
+}
+
+void updateGame() {
+  // update game mechanics here
+}
+
+void updateDraw() {
+  // update draw here
 }
