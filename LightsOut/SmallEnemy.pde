@@ -11,7 +11,7 @@ class SmallEnemy {
   SmallEnemy() {
     // position
     x = 500;
-    y = 350;
+    y = height - 100;
     // velocity
     vx = -0.5;
     vy = 0;
