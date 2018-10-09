@@ -9,7 +9,7 @@ class Player{
     aPressed = false;
     dPressed = false;
     positionX = width/2;
-    positionY = height - 55;
+    positionY = height - 110;
     speed = 5;
     w = 30;
     h = 75;
@@ -22,7 +22,7 @@ class Player{
   
   //displaying player
   void display(){
-    image(texture, 0, 0, width/2, height/2);
+    image(texture, positionX, positionY);
   }
   
   // player movement

@@ -13,9 +13,9 @@ int state = 1;  //  Current scenexxx
 void setup() {
   frameRate(60); //60 fps
   size(640,480); // size
-  bg = loadImage("assets/sprites/background.png");
+  bg = loadImage("assets/sprites/background.jpg");
   player = new Player(); // initialize class
-  player.texture = loadImage("assets/sprites/player_right.jpg");;
+  player.texture = loadImage("assets/sprites/player_right.png");
   e1 = new SmallEnemy();
 
 }
@@ -66,9 +66,11 @@ void keyPressed() {
     //checking if pressed key is true
     if(key == 'a') {
       player.aPressed = true;
+      player.texture = loadImage("assets/sprites/player_left.png");
     }
     else if(key == 'd'){
       player.dPressed = true;
+      player.texture = loadImage("assets/sprites/player_right.png");
     }
     if(key == '1') {
      state = 2; 
