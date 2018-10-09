@@ -6,7 +6,7 @@ MainMenu m = new MainMenu();
 
 //global variables
 Player player;
-SmallEnemy e1;
+Enemy e1;
 
 int state = 1;  //  Current scenexxx
 
@@ -16,8 +16,7 @@ void setup() {
   bg = loadImage("assets/sprites/background.jpg");
   player = new Player(); // initialize class
   player.texture = loadImage("assets/sprites/player_right.png");
-  e1 = new SmallEnemy();
-
+  e1 = new Enemy(200, 100, 3);
 }
 
 void draw() {
@@ -30,7 +29,7 @@ void draw() {
     case 2:
       scene2();
       break;  
-  }
+  } 
 }
 
 void scene1() {
