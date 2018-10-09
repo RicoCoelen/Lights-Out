@@ -1,7 +1,6 @@
 // object for background image
 PImage bg;
 
-
 // added challenger 4
 MainMenu m = new MainMenu();
 
@@ -9,22 +8,19 @@ MainMenu m = new MainMenu();
 Player player;
 SmallEnemy e1;
 
-int state = 1;
+int state = 1;  //  Current scenexxx
 
-
-void setup(){
+void setup() {
   frameRate(60); //60 fps
   size(640,480); // size
-  bg = loadImage("assets/sprites/background.jpg");
-
-  
-
+  bg = loadImage("assets/sprites/background.png");
   player = new Player(); // initialize class
+  player.texture = loadImage("assets/sprites/player_right.jpg");;
   e1 = new SmallEnemy();
 
 }
 
-void draw(){
+void draw() {
   // draw 60 frames
   updateMainMenu();
   switch (state) { 
@@ -53,7 +49,6 @@ void updateGame() {
   // update game mechanics here
   player.display();
   player.movement();
-  player.collision();
   player.border();
   e1.update();
   
