@@ -16,7 +16,7 @@ void setup() {
   bg = loadImage("assets/sprites/background.jpg");
   player = new Player(); // initialize class
   player.texture = loadImage("assets/sprites/player_right.png");
-  e1 = new Enemy(200, 100, 3);
+  e1 = new Enemy(200, 100, 1);
 }
 
 void draw() {

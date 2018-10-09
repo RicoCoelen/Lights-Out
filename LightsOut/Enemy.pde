@@ -1,6 +1,7 @@
 class Enemy {
   
   // vars
+  PImage sprite;
   float x;
   float y;
   float vx;
@@ -21,27 +22,31 @@ class Enemy {
     x = enemyX;
     y = enemyY;
     
-    // velocity
+    // vertical velocity
     vy = 0;
     
     // check which type
     switch(enemyType) {
+      // light enemy
       case 1:
         h = 100;
         w = 60;
-        dcw = 400;
+        dcw = 300;
         ds = 0.5;
+        sprite = loadImage("assets/sprites/smallenemy.gif");
       break;
+      // medium enemy
       case 2:
          h = 140;
          w = 100;
-         dcw = 600;
+         dcw = 400;
          ds = 0.3;
       break;
+      // heavy enemy
       case 3:
          h = 160;
          w = 120;
-         dcw = 800;
+         dcw = 500;
          ds = 0.2;
       break;
     }
@@ -71,17 +76,32 @@ class Enemy {
   Function to draw the  on the screen
   */
   void draw() {
-    // draw body
-    fill(255);
     
-    // collision block view
+    fill(255);
+    // draw collision box
     rect(cx, y, cw, h);
     
-    // draw combo block
-    rect(x - 20, y - 40, w + 40, 30);
+    // draw combo block if in range // magic numbers for positioning above enemy character
+    if (checkRange())  {
+      rect(x - 20, y - 40, w + 40, 30);
+    }
     
-    //// enemy block view
-    rect(x, y, w, h);
-    
+    // enemy block view
+    if (sprite == null) {
+      rect(x, y, w, h);
+    }
+    else {
+      image(sprite, x, y);
+    }
+  }
+  
+  Boolean checkRange(){
+    // set true if in range of enemy // long ass if statement
+    if ((player.positionX >= cx && player.positionX <= cx + cw) || (player.positionX + w >= cx && player.positionX + w <= cx + cw) || (player.positionX >= cx + cw && player.positionX <= cx) || (player.positionX + w >= cx + cw && player.positionX + w <= cx))  {
+      return true;
+    }
+    else {
+      return false;
+    }
   }
 }
