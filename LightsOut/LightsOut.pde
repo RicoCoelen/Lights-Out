@@ -8,7 +8,7 @@ MainMenu m = new MainMenu();
 Player player;
 SmallEnemy e1;
 
-int state = 1;  //  Current scenexxx
+int state = 1;  //  Current scene
 
 void setup() {
   frameRate(60); //60 fps
@@ -52,8 +52,9 @@ void updateGame() {
   player.display();
   player.movement();
   player.border();
+  player.counter();
+  print(player.playerInput);
   e1.update();
-  
 }
 
 void updateDraw() {
@@ -74,6 +75,28 @@ void keyPressed() {
       player.dPressed = true;
       player.texture = loadImage("assets/sprites/player_right.png");
     }
+    else if (key == CODED) {
+      if (keyCode == UP) {
+        player.upPressed = true;
+        player.playerInput.add("UP");
+        player.comboCounter = 0;
+      }
+      else if (keyCode == DOWN) {
+        player.downPressed = true;
+        player.playerInput.add("DOWN");
+        player.comboCounter = 0;
+      }
+      else if (keyCode == LEFT) {
+        player.leftPressed = true;
+        player.playerInput.add("LEFT");
+        player.comboCounter = 0;
+      }
+      else if (keyCode == RIGHT) {
+        player.rightPressed = true;
+        player.playerInput.add("RIGHT");
+        player.comboCounter = 0;
+      }
+    }
     if(key == '1') {
      state = 2; 
     }
@@ -89,6 +112,20 @@ void keyReleased(){
     }
     else if(key == 'd'){
       player.dPressed = false;
+    }
+    else if (key == CODED) {
+      if (keyCode == UP) {
+        player.upPressed = false;
+      }
+      else if (keyCode == DOWN) {
+        player.downPressed = false;
+      }
+      else if (keyCode == LEFT) {
+        player.leftPressed = false;
+      }
+      else if (keyCode == RIGHT) {
+        player.rightPressed = false;
+      }
     }
 
 }
