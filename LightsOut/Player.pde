@@ -11,7 +11,7 @@ class Player{
     positionX = width/2;
     positionY = height - 110;
     speed = 5;
-    w = 30;
+    w = 60;
     h = 75;
     left = positionX - (w/2);
     right = positionX + (w/2);
@@ -34,15 +34,39 @@ class Player{
         positionX = positionX + speed;
     }   
   }
+  
   //stops player
   void border(){
     if(positionX < 0){
       positionX = positionX + speed;
       print(positionX); 
     }
-     else if(positionX > 610){
+     else if(positionX > width - w){
       positionX = positionX - speed;
       print(positionX); 
     }
   }
+  
+  //check collision
+  boolean collision(){
+    if(e1.x + e1.w + e1.vx > player.positionX &&
+       e1.x + e1.vx < player.positionX + player.w){
+       e1.vx = 0;
+         print("Collision");
+      return true;
+       }
+     else{
+      return false;
+     }
+  }
+  
+  // move object if collision is false
+  void collisionMove(){
+    if(collision()){
+      print("test");
+    }
+    else{
+      e1.vx =+ -1;
+    }
+  }  
 }
