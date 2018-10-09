@@ -2,12 +2,10 @@ class Player{
   // global variables
   float positionX,positionY,speed,w,h,left,right,top,bottom;
   boolean aPressed,dPressed;
-  SmallEnemy e1;
+  PImage texture;
 
   
   Player(){
-    e1 = new SmallEnemy();
-    e1.draw();
     aPressed = false;
     dPressed = false;
     positionX = width/2;
@@ -21,18 +19,12 @@ class Player{
     bottom = positionY + (h/2);
     
   }
+  
   //displaying player
   void display(){
-    fill(0,255,0);
-    rect(positionX,positionY,w,h);
+    image(texture, 0, 0, width/2, height/2);
   }
-  //collision
-  void collision(){
-    if( mouseX > left && mouseX < right){
-      if(mouseY > top && mouseY < bottom){
-      }
-    }
-  }
+  
   // player movement
   void movement(){
     if(aPressed){
