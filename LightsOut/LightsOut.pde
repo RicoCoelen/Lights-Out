@@ -4,7 +4,7 @@ PImage bg;
 // added challenger 4
 MainMenu m = new MainMenu();
 
-//global variables
+//global variablesqe vbawbq
 Player player;
 SmallEnemy e1;
 
@@ -51,6 +51,7 @@ void updateGame() {
   player.movement();
   player.border();
   e1.update();
+  player.dashCounter();
   
 }
 
@@ -64,14 +65,29 @@ void updateDraw() {
 
 void keyPressed() {
     //checking if pressed key is true
+    
+    
     if(key == 'a') {
       player.aPressed = true;
       player.texture = loadImage("assets/sprites/player_left.png");
     }
-    else if(key == 'd'){
+    if(key == 'd'){
       player.dPressed = true;
       player.texture = loadImage("assets/sprites/player_right.png");
     }
+    if(key == 'q'){
+     player.qPressed = true;
+     }
+      
+    if(key == 'e'){
+      player.ePressed = true;
+    }
+    
+    //block
+    if(key == 'b'){
+      player.bPressed = true; 
+    }
+    //game menu
     if(key == '1') {
      state = 2; 
     }
@@ -87,6 +103,16 @@ void keyReleased(){
     }
     else if(key == 'd'){
       player.dPressed = false;
+    }
+    if(key == 'q'){
+      player.qPressed = false;
+    }
+    if(key == 'e'){
+     player.ePressed = false; 
+    }
+    
+    if(key == 'b'){
+     player.bPressed = false; 
     }
 
 }

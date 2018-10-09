@@ -32,5 +32,9 @@ class SmallEnemy {
   void draw() {
     // draw body
     rect(x, y, w, h);
+    stroke(1);
+    line(x-40, height-1, x+100, height-1);
+    line(x-40, height, x-40, height-20); 
+    line(x+100, height ,x+100, height-20);
   }
 }
