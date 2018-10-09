@@ -7,7 +7,7 @@ MainMenu m = new MainMenu();
 
 //global variables
 Player player;
-
+SmallEnemy e1;
 
 int state = 1;
 
@@ -20,7 +20,7 @@ void setup(){
   
 
   player = new Player(); // initialize class
- 
+  e1 = new SmallEnemy();
 
 }
 
@@ -55,6 +55,7 @@ void updateGame() {
   player.movement();
   player.collision();
   player.border();
+  e1.update();
   
 }
 
@@ -62,12 +63,8 @@ void updateDraw() {
   // drawing background
   background(bg);
   // update draw here
-
-  
-  
-  
   player.display();
- 
+  e1.draw();
 }
 
 void keyPressed() {
