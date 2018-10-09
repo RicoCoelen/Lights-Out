@@ -104,4 +104,15 @@ class Enemy {
       return false;
     }
   }
+  
+  Boolean checkCollision(){
+    boolean collision = false;
+    // check if x and y are in range of width and height
+    if ((player.positionX >= x && player.positionX <= x + w) || (player.positionX + player.w >= x && player.positionX + player.w <= x + w))  {
+      if ((player.positionY >= y && player.positionY <= y + h) || (player.positionY + player.h >= x && player.positionY + player.h <= y + h))  {
+        return true;
+      }
+    }
+    return collision;
+  }
 }
