@@ -23,6 +23,7 @@ class Player{
   }
   //displaying player
   void display(){
+    fill(0,255,0);
     rect(positionX,positionY,w,h);
   }
   //collision

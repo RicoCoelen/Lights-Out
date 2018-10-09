@@ -1,22 +1,53 @@
 // object for background image
 PImage bg;
+
+
+// added challenger 4
+MainMenu m = new MainMenu();
+
 //global variables
 Player player;
-SmallEnemy e1;
+
+
+int state = 1;
+
 
 void setup(){
   frameRate(60); //60 fps
   size(640,480); // size
-  bg = loadImage("assets/background.jpg");
+  bg = loadImage("assets/sprites/background.jpg");
+
+  
+
   player = new Player(); // initialize class
-  e1 = new SmallEnemy(); 
+ 
+
 }
 
 void draw(){
   // draw 60 frames
+  updateMainMenu();
+  switch (state) { 
+    case 1:
+      scene1();
+      break;
+    case 2:
+      scene2();
+      break;  
+  }
+}
+
+void scene1() {
+  // draw 60 frames
+  updateMainMenu();
+  
+}
+
+void scene2() {
   updateGame();
   updateDraw();
 }
+
 
 void updateGame() {
   // update game mechanics here
@@ -24,15 +55,19 @@ void updateGame() {
   player.movement();
   player.collision();
   player.border();
-  e1.update();
+  
 }
 
 void updateDraw() {
   // drawing background
-  background(255 );
+  background(bg);
   // update draw here
+
+  
+  
+  
   player.display();
-  e1.draw();
+ 
 }
 
 void keyPressed() {
@@ -42,6 +77,12 @@ void keyPressed() {
     }
     else if(key == 'd'){
       player.dPressed = true;
+    }
+    if(key == '1') {
+     state = 2; 
+    }
+    if(key == 'b' && key == 'B'){
+     state = 1; 
     }
 }
 
@@ -53,4 +94,11 @@ void keyReleased(){
     else if(key == 'd'){
       player.dPressed = false;
     }
+
+}
+
+void updateMainMenu(){
+  m.draw();
+  m.keyPressed();
+ 
 }
