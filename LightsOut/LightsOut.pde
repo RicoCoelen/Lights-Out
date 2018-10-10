@@ -60,6 +60,7 @@ void updateDraw() {
   player.display();
   e1.draw();
   e1.drawButtons();
+  player.drawButtons();
 }
 
 void keyPressed() {
