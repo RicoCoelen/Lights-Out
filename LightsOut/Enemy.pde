@@ -38,7 +38,7 @@ class Enemy {
       case 1:
         h = 100;
         w = 60;
-        dcw = 300;
+        dcw = 200;
         ds = 0.5;
         sprite = loadImage("assets/sprites/smallenemy.gif");
         comboGenerator(2, 4);
@@ -81,6 +81,17 @@ class Enemy {
     // movement
     x += vx;
     y += vy;
+    
+    // death mechanic
+    if (checkRange()) {
+        print("in range");
+      if (comboCorrect(player.playerInput, enemyCombo)) {
+        enemyCombo.clear();
+        enemyComboButtons.clear();
+        comboGenerator(2, 4);
+        println("death----- yeet");
+      }
+    }
   }
 
   /*
@@ -153,11 +164,31 @@ class Enemy {
     print(enemyCombo);
   }
   
+  boolean comboCorrect(ArrayList<String> player, ArrayList<String> enemy) {
+    
+    int result = 0;
+    if(player.size() == enemy.size()) {
+      // check array list
+      for(int i = 0; i < enemy.size(); i++) {
+        if (player.get(i) == enemy.get(i)) {
+        result++;
+        }
+      }  
+    }
+    // check if correct
+    if(result == enemyCombo.size()) {
+      return true;
+    }
+    return false;
+  }
+  
   void drawButtons() {
-    float debugPos = 0;
-    for(int i = 0; i < enemyComboButtons.size(); i++) {
-      image(enemyComboButtons.get(i), debugPos, 10);
-      debugPos += 20;
+    float debugPos = x;
+    if (checkRange())  {
+      for(int i = 0; i < enemyComboButtons.size(); i++) {
+        image(enemyComboButtons.get(i), debugPos, y - 33);
+        debugPos += 20;
+      }
     }
   }
 }
