@@ -65,11 +65,11 @@ void updateDraw() {
 
 void keyPressed() {
     //checking if pressed key is true
-    if(key == 'a') {
+    if(key == 'a' || key == 'A') {
       player.aPressed = true;
       player.texture = loadImage("assets/sprites/player_left.png");
     }
-    else if(key == 'd'){
+    else if(key == 'd' || key == 'D'){
       player.dPressed = true;
       player.texture = loadImage("assets/sprites/player_right.png");
     }
