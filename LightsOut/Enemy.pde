@@ -1,7 +1,12 @@
 class Enemy {
   
   // vars
-  PImage sprite;
+  PImage sprite = loadImage("assets/sprites/smallenemy.gif");
+  PImage upArrow = loadImage("assets/sprites/up-arrow.png");
+  PImage downArrow = loadImage("assets/sprites/down-arrow.png");
+  PImage leftArrow = loadImage("assets/sprites/left-arrow.png");
+  PImage rightArrow = loadImage("assets/sprites/right-arrow.png");
+
   float x;
   float y;
   float vx;
@@ -12,6 +17,8 @@ class Enemy {
   float ds; // default speed
   int h;
   int w;
+  ArrayList<String> enemyCombo = new ArrayList<String>();
+  ArrayList<PImage> enemyComboButtons = new ArrayList<PImage>();
 
   /*
   Function to instantiate the enemy
@@ -34,6 +41,8 @@ class Enemy {
         dcw = 300;
         ds = 0.5;
         sprite = loadImage("assets/sprites/smallenemy.gif");
+        comboGenerator(2, 4);
+        // 2 - 4
       break;
       // medium enemy
       case 2:
@@ -41,6 +50,7 @@ class Enemy {
          w = 100;
          dcw = 400;
          ds = 0.3;
+         comboGenerator(4, 7);
       break;
       // heavy enemy
       case 3:
@@ -48,6 +58,7 @@ class Enemy {
          w = 120;
          dcw = 500;
          ds = 0.2;
+         comboGenerator(7, 10);
       break;
     }
   }
@@ -114,5 +125,39 @@ class Enemy {
       }
     }
     return collision;
+  }
+  
+  void comboGenerator(float min, float max) {
+    int comboAmount = Math.round(random(min, max));
+    for(int i = 0; i < comboAmount; i++) {
+      int buttonChoice = (int) random(1, 4);
+      switch (buttonChoice) {
+        case 1:
+          enemyCombo.add("UP");
+          enemyComboButtons.add(upArrow);
+          break;
+        case 2:
+          enemyCombo.add("DOWN");
+          enemyComboButtons.add(downArrow);
+          break;
+        case 3:
+          enemyCombo.add("LEFT");
+          enemyComboButtons.add(leftArrow);
+          break;
+        case 4:
+          enemyCombo.add("RIGHT");
+          enemyComboButtons.add(rightArrow);
+          break;
+      }
+    }
+    print(enemyCombo);
+  }
+  
+  void drawButtons() {
+    float debugPos = 0;
+    for(int i = 0; i < enemyComboButtons.size(); i++) {
+      image(enemyComboButtons.get(i), debugPos, 10);
+      debugPos += 20;
+    }
   }
 }

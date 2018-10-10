@@ -50,7 +50,6 @@ void updateGame() {
   player.movement();
   player.border();
   player.counter();
-  print(player.playerInput);
   e1.update();
 }
 
@@ -60,6 +59,7 @@ void updateDraw() {
   // update draw here
   player.display();
   e1.draw();
+  e1.drawButtons();
 }
 
 void keyPressed() {
@@ -76,21 +76,25 @@ void keyPressed() {
       if (keyCode == UP) {
         player.upPressed = true;
         player.playerInput.add("UP");
+        player.playerInputButtons.add(player.upArrow);
         player.comboCounter = 0;
       }
       else if (keyCode == DOWN) {
         player.downPressed = true;
         player.playerInput.add("DOWN");
+        player.playerInputButtons.add(player.downArrow);
         player.comboCounter = 0;
       }
       else if (keyCode == LEFT) {
         player.leftPressed = true;
         player.playerInput.add("LEFT");
+        player.playerInputButtons.add(player.leftArrow);
         player.comboCounter = 0;
       }
       else if (keyCode == RIGHT) {
         player.rightPressed = true;
         player.playerInput.add("RIGHT");
+        player.playerInputButtons.add(player.rightArrow);
         player.comboCounter = 0;
       }
     }
