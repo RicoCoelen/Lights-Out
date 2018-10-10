@@ -48,7 +48,7 @@ class Player{
     }
   }
   
-<<<<<<< HEAD
+
   //check collision
   boolean collision(){
     if(e1.x + e1.w + e1.vx > player.positionX &&
@@ -56,7 +56,7 @@ class Player{
        e1.vx = 0;
          print("Collision");
       return true;
-       }
+     }
      else{
       return false;
      }
@@ -71,7 +71,7 @@ class Player{
       e1.vx =+ -1;
     }
   }  
-=======
+
   //  Counter for player input
   void counter() {
     comboCounter += (float) 1/60;
@@ -80,5 +80,4 @@ class Player{
       playerInput.clear();  //  Clears the input array if the user didnt press a combo button after 3 seconds
     }
   }
->>>>>>> testing
 }
