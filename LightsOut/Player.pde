@@ -3,7 +3,12 @@ class Player{
   float positionX,positionY,speed,w,h,left,right,top,bottom,comboCounter;
   boolean aPressed,dPressed,upPressed,downPressed,leftPressed,rightPressed;
   ArrayList<String> playerInput = new ArrayList<String>();
+  ArrayList<PImage> playerInputButtons = new ArrayList<PImage>();
   PImage texture;
+  PImage upArrow = loadImage("assets/sprites/up-arrow.png");
+  PImage downArrow = loadImage("assets/sprites/down-arrow.png");
+  PImage leftArrow = loadImage("assets/sprites/left-arrow.png");
+  PImage rightArrow = loadImage("assets/sprites/right-arrow.png");
 
   
   Player(){
@@ -76,8 +81,17 @@ class Player{
   void counter() {
     comboCounter += (float) 1/60;
     
-    if (comboCounter >= 3.0) {
-      playerInput.clear();  //  Clears the input array if the user didnt press a combo button after 3 seconds
+    if (comboCounter >= 0.5) {
+      playerInput.clear();  //  Clears the input array if the user didnt press a combo button after 0.5 seconds
+      playerInputButtons.clear();  //  Clears the input array if the user didnt press a combo button after 0.5 seconds
+    }
+  }
+  
+  void drawButtons() {
+    float debugPos = 0;
+    for(int i = 0; i < playerInputButtons.size(); i++) {
+      image(playerInputButtons.get(i), debugPos, 30);
+      debugPos += 20;
     }
   }
 }

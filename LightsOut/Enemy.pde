@@ -1,10 +1,22 @@
 class Enemy {
   
   // vars
+<<<<<<< HEAD
   PImage sprite;
   float x;
   float y;
   float vx; 
+=======
+  PImage sprite = loadImage("assets/sprites/smallenemy.gif");
+  PImage upArrow = loadImage("assets/sprites/up-arrow.png");
+  PImage downArrow = loadImage("assets/sprites/down-arrow.png");
+  PImage leftArrow = loadImage("assets/sprites/left-arrow.png");
+  PImage rightArrow = loadImage("assets/sprites/right-arrow.png");
+
+  float x;
+  float y;
+  float vx;
+>>>>>>> testing
   float vy;
   float cw; // check width
   float cx; // collision block x
@@ -12,6 +24,11 @@ class Enemy {
   float ds; // default speed
   int h;
   int w;
+<<<<<<< HEAD
+=======
+  ArrayList<String> enemyCombo = new ArrayList<String>();
+  ArrayList<PImage> enemyComboButtons = new ArrayList<PImage>();
+>>>>>>> testing
 
   /*
   Function to instantiate the enemy
@@ -34,6 +51,11 @@ class Enemy {
         dcw = 300;
         ds = 0.5;
         sprite = loadImage("assets/sprites/smallenemy.gif");
+<<<<<<< HEAD
+=======
+        comboGenerator(2, 4);
+        // 2 - 4
+>>>>>>> testing
       break;
       // medium enemy
       case 2:
@@ -41,6 +63,10 @@ class Enemy {
          w = 100;
          dcw = 400;
          ds = 0.3;
+<<<<<<< HEAD
+=======
+         comboGenerator(4, 7);
+>>>>>>> testing
       break;
       // heavy enemy
       case 3:
@@ -48,6 +74,10 @@ class Enemy {
          w = 120;
          dcw = 500;
          ds = 0.2;
+<<<<<<< HEAD
+=======
+         comboGenerator(7, 10);
+>>>>>>> testing
       break;
     }
   }
@@ -97,8 +127,12 @@ class Enemy {
   
   Boolean checkRange(){
     // set true if in range of enemy // long ass if statement
+<<<<<<< HEAD
     if ((player.positionX >= cx && player.positionX <= cx + cw) || (player.positionX + w >= cx && player.positionX + w <= cx + cw) || 
         (player.positionX >= cx + cw && player.positionX <= cx) || (player.positionX + w >= cx + cw && player.positionX + w <= cx))  {
+=======
+    if ((player.positionX >= cx && player.positionX <= cx + cw) || (player.positionX + w >= cx && player.positionX + w <= cx + cw) || (player.positionX >= cx + cw && player.positionX <= cx) || (player.positionX + w >= cx + cw && player.positionX + w <= cx))  {
+>>>>>>> testing
       return true;
     }
     else {
@@ -116,4 +150,41 @@ class Enemy {
     }
     return collision;
   }
+<<<<<<< HEAD
+=======
+  
+  void comboGenerator(float min, float max) {
+    int comboAmount = Math.round(random(min, max));
+    for(int i = 0; i < comboAmount; i++) {
+      int buttonChoice = (int) random(1, 4);
+      switch (buttonChoice) {
+        case 1:
+          enemyCombo.add("UP");
+          enemyComboButtons.add(upArrow);
+          break;
+        case 2:
+          enemyCombo.add("DOWN");
+          enemyComboButtons.add(downArrow);
+          break;
+        case 3:
+          enemyCombo.add("LEFT");
+          enemyComboButtons.add(leftArrow);
+          break;
+        case 4:
+          enemyCombo.add("RIGHT");
+          enemyComboButtons.add(rightArrow);
+          break;
+      }
+    }
+    print(enemyCombo);
+  }
+  
+  void drawButtons() {
+    float debugPos = 0;
+    for(int i = 0; i < enemyComboButtons.size(); i++) {
+      image(enemyComboButtons.get(i), debugPos, 10);
+      debugPos += 20;
+    }
+  }
+>>>>>>> testing
 }
