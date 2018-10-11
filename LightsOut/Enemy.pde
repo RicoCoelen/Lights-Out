@@ -39,7 +39,7 @@ class Enemy {
         h = 10;
         w = 5;
         dcw = 50;
-        ds = 0.5;
+        ds = 0.8;
         sprite = loadImage("assets/sprites/Scout.png");
         comboGenerator(2, 4);
         // 2 - 4
@@ -49,7 +49,7 @@ class Enemy {
          h = 10;
          w = 5;
          dcw = 80;
-         ds = 0.3;
+         ds = 0.5;
          sprite = loadImage("assets/sprites/Soldier.png");
          comboGenerator(4, 7);
       break;
@@ -58,7 +58,7 @@ class Enemy {
          h = 10;
          w = 5;
          dcw = 100;
-         ds = 0.2;
+         ds = 0.3;
          sprite = loadImage("assets/sprites/Heavy.png");
          comboGenerator(7, 10);
       break;

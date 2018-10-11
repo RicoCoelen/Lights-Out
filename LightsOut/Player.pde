@@ -47,7 +47,7 @@ class Player{
       positionX = positionX + speed;
       print(positionX); 
     }
-     else if(positionX > 610){
+     else if(positionX > 580){
       positionX = positionX - speed;
       print(positionX); 
     }
