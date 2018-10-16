@@ -6,12 +6,11 @@ MainMenu m = new MainMenu();
 
 //global variables
 Player player;
-
-//  Current scene
 int state = 0;  
 int dashCoolDown = 0;
 int dashCoolTime = 90;
 int dashDistance = 50;
+int score;
 
 int enemyAmount;  //  Amount of enemies in wave
 ArrayList<Enemy> enemyList = new ArrayList<Enemy>();
@@ -57,6 +56,8 @@ void scene1() {
   // update scene 1
   update1();
   draw1();
+  fill(50);
+  text("Score: " + score, 0, 0, 1000, 80);  // Text wraps within text box
 }
 
 void scene2() {
