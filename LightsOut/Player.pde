@@ -15,7 +15,7 @@ class Player{
     aPressed = false;
     dPressed = false;
     positionX = width/2;
-    positionY = height - 110;
+    positionY = height - 200;
     speed = 5;
     w = 60;
     h = 75;
