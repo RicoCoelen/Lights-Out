@@ -8,8 +8,16 @@ MainMenu m = new MainMenu();
 Player player;
 Enemy e1;
 
+<<<<<<< Updated upstream
 //  Current scene
 int state = 0;  
+=======
+int state = 1;  //  Current scene
+int dashCoolDown = 0;
+int dashCoolTime = 90;
+int dashDistance = 50;
+
+>>>>>>> Stashed changes
 
 void setup() {
   frameRate(60); //60 fps
@@ -18,6 +26,13 @@ void setup() {
   player = new Player(); // initialize class
   player.texture = loadImage("assets/sprites/player_right.png");
   e1 = new Enemy(200, 325, 1);
+<<<<<<< Updated upstream
+=======
+  e2 = new Enemy(400, 325, 2);
+  e3 = new Enemy(100, 325, 3);
+  
+  
+>>>>>>> Stashed changes
 }
 
 void draw() {
@@ -130,6 +145,19 @@ void keyPressed() {
       player.dPressed = true;
       player.texture = loadImage("assets/sprites/player_right.png");
     }
+    else if (key == 'q'){
+      if(dashCoolDown + dashCoolTime < frameCount){
+        player.velocityX = player.velocityX - dashDistance; 
+        dashCoolDown = frameCount;
+      }
+      
+     }
+    else if (key == 'e'){
+      if(dashCoolDown + dashCoolTime  < frameCount){
+        player.velocityX = player.velocityX + dashDistance;
+        dashCoolDown = frameCount;
+      }
+     }
     else if (key == CODED) {
       if (keyCode == UP) {
         player.upPressed = true;
@@ -177,6 +205,12 @@ void keyReleased(){
     }
     else if(key == 'd'){
       player.dPressed = false;
+    }
+    else if(key == 'q'){
+     player.qPressed = false;
+    }
+    else if(key == 'e'){
+     player.ePressed = false; 
     }
     else if (key == CODED) {
       if (keyCode == UP) {
