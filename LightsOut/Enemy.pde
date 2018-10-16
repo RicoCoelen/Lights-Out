@@ -15,10 +15,10 @@ class Enemy {
   float y;
   float vx;
   float vy;
-  float cw; // check width
-  float cx; // collision block x
-  float dcw; // default check width
-  float ds; // default speed
+  float cw; // actual check range width
+  float cx; // actual check range x position
+  float dcw; // default check range width
+  float ds; // default enemy speed
   int h;
   int w;
 
@@ -39,6 +39,7 @@ class Enemy {
     
     // check which type
     switch(enemyType) {
+      
       // light enemy
       case 1:
         h = 10;
@@ -47,8 +48,8 @@ class Enemy {
         ds = 0.8;
         sprite = loadImage("assets/sprites/Scout.png");
         comboGenerator(2, 4);  //  Generate combo between 2 and 4 buttons
-
       break;
+      
       // medium enemy
       case 2:
          h = 10;
@@ -57,8 +58,8 @@ class Enemy {
          ds = 0.5;
          sprite = loadImage("assets/sprites/Soldier.png");
          comboGenerator(4, 7);  //  Generate combo between 4 and 7 buttons
-
       break;
+      
       // heavy enemy
       case 3:
          h = 10;
@@ -67,7 +68,6 @@ class Enemy {
          ds = 0.3;
          sprite = loadImage("assets/sprites/Heavy.png");
          comboGenerator(7, 10);  //  Generate combo between 7 and 10 buttons
-
       break;
     }
   }
@@ -76,6 +76,7 @@ class Enemy {
   Function to update the movement of the enemy
   */
   void update() {
+    
     // check if player is the right way
     if (player.positionX > x) {
       vx = ds;
@@ -87,18 +88,17 @@ class Enemy {
       cw = dcw * -1;
       cx = x;
     }   
+   
     // movement
     x += vx;
     y += vy;
     
     // death mechanic
     if (checkRange()) {
-        //print("in range");
       if (comboCorrect(player.playerInput, enemyCombo)) {
         enemyCombo.clear();
         enemyComboButtons.clear();
         comboGenerator(2, 4);
-        //println("death----- yeet");
       }
     }
   }
@@ -108,7 +108,9 @@ class Enemy {
   */
   void draw() {
     
+    // give white background
     fill(255);
+    
     // draw collision box
     rect(cx, y, cw, h);
     
@@ -124,6 +126,9 @@ class Enemy {
     else {
       image(sprite, x, y);
     }
+    
+    // draw buttons
+    this.drawButtons();
   }
   
  Boolean checkRange(){
@@ -143,7 +148,6 @@ class Enemy {
     }
   }
 
-  
   Boolean checkCollision(){
     boolean collision = false;
     // check if x and y are in range of width and height
@@ -154,7 +158,6 @@ class Enemy {
     }
     return collision;
   }
-
   
   void comboGenerator(float min, float max) {
     int comboAmount = Math.round(random(min, max));
@@ -183,7 +186,6 @@ class Enemy {
   }
   
   boolean comboCorrect(ArrayList<String> player, ArrayList<String> enemy) {
-    
     int result = 0;
     if(player.size() == enemy.size()) {
       // check array list

@@ -8,7 +8,8 @@ MainMenu m = new MainMenu();
 Player player;
 Enemy e1;
 
-int state = 1;  //  Current scene
+//  Current scene
+int state = 0;  
 
 void setup() {
   frameRate(60); //60 fps
@@ -20,52 +21,76 @@ void setup() {
 }
 
 void draw() {
-  // draw 60 frames
-  updateMainMenu();
+  // select scene
   switch (state) { 
+    case 0:
+      menu();
+      break;
     case 1:
       scene1();
       break;
     case 2:
       scene2();
-      break;  
+      break;
   } 
 }
 
-void scene1() {
-  // draw 60 frames
+void menu() {
+  // update menu
   updateMainMenu();
-  
+}
+
+void scene1() {
+  // update scene 1
+  update1();
+  draw1();
 }
 
 void scene2() {
-  updateGame();
-  updateDraw();
+  // update scene 2
+  
 }
 
+void updateMainMenu(){
+  m.draw();
+  m.keyPressed();
+}
 
-void updateGame() {
+/*
+========= scene 1 ===========
+*/
+
+void update1() {
   // update game mechanics here
-  player.collision();
-  player.collisionMove();
-  player.display();
-  player.movement();
-  player.border();
-  player.counter();
+  player.update();
   e1.update();
-  e1.checkCollision();
 }
 
-void updateDraw() {
+void draw1() {
   // drawing background
   background(bg);
   // update draw here
   player.display();
   e1.draw();
-  
-  e1.drawButtons();
-  player.drawButtons();
 }
+
+/*
+========= scene 2 ===========
+*/
+
+void update2() {
+  // update game mechanics here
+
+}
+
+void draw2() {
+  // drawing background
+  background(bg);
+}
+
+/*
+========= user input ===========
+*/
 
 void keyPressed() {
     //checking if pressed key is true
@@ -103,11 +128,14 @@ void keyPressed() {
         player.comboCounter = 0;
       }
     }
-    if(key == '1') {
+    if(key == '2') {
      state = 2; 
     }
-    if(key == 'b' && key == 'B'){
+    if(key == '1') {
      state = 1; 
+    }
+    if(key == '0'){
+     state = 0; 
     }
 }
 
@@ -133,11 +161,4 @@ void keyReleased(){
         player.rightPressed = false;
       }
     }
-
-}
-
-void updateMainMenu(){
-  m.draw();
-  m.keyPressed();
- 
 }
