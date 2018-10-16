@@ -50,6 +50,8 @@ void scene2() {
 
 void updateGame() {
   // update game mechanics here
+  player.collision();
+  player.collisionMove();
   player.display();
   player.movement();
   player.border();
