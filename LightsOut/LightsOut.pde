@@ -21,8 +21,9 @@ void setup() {
   player.texture = loadImage("assets/sprites/player_right.png");
   
   //  WAVE 1 TEST //
-  enemyList.add(new Enemy(200, 325, 1));
-  enemyList.add(new Enemy(100, 325, 2));
+  enemyList.add(new Enemy(700, 325, 1));
+  enemyList.add(new Enemy(-700, 325, 1));
+  enemyList.add(new Enemy(1400, 245, 2));
   //  END WAVE 1 TEST //
 }
 

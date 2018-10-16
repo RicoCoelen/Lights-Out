@@ -19,6 +19,7 @@ class Enemy {
   float cx; // actual check range x position
   float dcw; // default check range width
   float ds; // default enemy speed
+  float comboWidth;
   int h;
   int w;
   int health;
@@ -44,9 +45,9 @@ class Enemy {
       // light enemy
       case 1:
         health = (int) random(1, 2);
-        h = 10;
-        w = 25;
-        dcw = 50;
+        h = 80;
+        w = 26;
+        dcw = 200;
         ds = 0.8;
         sprite = loadImage("assets/sprites/Scout.png");
         comboGenerator(2, 4);  //  Generate combo between 2 and 4 buttons
@@ -55,9 +56,9 @@ class Enemy {
       // medium enemy
       case 2:
          health = (int) random(2, 4);
-         h = 10;
-         w = 5;
-         dcw = 80;
+         h = 160;
+         w = 50;
+         dcw = 300;
          ds = 0.5;
          sprite = loadImage("assets/sprites/Soldier.png");
          comboGenerator(4, 7);  //  Generate combo between 4 and 7 buttons
@@ -117,14 +118,15 @@ class Enemy {
   void draw() {
     
     // give white background
-    fill(255);
+    fill(255, 255, 255, 150);
     
     // draw collision box
     rect(cx, y, cw, h);
     
     // draw combo block if in range // magic numbers for positioning above enemy character
     if (checkRange())  {
-      rect(x - 20, y - 40, w + 40, 30);
+      fill(255);
+      rect(x - (20 + w), y - 40, comboWidth, 30);
     }
     
     // enemy block view
@@ -219,11 +221,16 @@ class Enemy {
   }
   
   void drawButtons() {
-    float debugPos = x;
+    float debugPos = x - w;
     if (checkRange())  {
+      comboWidth = 0;
       for(int i = 0; i < enemyComboButtons.size(); i++) {
         image(enemyComboButtons.get(i), debugPos, y - 33);
         debugPos += 20;
+        comboWidth += 20;
+        if (i == enemyComboButtons.size() - 1){
+        comboWidth += w;
+        }
       }
     }
   }
