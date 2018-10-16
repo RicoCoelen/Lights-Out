@@ -9,6 +9,9 @@ Player player;
 
 //  Current scene
 int state = 0;  
+int dashCoolDown = 0;
+int dashCoolTime = 90;
+int dashDistance = 50;
 
 int enemyAmount;  //  Amount of enemies in wave
 ArrayList<Enemy> enemyList = new ArrayList<Enemy>();
@@ -141,6 +144,19 @@ void keyPressed() {
       player.dPressed = true;
       player.texture = loadImage("assets/sprites/player_right.png");
     }
+    else if (key == 'q'){
+      if(dashCoolDown + dashCoolTime < frameCount){
+        player.velocityX = player.velocityX - dashDistance; 
+        dashCoolDown = frameCount;
+      }
+      
+     }
+    else if (key == 'e'){
+      if(dashCoolDown + dashCoolTime  < frameCount){
+        player.velocityX = player.velocityX + dashDistance;
+        dashCoolDown = frameCount;
+      }
+     }
     else if (key == CODED) {
       if (keyCode == UP) {
         player.upPressed = true;
@@ -188,6 +204,12 @@ void keyReleased(){
     }
     else if(key == 'd'){
       player.dPressed = false;
+    }
+    else if(key == 'q'){
+     player.qPressed = false;
+    }
+    else if(key == 'e'){
+     player.ePressed = false; 
     }
     else if (key == CODED) {
       if (keyCode == UP) {
