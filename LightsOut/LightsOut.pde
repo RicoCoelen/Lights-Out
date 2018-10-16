@@ -6,10 +6,12 @@ MainMenu m = new MainMenu();
 
 //global variables
 Player player;
-Enemy e1;
 
 //  Current scene
 int state = 0;  
+
+int enemyAmount;  //  Amount of enemies in wave
+ArrayList<Enemy> enemyList = new ArrayList<Enemy>();
 
 void setup() {
   frameRate(60); //60 fps
@@ -17,7 +19,11 @@ void setup() {
   bg = loadImage("assets/sprites/background.jpg");
   player = new Player(); // initialize class
   player.texture = loadImage("assets/sprites/player_right.png");
-  e1 = new Enemy(200, 325, 1);
+  
+  //  WAVE 1 TEST //
+  enemyList.add(new Enemy(200, 325, 1));
+  enemyList.add(new Enemy(100, 325, 2));
+  //  END WAVE 1 TEST //
 }
 
 void draw() {
@@ -63,7 +69,9 @@ void updateMainMenu(){
 void update1() {
   // update game mechanics here
   player.update();
-  e1.update();
+  for (int i = 0; i < enemyList.size(); i++) {
+    enemyList.get(i).update();
+  }
 }
 
 void draw1() {
@@ -71,7 +79,9 @@ void draw1() {
   background(bg);
   // update draw here
   player.display();
-  e1.draw();
+  for (int i = 0; i < enemyList.size(); i++) {
+    enemyList.get(i).draw();
+  }
 }
 
 /*
