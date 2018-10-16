@@ -7,6 +7,8 @@ MainMenu m = new MainMenu();
 //global variables
 Player player;
 Enemy e1;
+Enemy e2;
+Enemy e3;
 
 int state = 1;  //  Current scene
 
@@ -16,7 +18,9 @@ void setup() {
   bg = loadImage("assets/sprites/background.jpg");
   player = new Player(); // initialize class
   player.texture = loadImage("assets/sprites/player_right.png");
-  e1 = new Enemy(200, 100, 1);
+  e1 = new Enemy(200, 325, 1);
+  e2 = new Enemy(400, 325, 2);
+  e3 = new Enemy(100, 325, 3);
 }
 
 void draw() {
@@ -46,11 +50,15 @@ void scene2() {
 
 void updateGame() {
   // update game mechanics here
+  player.collision();
+  player.collisionMove();
   player.display();
   player.movement();
   player.border();
   player.counter();
   e1.update();
+  e2.update();
+  e3.update();
 }
 
 void updateDraw() {
@@ -59,6 +67,9 @@ void updateDraw() {
   // update draw here
   player.display();
   e1.draw();
+  e2.draw();
+  e3.draw();
+  
   e1.drawButtons();
   player.drawButtons();
 }

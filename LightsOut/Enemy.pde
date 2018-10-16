@@ -17,6 +17,7 @@ class Enemy {
   float ds; // default speed
   int h;
   int w;
+
   ArrayList<String> enemyCombo = new ArrayList<String>();
   ArrayList<PImage> enemyComboButtons = new ArrayList<PImage>();
 
@@ -36,29 +37,34 @@ class Enemy {
     switch(enemyType) {
       // light enemy
       case 1:
-        h = 100;
-        w = 60;
-        dcw = 200;
-        ds = 0.5;
-        sprite = loadImage("assets/sprites/smallenemy.gif");
+        h = 10;
+        w = 5;
+        dcw = 50;
+        ds = 0.8;
+        sprite = loadImage("assets/sprites/Scout.png");
         comboGenerator(2, 4);
         // 2 - 4
+
       break;
       // medium enemy
       case 2:
-         h = 140;
-         w = 100;
-         dcw = 400;
-         ds = 0.3;
+         h = 10;
+         w = 5;
+         dcw = 80;
+         ds = 0.5;
+         sprite = loadImage("assets/sprites/Soldier.png");
          comboGenerator(4, 7);
+
       break;
       // heavy enemy
       case 3:
-         h = 160;
-         w = 120;
-         dcw = 500;
-         ds = 0.2;
+         h = 10;
+         w = 5;
+         dcw = 100;
+         ds = 0.3;
+         sprite = loadImage("assets/sprites/Heavy.png");
          comboGenerator(7, 10);
+
       break;
     }
   }
@@ -117,15 +123,17 @@ class Enemy {
     }
   }
   
-  Boolean checkRange(){
+ Boolean checkRange(){
     // set true if in range of enemy // long ass if statement
-    if ((player.positionX >= cx && player.positionX <= cx + cw) || (player.positionX + w >= cx && player.positionX + w <= cx + cw) || (player.positionX >= cx + cw && player.positionX <= cx) || (player.positionX + w >= cx + cw && player.positionX + w <= cx))  {
+    if ((player.positionX >= cx && player.positionX <= cx + cw) || (player.positionX + w >= cx && player.positionX + w <= cx + cw) || 
+        (player.positionX >= cx + cw && player.positionX <= cx) || (player.positionX + w >= cx + cw && player.positionX + w <= cx))  {
       return true;
     }
     else {
       return false;
     }
   }
+
   
   Boolean checkCollision(){
     boolean collision = false;
@@ -137,6 +145,7 @@ class Enemy {
     }
     return collision;
   }
+
   
   void comboGenerator(float min, float max) {
     int comboAmount = Math.round(random(min, max));
