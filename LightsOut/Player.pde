@@ -2,6 +2,7 @@ class Player{
   
   // global variables
   float positionX,positionY,speed,w,h,left,right,top,bottom,comboCounter;
+  int health;
   boolean aPressed,dPressed,upPressed,downPressed,leftPressed,rightPressed;
   
   ArrayList<String> playerInput = new ArrayList<String>();
@@ -12,15 +13,16 @@ class Player{
   PImage downArrow = loadImage("assets/sprites/down-arrow.png");
   PImage leftArrow = loadImage("assets/sprites/left-arrow.png");
   PImage rightArrow = loadImage("assets/sprites/right-arrow.png");
-
-  Player(){
+  
+  Player() {
     aPressed = false;
     dPressed = false;
     positionX = width/2;
-    positionY = height - 200;
+    positionY = 295;
+    health = 5;
     speed = 5;
     w = 60;
-    h = 75;
+    h = 110;
     left = positionX - (w/2);
     right = positionX + (w/2);
     top = positionY - (h/2);
@@ -56,11 +58,9 @@ class Player{
   void border(){
     if(positionX < 0){
       positionX = positionX + speed;
-      print(positionX); 
     }
      else if(positionX > width - w){
       positionX = positionX - speed;
-      print(positionX); 
     }
   }
   
@@ -79,7 +79,6 @@ class Player{
   // move object if collision is false
   void collisionMove(){
     if(collision()){
-      print("test");
     }
     else{
       e1.vx =+ -1;

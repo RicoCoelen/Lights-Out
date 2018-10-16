@@ -28,10 +28,10 @@ void draw() {
       break;
     case 1:
       scene1();
-      break;  
+      break;
     case 2:
       scene2();
-      break;  
+      break;
   } 
 }
 
