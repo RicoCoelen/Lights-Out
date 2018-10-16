@@ -21,6 +21,7 @@ class Enemy {
   float ds; // default enemy speed
   int h;
   int w;
+  int health;
 
   ArrayList<String> enemyCombo = new ArrayList<String>();
   ArrayList<PImage> enemyComboButtons = new ArrayList<PImage>();
@@ -42,6 +43,7 @@ class Enemy {
       
       // light enemy
       case 1:
+        health = (int) random(1, 2);
         h = 10;
         w = 25;
         dcw = 50;
@@ -52,6 +54,7 @@ class Enemy {
       
       // medium enemy
       case 2:
+         health = (int) random(2, 4);
          h = 10;
          w = 5;
          dcw = 80;
@@ -62,12 +65,15 @@ class Enemy {
       
       // heavy enemy
       case 3:
+         health = (int) random(4, 10);
          h = 10;
          w = 5;
          dcw = 100;
          ds = 0.3;
          sprite = loadImage("assets/sprites/Heavy.png");
-         comboGenerator(7, 10);  //  Generate combo between 7 and 10 buttons
+         if (health > 0) {
+           comboGenerator(7, 10);  //  Generate combo between 7 and 10 buttons
+         }
       break;
     }
   }
@@ -76,6 +82,8 @@ class Enemy {
   Function to update the movement of the enemy
   */
   void update() {
+    
+    this.kill();  //  Calls kill method
     
     // check if player is the right way
     if (player.positionX > x) {
@@ -197,9 +205,17 @@ class Enemy {
     }
     // check if correct
     if(result == enemyCombo.size()) {
+      health--;
+      print(health);
       return true;
     }
     return false;
+  }
+  
+  void kill() {
+    if (health <= 0) {
+      enemyList.remove(enemyList.indexOf(this));  //  Gets current index of object in array and removes it
+    }
   }
   
   void drawButtons() {
