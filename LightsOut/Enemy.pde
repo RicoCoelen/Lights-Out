@@ -6,6 +6,10 @@ class Enemy {
   PImage downArrow = loadImage("assets/sprites/down-arrow.png");
   PImage leftArrow = loadImage("assets/sprites/left-arrow.png");
   PImage rightArrow = loadImage("assets/sprites/right-arrow.png");
+  PImage upArrowCorrect = loadImage("assets/sprites/up-arrow-correct.png");
+  PImage downArrowCorrect = loadImage("assets/sprites/down-arrow-correct.png");
+  PImage leftArrowCorrect = loadImage("assets/sprites/left-arrow-correct.png");
+  PImage rightArrowCorrect = loadImage("assets/sprites/right-arrow-correct.png");
 
   float x;
   float y;
@@ -38,12 +42,11 @@ class Enemy {
       // light enemy
       case 1:
         h = 10;
-        w = 5;
+        w = 25;
         dcw = 50;
         ds = 0.8;
         sprite = loadImage("assets/sprites/Scout.png");
-        comboGenerator(2, 4);
-        // 2 - 4
+        comboGenerator(2, 4);  //  Generate combo between 2 and 4 buttons
 
       break;
       // medium enemy
@@ -53,7 +56,7 @@ class Enemy {
          dcw = 80;
          ds = 0.5;
          sprite = loadImage("assets/sprites/Soldier.png");
-         comboGenerator(4, 7);
+         comboGenerator(4, 7);  //  Generate combo between 4 and 7 buttons
 
       break;
       // heavy enemy
@@ -63,7 +66,7 @@ class Enemy {
          dcw = 100;
          ds = 0.3;
          sprite = loadImage("assets/sprites/Heavy.png");
-         comboGenerator(7, 10);
+         comboGenerator(7, 10);  //  Generate combo between 7 and 10 buttons
 
       break;
     }
@@ -90,12 +93,12 @@ class Enemy {
     
     // death mechanic
     if (checkRange()) {
-        print("in range");
+        //print("in range");
       if (comboCorrect(player.playerInput, enemyCombo)) {
         enemyCombo.clear();
         enemyComboButtons.clear();
         comboGenerator(2, 4);
-        println("death----- yeet");
+        //println("death----- yeet");
       }
     }
   }
@@ -131,6 +134,12 @@ class Enemy {
     }
     else {
       return false;
+    }
+  }
+  
+  void giveDamage() {
+    if (checkCollision()) {
+      print("yeet");
     }
   }
 
