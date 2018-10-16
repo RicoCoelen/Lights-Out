@@ -23,6 +23,7 @@ class Enemy {
   int h;
   int w;
   int health;
+  int enemyType;
 
   ArrayList<String> enemyCombo = new ArrayList<String>();
   ArrayList<PImage> enemyComboButtons = new ArrayList<PImage>();
@@ -32,6 +33,8 @@ class Enemy {
   */
   Enemy(float enemyX, float enemyY, int enemyType) {
     
+    // set type
+    this.enemyType = enemyType;
     // set postion by parameters
     x = enemyX;
     y = enemyY;
@@ -217,6 +220,17 @@ class Enemy {
   void kill() {
     if (health <= 0) {
       enemyList.remove(enemyList.indexOf(this));  //  Gets current index of object in array and removes it
+      switch (enemyType) {
+        case 1:
+            score += 100;
+          break;
+        case 2:
+            score += 500;
+          break;
+        case 3:
+            score += 200;
+          break;
+      }
     }
   }
   

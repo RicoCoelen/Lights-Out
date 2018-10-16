@@ -107,7 +107,7 @@ class Player {
   void drawButtons() {
     float debugPos = 0;
     for (int i = 0; i < playerInputButtons.size(); i++) {
-      image(playerInputButtons.get(i), debugPos, 30);
+      image(playerInputButtons.get(i), debugPos, 50);
       debugPos += 20;
     }
   }
