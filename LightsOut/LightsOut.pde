@@ -31,7 +31,10 @@ void draw() {
       break;
     case 2:
       scene2();
-      break;
+      break;  
+    case 9:
+      death();
+      break;  
   } 
 }
 
@@ -48,7 +51,12 @@ void scene1() {
 
 void scene2() {
   // update scene 2
-  
+}
+
+void death() {
+  // update death scene
+  deathUpdate();
+  deathDraw();
 }
 
 void updateMainMenu(){
@@ -86,6 +94,26 @@ void update2() {
 void draw2() {
   // drawing background
   background(bg);
+}
+
+/*
+========= game over screen ===========
+*/
+
+void deathUpdate() {
+  // update game mechanics here
+  frameCount = -1;
+}
+
+void deathDraw() {
+  // drawing background
+  background(255);
+  // draw text
+  fill(0);
+  textSize(40);
+  text("Oops, Lights out buddy!", width / 8, 100);
+  textSize(20);
+  text("You might want to try again by pressing 1.", width / 8, 200);
 }
 
 /*
@@ -127,6 +155,9 @@ void keyPressed() {
         player.playerInputButtons.add(player.rightArrow);
         player.comboCounter = 0;
       }
+    }
+    if(key == '9') {
+     state = 9; 
     }
     if(key == '2') {
      state = 2; 
