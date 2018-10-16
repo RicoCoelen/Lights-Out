@@ -37,31 +37,32 @@ class Enemy {
     switch(enemyType) {
       // light enemy
       case 1:
-        h = 100;
-        w = 60;
-        dcw = 300;
-        ds = 0.5;
-        sprite = loadImage("assets/sprites/smallenemy.gif");
-
+        h = 10;
+        w = 5;
+        dcw = 50;
+        ds = 0.8;
+        sprite = loadImage("assets/sprites/Scout.png");
         comboGenerator(2, 4);
         // 2 - 4
 
       break;
       // medium enemy
       case 2:
-         h = 140;
-         w = 100;
-         dcw = 400;
-         ds = 0.3;
+         h = 10;
+         w = 5;
+         dcw = 80;
+         ds = 0.5;
+         sprite = loadImage("assets/sprites/Soldier.png");
          comboGenerator(4, 7);
 
       break;
       // heavy enemy
       case 3:
-         h = 160;
-         w = 120;
-         dcw = 500;
-         ds = 0.2;
+         h = 10;
+         w = 5;
+         dcw = 100;
+         ds = 0.3;
+         sprite = loadImage("assets/sprites/Heavy.png");
          comboGenerator(7, 10);
 
       break;
