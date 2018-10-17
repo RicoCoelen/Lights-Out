@@ -1,72 +1,92 @@
-class Player{
+class Player {
+  
   // global variables
-  float positionX,positionY,speed,w,h,left,right,top,bottom,comboCounter;
-  boolean aPressed,dPressed,upPressed,downPressed,leftPressed,rightPressed;
+  float positionX, positionY, velocityX, velocityY, speed, w, h, left, right, top, bottom, comboCounter;
+  boolean aPressed, dPressed, qPressed, ePressed, upPressed, downPressed, leftPressed, rightPressed;
+  int health;
+
   ArrayList<String> playerInput = new ArrayList<String>();
   ArrayList<PImage> playerInputButtons = new ArrayList<PImage>();
+  
   PImage texture;
   PImage upArrow = loadImage("assets/sprites/up-arrow.png");
   PImage downArrow = loadImage("assets/sprites/down-arrow.png");
   PImage leftArrow = loadImage("assets/sprites/left-arrow.png");
   PImage rightArrow = loadImage("assets/sprites/right-arrow.png");
 
-  
-  Player(){
+  Player() {
     aPressed = false;
     dPressed = false;
+    qPressed = false;
+    ePressed = false;
     positionX = width/2;
-    positionY = height - 100;
+    positionY = 295;
+    health = 5;
     speed = 5;
     w = 60;
-    h = 75;
+    h = 110;
     left = positionX - (w/2);
     right = positionX + (w/2);
     top = positionY - (h/2);
     bottom = positionY + (h/2);
-    
   }
-  
+
   //displaying player
-  void display(){
+  void display() {
     image(texture, positionX, positionY);
+    this.drawButtons();
   }
   
+  void update() {
+    //this.collision();
+    //this.collisionMove();
+    this.display();
+    this.movement();
+    this.border();
+    this.counter();
+    positionX += velocityX;
+    positionY += velocityY;
+    velocityX *= 0.4;
+  }
+
   // player movement
-  void movement(){
-    if(aPressed){
-      positionX = positionX - speed;
+  void movement() {
+    if (aPressed) {
+      velocityX -=  speed;
     }
-    if(dPressed){
-        positionX = positionX + speed;
-    }   
+    if (dPressed) {
+      velocityX += speed;
+    }  
+    //dash
+    if (ePressed) {
+    }
+    if (qPressed) {
+    }
   }
-  
+
   //stops player
-  void border(){
-    if(positionX < 0){
+  void border() {
+    if (positionX < 0) {
       positionX = positionX + speed;
-      print(positionX); 
     }
      else if(positionX > width - w){
       positionX = positionX - speed;
-      print(positionX); 
     }
   }
   
   //  Counter for player input
   void counter() {
     comboCounter += (float) 1/60;
-    
     if (comboCounter >= 0.5) {
       playerInput.clear();  //  Clears the input array if the user didnt press a combo button after 0.5 seconds
       playerInputButtons.clear();  //  Clears the input array if the user didnt press a combo button after 0.5 seconds
     }
   }
-  
+
   void drawButtons() {
     float debugPos = 0;
-    for(int i = 0; i < playerInputButtons.size(); i++) {
-      image(playerInputButtons.get(i), debugPos, 30);
+    for (int i = 0; i < playerInputButtons.size(); i++) {
+      image(playerInputButtons.get(i), debugPos, 50);
       debugPos += 20;
     }
   }

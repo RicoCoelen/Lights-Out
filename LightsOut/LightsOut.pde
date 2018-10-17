@@ -6,11 +6,14 @@ MainMenu m = new MainMenu();
 
 //global variables
 Player player;
-Enemy e1;
-Enemy e2;
-Enemy e3;
+int state = 0;  
+int dashCoolDown = 0;
+int dashCoolTime = 90;
+int dashDistance = 50;
+int score;
 
-int state = 1;  //  Current scene
+int enemyAmount;  //  Amount of enemies in wave
+ArrayList<Enemy> enemyList = new ArrayList<Enemy>();
 
 void setup() {
   frameRate(60); //60 fps
@@ -18,57 +21,119 @@ void setup() {
   bg = loadImage("assets/sprites/background.jpg");
   player = new Player(); // initialize class
   player.texture = loadImage("assets/sprites/player_right.png");
-  e1 = new Enemy(200, 325, 1);
-  e2 = new Enemy(400, 325, 2);
-  e3 = new Enemy(100, 325, 3);
+  
+  //  WAVE 1 TEST //
+  enemyList.add(new Enemy(700, 325, 1));
+  enemyList.add(new Enemy(-700, 325, 1));
+  enemyList.add(new Enemy(1400, 245, 2));
+  //  END WAVE 1 TEST //
 }
 
 void draw() {
-  // draw 60 frames
-  updateMainMenu();
+  // select scene
   switch (state) { 
+    case 0:
+      menu();
+      break;
     case 1:
       scene1();
       break;
     case 2:
       scene2();
       break;  
+    case 9:
+      death();
+      break;  
   } 
 }
 
-void scene1() {
-  // draw 60 frames
+void menu() {
+  // update menu
   updateMainMenu();
-  
+}
+
+void scene1() {
+  // update scene 1
+  update1();
+  draw1();
+  fill(50);
+  text("Score: " + score, 0, 0, 1000, 80);  // Text wraps within text box
 }
 
 void scene2() {
-  updateGame();
-  updateDraw();
+  // update scene 2
 }
 
+void death() {
+  // update death scene
+  deathUpdate();
+  deathDraw();
+}
 
-void updateGame() {
+void updateMainMenu(){
+  m.draw();
+  m.keyPressed();
+}
+
+/*
+========= scene 1 ===========
+*/
+
+void update1() {
   // update game mechanics here
-  player.display();
-  player.movement();
-  player.border();
-  player.counter();
-  e1.update();
-  
+  player.update();
+  for (int i = 0; i < enemyList.size(); i++) {
+    enemyList.get(i).update();
+  }
 }
 
-void updateDraw() {
+void draw1() {
   // drawing background
   background(bg);
   // update draw here
   player.display();
-  e1.draw();
-
-  
-  e1.drawButtons();
-  player.drawButtons();
+  for (int i = 0; i < enemyList.size(); i++) {
+    enemyList.get(i).draw();
+  }
 }
+
+/*
+========= scene 2 ===========
+*/
+
+void update2() {
+  // update game mechanics here
+
+}
+
+void draw2() {
+  // drawing background
+  background(bg);
+}
+
+/*
+========= game over screen ===========
+*/
+
+void deathUpdate() {
+  // update game mechanics here
+  frameCount = -1;
+}
+
+void deathDraw() {
+  // drawing background
+  background(255);
+  // draw text
+  fill(0);
+  textSize(40);
+  text("Oops, Lights out buddy!", width / 8, 100);
+  textSize(20);
+  text("You might want to try again by pressing 1.", width / 8, 200);
+}
+
+/*
+========= user input ===========
+*/
 
 void keyPressed() {
     //checking if pressed key is true
@@ -80,6 +145,19 @@ void keyPressed() {
       player.dPressed = true;
       player.texture = loadImage("assets/sprites/player_right.png");
     }
+    else if (key == 'q'){
+      if(dashCoolDown + dashCoolTime < frameCount){
+        player.velocityX = player.velocityX - dashDistance; 
+        dashCoolDown = frameCount;
+      }
+      
+     }
+    else if (key == 'e'){
+      if(dashCoolDown + dashCoolTime  < frameCount){
+        player.velocityX = player.velocityX + dashDistance;
+        dashCoolDown = frameCount;
+      }
+     }
     else if (key == CODED) {
       if (keyCode == UP) {
         player.upPressed = true;
@@ -106,11 +184,17 @@ void keyPressed() {
         player.comboCounter = 0;
       }
     }
-    if(key == '1') {
+    if(key == '9') {
+     state = 9; 
+    }
+    if(key == '2') {
      state = 2; 
     }
-    if(key == 'b' && key == 'B'){
+    if(key == '1') {
      state = 1; 
+    }
+    if(key == '0'){
+     state = 0; 
     }
 }
 
@@ -121,6 +205,12 @@ void keyReleased(){
     }
     else if(key == 'd'){
       player.dPressed = false;
+    }
+    else if(key == 'q'){
+     player.qPressed = false;
+    }
+    else if(key == 'e'){
+     player.ePressed = false; 
     }
     else if (key == CODED) {
       if (keyCode == UP) {
@@ -136,11 +226,4 @@ void keyReleased(){
         player.rightPressed = false;
       }
     }
-
-}
-
-void updateMainMenu(){
-  m.draw();
-  m.keyPressed();
- 
 }
