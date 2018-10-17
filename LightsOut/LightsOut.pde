@@ -50,15 +50,12 @@ void scene2() {
 
 void updateGame() {
   // update game mechanics here
-  player.collision();
-  player.collisionMove();
   player.display();
   player.movement();
   player.border();
   player.counter();
   e1.update();
-  e2.update();
-  e3.update();
+  
 }
 
 void updateDraw() {
@@ -67,8 +64,7 @@ void updateDraw() {
   // update draw here
   player.display();
   e1.draw();
-  e2.draw();
-  e3.draw();
+
   
   e1.drawButtons();
   player.drawButtons();

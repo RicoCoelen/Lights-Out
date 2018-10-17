@@ -37,9 +37,9 @@ class Enemy {
     switch(enemyType) {
       // light enemy
       case 1:
-        h = 10;
-        w = 5;
-        dcw = 50;
+        h = 158;
+        w = 49;
+        dcw = 90;
         ds = 0.8;
         sprite = loadImage("assets/sprites/Scout.png");
         comboGenerator(2, 4);
@@ -73,21 +73,25 @@ class Enemy {
   Function to update the movement of the enemy
   */
   void update() {
+    //no collision
+    if(!collisionPlayer()){
     // check if player is the right way
-    if (player.positionX > x) {
-      vx = ds;
+    if (player.positionX >= w) {
+      //change vx in the near future default speed for every enemy is always 1
+      vx = 1;
       cw = dcw;
       cx = x + w;
     }
     if (player.positionX < x) {
-      vx = ds * -1;
+      //change vx in the near future default speed for every enemy is always -1
+      vx = -1;
       cw = dcw * -1;
       cx = x;
     }   
     // movement
     x += vx;
     y += vy;
-    
+    }
     // death mechanic
     if (checkRange()) {
         print("in range");
@@ -123,6 +127,18 @@ class Enemy {
     }
   }
   
+  // collision with player
+  boolean collisionPlayer(){ 
+    if(x + w >= player.positionX &&
+      x <= player.positionX + player.w){
+      ds *= 0;
+       return true;
+    }
+    else{
+     return false;
+    }
+  } 
+  
  Boolean checkRange(){
     // set true if in range of enemy // long ass if statement
     if ((player.positionX >= cx && player.positionX <= cx + cw) || (player.positionX + w >= cx && player.positionX + w <= cx + cw) || 
@@ -130,11 +146,11 @@ class Enemy {
       return true;
     }
     else {
+      
       return false;
     }
   }
-
-  
+   
   Boolean checkCollision(){
     boolean collision = false;
     // check if x and y are in range of width and height
