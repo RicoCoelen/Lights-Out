@@ -74,27 +74,6 @@ class Player {
     }
   }
   
-  //check collision
-  //boolean collision(){
-  //  if(e1.x + e1.w + e1.vx > player.positionX &&
-  //     e1.x + e1.vx < player.positionX + player.w){
-  //     e1.vx = 0;
-  //    return true;
-  //   }
-  //   else{
-  //    return false;
-  //   }
-  // }
-  
-  // move object if collision is false
-  //void collisionMove(){
-   // if(collision()){
-    //}
-    //else{
-     // e1.vx =+ -1;
-   // }
-  //}  
-
   //  Counter for player input
   void counter() {
     comboCounter += (float) 1/60;

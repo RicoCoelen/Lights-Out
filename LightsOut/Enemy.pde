@@ -86,17 +86,21 @@ class Enemy {
   Function to update the movement of the enemy
   */
   void update() {
+    //no collision
+    if(!collisionPlayer()){
     
     this.kill();  //  Calls kill method
     
     // check if player is the right way
-    if (player.positionX > x) {
-      vx = ds;
+    if (player.positionX >= w) {
+      //change vx in the near future default speed for every enemy is always 1
+      vx = 1;
       cw = dcw;
       cx = x + w;
     }
     if (player.positionX < x) {
-      vx = ds * -1;
+      //change vx in the near future default speed for every enemy is always -1
+      vx = -1;
       cw = dcw * -1;
       cx = x;
     }   
@@ -104,7 +108,7 @@ class Enemy {
     // movement
     x += vx;
     y += vy;
-    
+    }
     // death mechanic
     if (checkRange()) {
       if (comboCorrect(player.playerInput, enemyCombo)) {
@@ -144,6 +148,18 @@ class Enemy {
     this.drawButtons();
   }
   
+  // collision with player
+  boolean collisionPlayer(){ 
+    if(x + w >= player.positionX &&
+      x <= player.positionX + player.w){
+      ds *= 0;
+       return true;
+    }
+    else{
+     return false;
+    }
+  } 
+  
  Boolean checkRange(){
     // set true if in range of enemy // long ass if statement
     if ((player.positionX >= cx && player.positionX <= cx + cw) || (player.positionX + w >= cx && player.positionX + w <= cx + cw) || 
@@ -151,6 +167,7 @@ class Enemy {
       return true;
     }
     else {
+      
       return false;
     }
   }
