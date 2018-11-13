@@ -1,10 +1,7 @@
 class Scene {
   
-  boolean runOnce0 = true;
+  // setup for single run
   boolean runOnce1 = true;
-  boolean runOnce2 = true;
-  boolean runOnce3 = true;
-  boolean runOnce9 = true;
    
   /*
   Function to draw
