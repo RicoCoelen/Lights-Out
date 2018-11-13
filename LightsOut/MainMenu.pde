@@ -1,96 +1,73 @@
 class MainMenu{
-
-final int stateMenu = 0;
-final int stateStartGame = 1;
-
-int state = stateMenu;
-int textX = 100;
-
-
-void draw() {
-  switch (state){
-  case stateMenu:
-    showMenu();
-    break;
   
-  case stateStartGame:
-    handleStateStartGame();
-    break;
-    
-    
-  default:
-    println("Unknown state(in draw)"
-      + state
-      + "+++++++++++++++++++");
-      exit();
-      break;
-  }
+  // important mechanics
+  int selectedButton = 0;
   
-}
-
-void keyPressed(){
-  switch(state){
-   case stateMenu:
-     keyPressedForStateMenu();
-     break;
+  // style
+  int buttonWidth = 200;
+  int center = (width / 2) - (buttonWidth / 2);
+  int textX = center - 85;
+  
+  /*
+  setup function
+  */
+  MainMenu() {
    
-   case stateStartGame:
-     keyPressedForStateStartGame();
-     break;
-     
-     
-   default:
-     println("unknown state (in keypreddes)"
-     + state
-     + "+++++++++++++++++++++");
-     exit();
-     break;
-   }
-}
-
-void keyPressedForStateMenu(){
-  switch(key){
-   case'1':
-     state =stateStartGame;
-     break;
-     
-      
-   case'x':
-   case'X':
-    exit();
-    break;
-   
-   default:
-     break;  
   }
-}
 
-void keyPressedForStateStartGame(){
-  switch(key){
-    case'b':
-    case'B':
-      state = stateMenu;
-      break;
+  /*
+  Function to update select up
+  */
+  void buttonUp() {
+    if (selectedButton > 0) {
+      selectedButton--;
+    }
   }
-}
-
-
-
-
-void showMenu(){
-  background (240,255,240);
-  fill(0);
-  textSize(40);
-  text("Lights out", textX, 100);
   
-  textSize(30);
-  text("press 1 to start game", textX, 200);
-  text("press x to exit", textX, 300);
+  /*
+  Function to update select down
+  */
+  void buttonDown() {
+    if (selectedButton < 4) {
+      selectedButton++; 
+    }
   }
-
-void handleStateStartGame(){
-  background (240,255,240);
-  fill(0);
+    
+  /*
+  Function to update menu
+  */
+  void update() {
+    println(selectedButton);
+  }
   
-}
+  /*
+  Function to draw
+  */
+  void draw() {
+    
+    // color and fill
+    background (139, 64, 32);
+    fill(255);
+    
+    // logo // magic numbers for width
+    rect(center - 100, 50, 400, 100);
+    
+    // start
+    rect(center, 200, buttonWidth, 50);
+
+    // highscore
+    rect(center, 260, buttonWidth, 50);
+    
+    // option
+    rect(center, 320, buttonWidth, 50);
+    
+    // quit
+    rect(center, 380, buttonWidth, 50);
+    
+    // placeholder text
+    fill(0);
+    textSize(60);
+    text("LIGHTS OUT!", textX, 122);
+  }
+  
 }
