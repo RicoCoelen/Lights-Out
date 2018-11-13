@@ -136,94 +136,115 @@ void deathDraw() {
 */
 
 void keyPressed() {
-    //checking if pressed key is true
-    if(key == 'a' || key == 'A') {
-      player.aPressed = true;
-      player.texture = loadImage("assets/sprites/player_left.png");
-    }
-    else if(key == 'd' || key == 'D'){
-      player.dPressed = true;
-      player.texture = loadImage("assets/sprites/player_right.png");
-    }
-    else if (key == 'q'){
-      if(dashCoolDown + dashCoolTime < frameCount){
-        player.velocityX = player.velocityX - dashDistance; 
-        dashCoolDown = frameCount;
-      }
-      
-     }
-    else if (key == 'e'){
-      if(dashCoolDown + dashCoolTime  < frameCount){
-        player.velocityX = player.velocityX + dashDistance;
-        dashCoolDown = frameCount;
-      }
-     }
-    else if (key == CODED) {
-      if (keyCode == UP) {
+  if(key == CODED) {
+    // check coded key
+    switch(keyCode) {
+      case UP:
         player.upPressed = true;
         player.playerInput.add("UP");
         player.playerInputButtons.add(player.upArrow);
         player.comboCounter = 0;
-      }
-      else if (keyCode == DOWN) {
+      break;
+      case DOWN:
         player.downPressed = true;
         player.playerInput.add("DOWN");
         player.playerInputButtons.add(player.downArrow);
         player.comboCounter = 0;
-      }
-      else if (keyCode == LEFT) {
+      break;
+      case LEFT:
         player.leftPressed = true;
         player.playerInput.add("LEFT");
         player.playerInputButtons.add(player.leftArrow);
         player.comboCounter = 0;
-      }
-      else if (keyCode == RIGHT) {
+      break;
+      case RIGHT:
         player.rightPressed = true;
         player.playerInput.add("RIGHT");
         player.playerInputButtons.add(player.rightArrow);
         player.comboCounter = 0;
-      }
+      break;
     }
-    if(key == '9') {
-     state = 9; 
+  }
+  else {
+    // check non coded key
+    switch(key) {
+      case 'a':
+      case 'A':
+        player.aPressed = true;
+        player.texture = loadImage("assets/sprites/player_left.png");
+      break;
+      case 'd':
+      case 'D':
+        player.dPressed = true;
+        player.texture = loadImage("assets/sprites/player_right.png");
+      break;
+      case 'q':
+      case 'Q':
+        if (dashCoolDown + dashCoolTime < frameCount) {
+        player.velocityX = player.velocityX - dashDistance; 
+        dashCoolDown = frameCount;
+        }
+      break;
+      case 'e':
+      case 'E':
+        if(dashCoolDown + dashCoolTime  < frameCount){
+        player.velocityX = player.velocityX + dashDistance;
+        dashCoolDown = frameCount;
+        }
+      break;    
+      case '0':
+        state = 0; 
+      break;
+      case '1':
+        state = 1; 
+      break;
+      case '2':
+        state = 2; 
+      case '9':
+        state = 9; 
+      break;
     }
-    if(key == '2') {
-     state = 2; 
-    }
-    if(key == '1') {
-     state = 1; 
-    }
-    if(key == '0'){
-     state = 0; 
-    }
+  }
 }
 
 void keyReleased(){
-    //checking if pressed key is false
-    if(key == 'a'){
-      player.aPressed = false;
-    }
-    else if(key == 'd'){
-      player.dPressed = false;
-    }
-    else if(key == 'q'){
-     player.qPressed = false;
-    }
-    else if(key == 'e'){
-     player.ePressed = false; 
-    }
-    else if (key == CODED) {
-      if (keyCode == UP) {
+  // check non coded key
+  if(key == CODED) {
+    // check coded key
+    switch(keyCode) {
+      case UP:
         player.upPressed = false;
-      }
-      else if (keyCode == DOWN) {
+      break;
+      case DOWN:
         player.downPressed = false;
-      }
-      else if (keyCode == LEFT) {
+      break;
+      case LEFT:
         player.leftPressed = false;
-      }
-      else if (keyCode == RIGHT) {
+      break;
+      case RIGHT:
         player.rightPressed = false;
-      }
+      break;
     }
+  }
+  else {
+    // check non coded key
+    switch(key) {
+      case 'a':
+      case 'A':
+        player.aPressed = false;
+      break;
+      case 'd':
+      case 'D':
+        player.dPressed = false;
+      break;
+      case 'q':
+      case 'Q':
+        player.qPressed = false;
+      break;
+      case 'e':
+      case 'E':
+        player.ePressed = false;
+      break;    
+    }
+  }  
 }
