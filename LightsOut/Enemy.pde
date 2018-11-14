@@ -1,15 +1,15 @@
 class Enemy {
   
   // vars
-  PImage sprite = loadImage("assets/sprites/smallenemy.gif");
-  PImage upArrow = loadImage("assets/sprites/up-arrow.png");
-  PImage downArrow = loadImage("assets/sprites/down-arrow.png");
-  PImage leftArrow = loadImage("assets/sprites/left-arrow.png");
-  PImage rightArrow = loadImage("assets/sprites/right-arrow.png");
-  PImage upArrowCorrect = loadImage("assets/sprites/up-arrow-correct.png");
-  PImage downArrowCorrect = loadImage("assets/sprites/down-arrow-correct.png");
-  PImage leftArrowCorrect = loadImage("assets/sprites/left-arrow-correct.png");
-  PImage rightArrowCorrect = loadImage("assets/sprites/right-arrow-correct.png");
+  PImage sprite = loadImage("data/sprites/smallenemy.gif");
+  PImage upArrow = loadImage("data/sprites/up-arrow.png");
+  PImage downArrow = loadImage("data/sprites/down-arrow.png");
+  PImage leftArrow = loadImage("data/sprites/left-arrow.png");
+  PImage rightArrow = loadImage("data/sprites/right-arrow.png");
+  PImage upArrowCorrect = loadImage("data/sprites/up-arrow-correct.png");
+  PImage downArrowCorrect = loadImage("data/sprites/down-arrow-correct.png");
+  PImage leftArrowCorrect = loadImage("data/sprites/left-arrow-correct.png");
+  PImage rightArrowCorrect = loadImage("data/sprites/right-arrow-correct.png");
 
   float x;
   float y;
@@ -20,6 +20,8 @@ class Enemy {
   float dcw; // default check range width
   float ds; // default enemy speed
   float comboWidth;
+  float damageCounter;
+  int damage;
   int h;
   int w;
   int health;
@@ -48,33 +50,36 @@ class Enemy {
       // light enemy
       case 1:
         health = (int) random(1, 2);
+        damage = 5;
         h = 80;
         w = 26;
         dcw = 200;
         ds = 0.8;
-        sprite = loadImage("assets/sprites/Scout.png");
+        sprite = loadImage("data/sprites/Scout.png");
         comboGenerator(2, 4);  //  Generate combo between 2 and 4 buttons
       break;
       
       // medium enemy
       case 2:
          health = (int) random(2, 4);
+         damage = 20;
          h = 160;
          w = 50;
          dcw = 300;
          ds = 0.5;
-         sprite = loadImage("assets/sprites/Soldier.png");
+         sprite = loadImage("data/sprites/Soldier.png");
          comboGenerator(4, 7);  //  Generate combo between 4 and 7 buttons
       break;
       
       // heavy enemy
       case 3:
          health = (int) random(4, 10);
+         damage = 40;
          h = 10;
          w = 5;
          dcw = 100;
          ds = 0.3;
-         sprite = loadImage("assets/sprites/Heavy.png");
+         sprite = loadImage("data/sprites/Heavy.png");
          if (health > 0) {
            comboGenerator(7, 10);  //  Generate combo between 7 and 10 buttons
          }
@@ -86,6 +91,10 @@ class Enemy {
   Function to update the movement of the enemy
   */
   void update() {
+    
+    //  Calls damage method
+    giveDamage();
+    
     //no collision
     if(!collisionPlayer()){
     
@@ -160,6 +169,18 @@ class Enemy {
     }
   } 
   
+ void giveDamage(){
+   if (collisionPlayer()) {
+     damageCounter += (float) 1/60;
+     if (damageCounter >= 2) {
+       player.takeDamage(this.damage);
+       damageCounter = 0;
+     }
+   } else {
+     damageCounter = 2;
+   }
+ }
+  
  Boolean checkRange(){
     // set true if in range of enemy // long ass if statement
     if ((player.positionX >= cx && player.positionX <= cx + cw) || (player.positionX + w >= cx && player.positionX + w <= cx + cw) || 
@@ -169,12 +190,6 @@ class Enemy {
     else {
       
       return false;
-    }
-  }
-  
-  void giveDamage() {
-    if (checkCollision()) {
-      print("yeet");
     }
   }
 
@@ -212,7 +227,6 @@ class Enemy {
           break;
       }
     }
-    print(enemyCombo);
   }
   
   boolean comboCorrect(ArrayList<String> player, ArrayList<String> enemy) {
@@ -228,7 +242,6 @@ class Enemy {
     // check if correct
     if(result == enemyCombo.size()) {
       health--;
-      print(health);
       return true;
     }
     return false;

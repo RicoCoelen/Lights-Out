@@ -45,6 +45,7 @@ class Scene {
     fill(50);
     textSize(25);
     text("Score: " + score, 0, 0, 1000, 80);  // Text wraps within text box
+    text("Health: " + player.health, 0, 25, 1000, 80);  // Text wraps within text box
     player.display(); // draw player
     for (int i = 0; i < enemyList.size(); i++) {
       enemyList.get(i).draw(); // draw enemies

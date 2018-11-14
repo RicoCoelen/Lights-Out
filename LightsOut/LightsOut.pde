@@ -27,8 +27,8 @@ void setup() {
   player = new Player();
   
   // load all images here
-  player.texture = loadImage("assets/sprites/player_right.png");
-  bg = loadImage("assets/sprites/background.jpg");
+  player.texture = loadImage("data/sprites/player_right.png");
+  bg = loadImage("data/sprites/background.jpg");
 }
 
 void draw() {
@@ -84,12 +84,12 @@ void keyPressed() {
       case 'a':
       case 'A':
         player.aPressed = true;
-        player.texture = loadImage("assets/sprites/player_left.png");
+        player.texture = loadImage("data/sprites/player_left.png");
       break;
       case 'd':
       case 'D':
         player.dPressed = true;
-        player.texture = loadImage("assets/sprites/player_right.png");
+        player.texture = loadImage("data/sprites/player_right.png");
       break;
       case 'q':
       case 'Q':

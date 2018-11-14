@@ -9,10 +9,10 @@ class Player {
   ArrayList<PImage> playerInputButtons = new ArrayList<PImage>();
   
   PImage texture;
-  PImage upArrow = loadImage("assets/sprites/up-arrow.png");
-  PImage downArrow = loadImage("assets/sprites/down-arrow.png");
-  PImage leftArrow = loadImage("assets/sprites/left-arrow.png");
-  PImage rightArrow = loadImage("assets/sprites/right-arrow.png");
+  PImage upArrow = loadImage("data/sprites/up-arrow.png");
+  PImage downArrow = loadImage("data/sprites/down-arrow.png");
+  PImage leftArrow = loadImage("data/sprites/left-arrow.png");
+  PImage rightArrow = loadImage("data/sprites/right-arrow.png");
 
   Player() {
     aPressed = false;
@@ -21,7 +21,7 @@ class Player {
     ePressed = false;
     positionX = width/2;
     positionY = 295;
-    health = 5;
+    health = 100;
     speed = 5;
     w = 60;
     h = 110;
@@ -71,6 +71,14 @@ class Player {
     }
      else if(positionX > width - w){
       positionX = positionX - speed;
+    }
+  }
+  
+  //  Player takes damage
+  void takeDamage(int damage) {
+    health -= damage;
+    if (health <= 0) {
+      state = 9;
     }
   }
   
