@@ -45,8 +45,8 @@ class Scene {
     fill(50);
     textSize(25);
     text("Score: " + score, 0, 0, 1000, 80);  // Text wraps within text box
-    text("Health: " + player.health, 0, 25, 1000, 80);  // Text wraps within text box
     player.display(); // draw player
+    healthBar();
     for (int i = 0; i < enemyList.size(); i++) {
       enemyList.get(i).draw(); // draw enemies
     }
@@ -73,5 +73,12 @@ class Scene {
     text("Oops, Lights out buddy!", width / 8, 100);
     textSize(20);
     text("You might want to try again by pressing 1.", width / 8, 200);
+  }
+  
+   void healthBar () {
+    fill(0);
+    rect(0, 30, 100, 10);
+    fill(255, 0, 0);
+    rect(0, 30, player.health, 10);
   }
 }
