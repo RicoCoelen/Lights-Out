@@ -95,10 +95,10 @@ class Enemy {
     //  Calls damage method
     giveDamage();
     
-    //no collision
-    if(!collisionPlayer()){
-    
     this.kill();  //  Calls kill method
+    
+    //no collision
+    if(!collisionPlayer()) {
     
     // check if player is the right way
     if (player.positionX >= w) {
