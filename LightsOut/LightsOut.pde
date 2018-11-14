@@ -20,6 +20,7 @@ ArrayList<Enemy> enemyList = new ArrayList<Enemy>();
 void setup() {
   // set standard settings
   size(640,480);
+  frameRate(60);
   
   // init objects
   m = new MainMenu();
