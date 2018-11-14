@@ -75,8 +75,6 @@ void keyPressedForStateStartGame(){
 }
 
 
-
-
 void showMenu(){
   background (240,255,240);
   fill(0);

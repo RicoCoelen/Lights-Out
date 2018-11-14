@@ -20,6 +20,8 @@ class Enemy {
   float dcw; // default check range width
   float ds; // default enemy speed
   float comboWidth;
+  float damageCounter;
+  int damage;
   int h;
   int w;
   int health;
@@ -48,6 +50,7 @@ class Enemy {
       // light enemy
       case 1:
         health = (int) random(1, 2);
+        damage = 5;
         h = 80;
         w = 26;
         dcw = 200;
@@ -59,6 +62,7 @@ class Enemy {
       // medium enemy
       case 2:
          health = (int) random(2, 4);
+         damage = 20;
          h = 160;
          w = 50;
          dcw = 300;
@@ -70,6 +74,7 @@ class Enemy {
       // heavy enemy
       case 3:
          health = (int) random(4, 10);
+         damage = 40;
          h = 10;
          w = 5;
          dcw = 100;
@@ -86,6 +91,10 @@ class Enemy {
   Function to update the movement of the enemy
   */
   void update() {
+    
+    //  Calls damage method
+    giveDamage();
+    
     //no collision
     if(!collisionPlayer()){
     
@@ -160,6 +169,18 @@ class Enemy {
     }
   } 
   
+ void giveDamage(){
+   if (collisionPlayer()) {
+     damageCounter += (float) 1/60;
+     if (damageCounter >= 2) {
+       player.takeDamage(this.damage);
+       damageCounter = 0;
+     }
+   } else {
+     damageCounter = 2;
+   }
+ }
+  
  Boolean checkRange(){
     // set true if in range of enemy // long ass if statement
     if ((player.positionX >= cx && player.positionX <= cx + cw) || (player.positionX + w >= cx && player.positionX + w <= cx + cw) || 
@@ -169,12 +190,6 @@ class Enemy {
     else {
       
       return false;
-    }
-  }
-  
-  void giveDamage() {
-    if (checkCollision()) {
-      print("yeet");
     }
   }
 
@@ -212,7 +227,6 @@ class Enemy {
           break;
       }
     }
-    print(enemyCombo);
   }
   
   boolean comboCorrect(ArrayList<String> player, ArrayList<String> enemy) {
@@ -228,7 +242,6 @@ class Enemy {
     // check if correct
     if(result == enemyCombo.size()) {
       health--;
-      print(health);
       return true;
     }
     return false;

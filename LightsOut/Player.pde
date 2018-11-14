@@ -21,7 +21,7 @@ class Player {
     ePressed = false;
     positionX = width/2;
     positionY = 295;
-    health = 5;
+    health = 100;
     speed = 5;
     w = 60;
     h = 110;
@@ -71,6 +71,14 @@ class Player {
     }
      else if(positionX > width - w){
       positionX = positionX - speed;
+    }
+  }
+  
+  //  Player takes damage
+  void takeDamage(int damage) {
+    health -= damage;
+    if (health <= 0) {
+      state = 9;
     }
   }
   

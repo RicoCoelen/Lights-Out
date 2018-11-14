@@ -58,6 +58,7 @@ void scene1() {
   draw1();
   fill(50);
   text("Score: " + score, 0, 0, 1000, 80);  // Text wraps within text box
+  text("Health: " + player.health, 0, 25, 1000, 80);  // Text wraps within text box
 }
 
 void scene2() {
