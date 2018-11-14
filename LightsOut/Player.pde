@@ -9,10 +9,10 @@ class Player {
   ArrayList<PImage> playerInputButtons = new ArrayList<PImage>();
   
   PImage texture;
-  PImage upArrow = loadImage("assets/sprites/up-arrow.png");
-  PImage downArrow = loadImage("assets/sprites/down-arrow.png");
-  PImage leftArrow = loadImage("assets/sprites/left-arrow.png");
-  PImage rightArrow = loadImage("assets/sprites/right-arrow.png");
+  PImage upArrow = loadImage("data/sprites/up-arrow.png");
+  PImage downArrow = loadImage("data/sprites/down-arrow.png");
+  PImage leftArrow = loadImage("data/sprites/left-arrow.png");
+  PImage rightArrow = loadImage("data/sprites/right-arrow.png");
 
   Player() {
     aPressed = false;
