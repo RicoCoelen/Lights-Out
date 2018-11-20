@@ -15,8 +15,8 @@ class Scene {
       case 1:
         if (runOnce1 == true) {
           enemyList.add(new Enemy(700, 325, 1));
-          enemyList.add(new Enemy(-700, 325, 1));
-          enemyList.add(new Enemy(1400, 245, 2));
+          enemyList.add(new Enemy(-700, 250, 2));
+          enemyList.add(new Enemy(1400, 250, 3));
           runOnce1 = false;
         }
         scene1Update();

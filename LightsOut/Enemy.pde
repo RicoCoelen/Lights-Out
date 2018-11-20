@@ -75,9 +75,9 @@ class Enemy {
       case 3:
          health = (int) random(4, 10);
          damage = 40;
-         h = 10;
-         w = 5;
-         dcw = 100;
+         h = 154;
+         w = 50;
+         dcw = 400;
          ds = 0.3;
          sprite = loadImage("data/sprites/Heavy.png");
          if (health > 0) {
@@ -123,7 +123,29 @@ class Enemy {
       if (comboCorrect(player.playerInput, enemyCombo)) {
         enemyCombo.clear();
         enemyComboButtons.clear();
-        comboGenerator(2, 4);
+        // check which type
+        switch(enemyType) {
+          // light enemy
+          case 1:
+            if (health > 0) {
+              comboGenerator(2, 4);  //  Generate combo between 2 and 4 buttons
+            }
+          break;
+          
+          // medium enemy
+          case 2:
+             if (health > 0) {
+               comboGenerator(4, 7);  //  Generate combo between 4 and 7 buttons
+             }
+          break;
+          
+          // heavy enemy
+          case 3:
+             if (health > 0) {
+               comboGenerator(7, 10);  //  Generate combo between 7 and 10 buttons
+             }
+          break;
+        }
       }
     }
   }
