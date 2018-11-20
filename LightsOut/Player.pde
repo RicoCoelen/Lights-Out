@@ -19,12 +19,12 @@ class Player {
     dPressed = false;
     qPressed = false;
     ePressed = false;
-    positionX = width/2;
-    positionY = 295;
     health = 100;
     speed = 5;
     w = 60;
     h = 110;
+    positionX = width/2;
+    positionY = groundHeight - h;
     left = positionX - (w/2);
     right = positionX + (w/2);
     top = positionY - (h/2);

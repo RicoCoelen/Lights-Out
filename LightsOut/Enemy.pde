@@ -37,13 +37,9 @@ class Enemy {
     
     // set type
     this.enemyType = enemyType;
-    // set postion by parameters
-    x = enemyX;
-    y = enemyY;
     
     // vertical velocity
     vy = 0;
-    
     // check which type
     switch(enemyType) {
       
@@ -85,6 +81,10 @@ class Enemy {
          }
       break;
     }
+    
+    // set postion by parameters
+    x = enemyX;
+    y = enemyY - h;
   }
 
   /*

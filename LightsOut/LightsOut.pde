@@ -12,6 +12,8 @@ int dashCoolDown = 0;
 int dashCoolTime = 90;
 int dashDistance = 50;
 int score;
+//  Sets ground height
+float groundHeight = 410;
 
 //  Amount of enemies in wave
 int enemyAmount;  
