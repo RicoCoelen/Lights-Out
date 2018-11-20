@@ -5,6 +5,7 @@ PImage bg;
 Player player;
 MainMenu m;
 Scene s;
+JSONObject highscores;
 
 // global vars
 int state = 0;  

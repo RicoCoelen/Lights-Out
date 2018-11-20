@@ -79,6 +79,10 @@ class Player {
     health -= damage;
     if (health <= 0) {
       state = 9;
+      highscores = new JSONObject();
+      highscores.setString("date", day() + "-" + month() + "-" + year() + " " + hour() + ":" + minute());
+      highscores.setInt("score", score);
+      saveJSONObject(highscores, "data/highscores.json");
     }
   }
   
