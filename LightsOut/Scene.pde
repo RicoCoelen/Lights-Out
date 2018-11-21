@@ -14,9 +14,7 @@ class Scene {
       break;
       case 1:
         if (runOnce1 == true) {
-          enemyList.add(new Enemy(700, groundHeight, 1));
-          enemyList.add(new Enemy(-700, groundHeight, 2));
-          enemyList.add(new Enemy(1400, groundHeight, 3));
+          wave = 1;
           runOnce1 = false;
         }
         scene1Update();
@@ -35,6 +33,9 @@ class Scene {
   
   void scene1Update() {
     player.update(); // update player
+    waveSwitcher();
+    if ( == 0) {
+    }
     for (int i = 0; i < enemyList.size(); i++) {
       enemyList.get(i).update();
     }
@@ -80,5 +81,22 @@ class Scene {
     rect(0, 30, 100, 10);
     fill(255, 0, 0);
     rect(0, 30, player.health, 10);
+  }
+  
+  void waveSwitcher() {
+    switch (wave) {
+      case 1:
+        enemyList.add(new Enemy(700, groundHeight, 1));
+        enemyList.add(new Enemy(-1000, groundHeight, 1));
+        enemyList.add(new Enemy(1500, groundHeight, 1));
+        enemyList.add(new Enemy(2000, groundHeight, 1));
+        break;
+       case 2:
+        enemyList.add(new Enemy(700, groundHeight, 2));
+        enemyList.add(new Enemy(-1000, groundHeight, 1));
+        enemyList.add(new Enemy(1500, groundHeight, 2));
+        enemyList.add(new Enemy(2000, groundHeight, 1));
+         
+    }
   }
 }

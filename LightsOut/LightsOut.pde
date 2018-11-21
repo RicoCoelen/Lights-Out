@@ -13,6 +13,7 @@ int dashCoolDown = 0;
 int dashCoolTime = 90;
 int dashDistance = 50;
 int score;
+int wave;
 //  Sets ground height
 float groundHeight = 410;
 
@@ -117,6 +118,9 @@ void keyPressed() {
       break;
       case '2':
         state = 2; 
+      break;
+      case '3':
+        state = 3; 
       break;
       case '9':
         state = 9; 
