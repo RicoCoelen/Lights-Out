@@ -5,6 +5,7 @@ PImage bg;
 Player player;
 MainMenu m;
 Scene s;
+Highscore h;
 
 // global vars
 int state = 0;  
@@ -24,6 +25,7 @@ void setup() {
   // init objects
   m = new MainMenu();
   s = new Scene();
+  h = new Highscore();
   player = new Player();
   
   // load all images here
