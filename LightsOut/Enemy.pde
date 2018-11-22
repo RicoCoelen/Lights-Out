@@ -69,7 +69,7 @@ class Enemy {
       
       // heavy enemy
       case 3:
-         health = (int) random(4, 10);
+         health = (int) random(2, 4);
          damage = 40;
          h = 154;
          w = 50;

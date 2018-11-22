@@ -14,7 +14,6 @@ class Scene {
       break;
       case 1:
         if (runOnce1 == true) {
-          wave = 1;
           runOnce1 = false;
         }
         scene1Update();
@@ -33,9 +32,11 @@ class Scene {
   
   void scene1Update() {
     player.update(); // update player
-    waveSwitcher();
-    if ( == 0) {
+    if (enemyList.size() == 0) {
+      wave++;
+      waveSwitcher();
     }
+    
     for (int i = 0; i < enemyList.size(); i++) {
       enemyList.get(i).update();
     }
@@ -46,6 +47,7 @@ class Scene {
     fill(50);
     textSize(25);
     text("Score: " + score, 0, 0, 1000, 80);  // Text wraps within text box
+    text("Wave: " + wave, width/2, 0, 1000, 80);  // Text wraps within text box
     player.display(); // draw player
     healthBar();
     for (int i = 0; i < enemyList.size(); i++) {
@@ -96,7 +98,25 @@ class Scene {
         enemyList.add(new Enemy(-1000, groundHeight, 1));
         enemyList.add(new Enemy(1500, groundHeight, 2));
         enemyList.add(new Enemy(2000, groundHeight, 1));
-         
+        break;
+       case 3:
+        enemyList.add(new Enemy(700, groundHeight, 1));
+        enemyList.add(new Enemy(-1000, groundHeight, 1));
+        enemyList.add(new Enemy(1500, groundHeight, 3));
+        enemyList.add(new Enemy(2000, groundHeight, 1));
+        break;
+       case 4:
+        enemyList.add(new Enemy(800, groundHeight, 1));
+        enemyList.add(new Enemy(900, groundHeight, 1));
+        enemyList.add(new Enemy(1000, groundHeight, 1));
+        enemyList.add(new Enemy(1100, groundHeight, 1));
+        enemyList.add(new Enemy(1200, groundHeight, 1));
+        enemyList.add(new Enemy(-800, groundHeight, 1));
+        enemyList.add(new Enemy(-900, groundHeight, 1));
+        enemyList.add(new Enemy(-1000, groundHeight, 1));
+        enemyList.add(new Enemy(-1100, groundHeight, 1));
+        enemyList.add(new Enemy(-1200, groundHeight, 1));
+        break;
     }
   }
 }
