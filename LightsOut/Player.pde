@@ -82,6 +82,8 @@ class Player {
     health -= damage;
     if (health <= 0) {
       state = 9;
+      wave = 0;
+      enemyList.clear();
       highscores = new JSONObject();
       highscores.setString("date", day() + "-" + month() + "-" + year() + " " + hour() + ":" + minute());
       highscores.setInt("score", score);
