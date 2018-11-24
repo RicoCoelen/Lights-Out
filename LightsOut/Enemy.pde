@@ -26,8 +26,10 @@ class Enemy {
   int w;
   int health;
   int enemyType;
+  int result;
 
   ArrayList<String> enemyCombo = new ArrayList<String>();
+  ArrayList<String> enemyComboCorrect = new ArrayList<String>();
   ArrayList<PImage> enemyComboButtons = new ArrayList<PImage>();
 
   /*
@@ -92,62 +94,30 @@ class Enemy {
   */
   void update() {
     
-    //  Calls damage method
-    giveDamage();
-    
-    this.kill();  //  Calls kill method
-    
     //no collision
     if(!collisionPlayer()) {
-    
-    // check if player is the right way
-    if (player.positionX >= w) {
-      //change vx in the near future default speed for every enemy is always 1
-      vx = 1;
-      cw = dcw;
-      cx = x + w;
-    }
-    if (player.positionX < x) {
-      //change vx in the near future default speed for every enemy is always -1
-      vx = -1;
-      cw = dcw * -1;
-      cx = x;
-    }   
-   
-    // movement
-    x += vx;
-    y += vy;
-    }
-    // death mechanic
-    if (checkRange()) {
-      if (comboCorrect(player.playerInput, enemyCombo)) {
-        enemyCombo.clear();
-        enemyComboButtons.clear();
-        // check which type
-        switch(enemyType) {
-          // light enemy
-          case 1:
-            if (health > 0) {
-              comboGenerator(2, 4);  //  Generate combo between 2 and 4 buttons
-            }
-          break;
-          
-          // medium enemy
-          case 2:
-             if (health > 0) {
-               comboGenerator(4, 7);  //  Generate combo between 4 and 7 buttons
-             }
-          break;
-          
-          // heavy enemy
-          case 3:
-             if (health > 0) {
-               comboGenerator(7, 10);  //  Generate combo between 7 and 10 buttons
-             }
-          break;
-        }
+      // check if player is the right way
+      if (player.positionX >= w) {
+        //change vx in the near future default speed for every enemy is always 1
+        vx = 1;
+        cw = dcw;
+        cx = x + w;
       }
+      if (player.positionX < x) {
+        //change vx in the near future default speed for every enemy is always -1
+        vx = -1;
+        cw = dcw * -1;
+        cx = x;
+      }   
+     
+      // movement
+      x += vx;
+      y += vy;
     }
+    
+    //  Calls damage method
+    giveDamage();
+    if (health <= 0) { kill(); }
   }
 
   /*
@@ -251,38 +221,47 @@ class Enemy {
     }
   }
   
-  boolean comboCorrect(ArrayList<String> player, ArrayList<String> enemy) {
-    int result = 0;
-    if(player.size() == enemy.size()) {
-      // check array list
-      for(int i = 0; i < enemy.size(); i++) {
-        if (player.get(i) == enemy.get(i)) {
-        result++;
+  void takeDamage() {  
+    health--;
+    enemyCombo.clear();
+    enemyComboButtons.clear();
+    // check which type
+    switch(enemyType) {
+      // light enemy
+      case 1:
+        if (health > 0) {
+          comboGenerator(2, 4);  //  Generate combo between 2 and 4 buttons
         }
-      }  
+      break;
+      
+      // medium enemy
+      case 2:
+         if (health > 0) {
+           comboGenerator(4, 7);  //  Generate combo between 4 and 7 buttons
+         }
+      break;
+      
+      // heavy enemy
+      case 3:
+         if (health > 0) {
+           comboGenerator(7, 10);  //  Generate combo between 7 and 10 buttons
+         }
+      break;
     }
-    // check if correct
-    if(result == enemyCombo.size()) {
-      health--;
-      return true;
-    }
-    return false;
   }
   
   void kill() {
-    if (health <= 0) {
-      enemyList.remove(enemyList.indexOf(this));  //  Gets current index of object in array and removes it
-      switch (enemyType) {
-        case 1:
-            score += 100;
-          break;
-        case 2:
-            score += 500;
-          break;
-        case 3:
-            score += 200;
-          break;
-      }
+    enemyList.remove(enemyList.indexOf(this));  //  Gets current index of object in array and removes it
+    switch (enemyType) {
+      case 1:
+          score += 100;
+        break;
+      case 2:
+          score += 500;
+        break;
+      case 3:
+          score += 200;
+        break;
     }
   }
   
