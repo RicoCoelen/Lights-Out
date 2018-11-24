@@ -19,12 +19,12 @@ class Player {
     dPressed = false;
     qPressed = false;
     ePressed = false;
-    positionX = width/2;
-    positionY = 295;
     health = 100;
     speed = 5;
     w = 60;
     h = 110;
+    positionX = width/2;
+    positionY = groundHeight - h;
     left = positionX - (w/2);
     right = positionX + (w/2);
     top = positionY - (h/2);
@@ -47,6 +47,9 @@ class Player {
     positionX += velocityX;
     positionY += velocityY;
     velocityX *= 0.4;
+    if (playerInput.size() > 10) {
+      clearInput();
+    }
   }
 
   // player movement
@@ -79,6 +82,10 @@ class Player {
     health -= damage;
     if (health <= 0) {
       state = 9;
+      highscores = new JSONObject();
+      highscores.setString("date", day() + "-" + month() + "-" + year() + " " + hour() + ":" + minute());
+      highscores.setInt("score", score);
+      saveJSONObject(highscores, "data/highscores.json");
     }
   }
   
@@ -88,7 +95,45 @@ class Player {
     if (comboCounter >= 0.5) {
       playerInput.clear();  //  Clears the input array if the user didnt press a combo button after 0.5 seconds
       playerInputButtons.clear();  //  Clears the input array if the user didnt press a combo button after 0.5 seconds
+      //  replaces the green combo icons with black ones
+      for (int i = 0; i < enemyList.size(); i++) {
+        for (int j = 0; j < enemyList.get(i).enemyCombo.size(); j++) {
+          if (enemyList.get(i).enemyComboButtons.get(j) == enemyList.get(i).upArrowCorrect) {
+            enemyList.get(i).enemyComboButtons.set(j, enemyList.get(i).upArrow);
+          } 
+          else if (enemyList.get(i).enemyComboButtons.get(j) == enemyList.get(i).downArrowCorrect) {
+            enemyList.get(i).enemyComboButtons.set(j, enemyList.get(i).downArrow);
+          } 
+          else if (enemyList.get(i).enemyComboButtons.get(j) == enemyList.get(i).leftArrowCorrect) {
+            enemyList.get(i).enemyComboButtons.set(j, enemyList.get(i).leftArrow);
+          } 
+          else if (enemyList.get(i).enemyComboButtons.get(j) == enemyList.get(i).rightArrowCorrect) {
+            enemyList.get(i).enemyComboButtons.set(j, enemyList.get(i).rightArrow);
+          }
+        } 
+      }
     }
+  }
+  
+  void clearInput() {
+      playerInput.clear();  //  Clears the input array if the user didnt press a combo button after 0.5 seconds
+      playerInputButtons.clear();  //  Clears the input array if the user didnt press a combo button after 0.5 seconds
+      for (int i = 0; i < enemyList.size(); i++) {
+        for (int j = 0; j < enemyList.get(i).enemyCombo.size(); j++) {
+          if (enemyList.get(i).enemyComboButtons.get(j) == enemyList.get(i).upArrowCorrect) {
+            enemyList.get(i).enemyComboButtons.set(j, enemyList.get(i).upArrow);
+          } 
+          else if (enemyList.get(i).enemyComboButtons.get(j) == enemyList.get(i).downArrowCorrect) {
+            enemyList.get(i).enemyComboButtons.set(j, enemyList.get(i).downArrow);
+          } 
+          else if (enemyList.get(i).enemyComboButtons.get(j) == enemyList.get(i).leftArrowCorrect) {
+            enemyList.get(i).enemyComboButtons.set(j, enemyList.get(i).leftArrow);
+          } 
+          else if (enemyList.get(i).enemyComboButtons.get(j) == enemyList.get(i).rightArrowCorrect) {
+            enemyList.get(i).enemyComboButtons.set(j, enemyList.get(i).rightArrow);
+          }
+        } 
+      }
   }
 
   void drawButtons() {
@@ -98,4 +143,45 @@ class Player {
       debugPos += 20;
     }
   }
+
+  void checkCombo() {
+    for (int i = 0; i < enemyList.size(); i++) {
+      //  resets result if combo doesn't match player input
+      enemyList.get(i).result = 0;
+      if (enemyList.get(i).checkRange()) {
+        //  loops through all enemies 
+        for (int j = 0; j < enemyList.get(i).enemyCombo.size(); j++) {
+          //  checks if index is in range of array
+          if (playerInput.size() > j && enemyList.get(i).enemyCombo.size() > j) {
+            //  checks if player input matches enemy combo
+            if (enemyList.get(i).enemyCombo.get(j) == playerInput.get(j)) {
+              enemyList.get(i).result++;
+              // checks if the entered combo is correct
+              if (enemyList.get(i).result == playerInput.size()) {
+                //  if statements below replace the black combo icons with green ones if entered correctly by the player
+                if (enemyList.get(i).enemyComboButtons.get(j) == enemyList.get(i).upArrow) {
+                  enemyList.get(i).enemyComboButtons.set(j, enemyList.get(i).upArrowCorrect);
+                } 
+                else if (enemyList.get(i).enemyComboButtons.get(j) == enemyList.get(i).downArrow) {
+                  enemyList.get(i).enemyComboButtons.set(j, enemyList.get(i).downArrowCorrect);
+                } 
+                else if (enemyList.get(i).enemyComboButtons.get(j) == enemyList.get(i).leftArrow) {
+                  enemyList.get(i).enemyComboButtons.set(j, enemyList.get(i).leftArrowCorrect);
+                } 
+                else if (enemyList.get(i).enemyComboButtons.get(j) == enemyList.get(i).rightArrow) {
+                  enemyList.get(i).enemyComboButtons.set(j, enemyList.get(i).rightArrowCorrect);
+                }
+              } 
+            }
+          }
+          //  checks if the correct input by the player has the same length as the enemy combo
+          if (enemyList.get(i).result == enemyList.get(i).enemyCombo.size()) {
+            enemyList.get(i).takeDamage();
+            clearInput();
+          }
+        }
+      }
+    }
+  }
+  
 }
