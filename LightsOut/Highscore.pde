@@ -32,43 +32,39 @@ class Highscore {
   }
 
   /*
-  Function to draw
+  Function to draw score
   */
   void draw() {
-
+    text("Score: " + score, 0, 0, 1000, 80);  // Text wraps within text box
   }
 
   /*
   Function to save the json array to file
   */
-  void saveJson() {
-
-    // array with the specified information
-    String[] species = { "Angelo", "Steven", "Alex", "Rico" };
-
-    // loop trough all
-    for (int i = 0; i < species.length; i++) {
-      // create temp json object
-      JSONObject tempObject = new JSONObject();
-
-      // declare all object variables
-      tempObject.setInt("id", i);
-      tempObject.setString("name", species[i]);
-      tempObject.setString("time", day() + "-" + month() + "-" + year() + " " + hour() + ":" + minute());
-      tempObject.setInt("score", 200);
-
-      // set all variables in json array
-      highscores.setJSONObject(i, tempObject);
+  void saveScore(String name, int currentScore) {
+    // loop trough all scores
+    for (int i = 0; i < highscores.size(); i++) {
+      // add current score at the end of array
+      if(i == highscores.size() - 1) {
+        // create temp json object
+        JSONObject tempObject = new JSONObject();
+        // declare all object variables
+        tempObject.setInt("id", ++i);
+        tempObject.setString("name", name);
+        tempObject.setString("time", day() + "-" + month() + "-" + year() + " " + hour() + ":" + minute());
+        tempObject.setInt("score", currentScore);
+        // set all variables in json array
+        highscores.setJSONObject(i, tempObject);
+      }
     }
-
     // save json array to file
     saveJSONArray(highscores, "data/highscores.json");
   }
 
   /*
-  Function to get json data from file
+  Function to get and print json data from file
   */
-  void getJson() {
+  void getPrintJson() {
 
     JSONArray values = highscores;
 
@@ -83,37 +79,5 @@ class Highscore {
 
       println(id, name, time, score);
     }
-  }
-  
-  /*
-  Function to sort json array by score (not done)
-  */
-  void sortJson() {
-
-    JSONArray temp = new JSONArray();
-
-    for (int i = 0; i < highscores.size(); i++) {
-      temp.append(highscores.getJSONObject(i));
-    }
-    println(temp, highscores);
-  }
-
-  /*
-  Function to compare 2 integers (not done)
-  */
-  int compare(JSONObject jsonObjectA, JSONObject jsonObjectB) {
-
-      int compare = 0;
-      try
-      {
-          int keyA = jsonObjectA.getInt("score");
-          int keyB = jsonObjectB.getInt("score");
-          compare = Integer.compare(keyA, keyB);
-      }
-      catch(Exception e)
-      {
-          e.printStackTrace();
-      }
-      return compare;
   }
 }

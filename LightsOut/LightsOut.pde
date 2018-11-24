@@ -5,7 +5,7 @@ PImage bg;
 Player player;
 MainMenu m;
 Scene s;
-Highscore h;
+Highscore highscore;
 
 // global vars
 int state = 0;  
@@ -13,6 +13,10 @@ int dashCoolDown = 0;
 int dashCoolTime = 90;
 int dashDistance = 50;
 int score;
+int wave;
+
+//  Sets ground height
+float groundHeight = 410;
 
 //  Amount of enemies in wave
 int enemyAmount;  
@@ -21,11 +25,12 @@ ArrayList<Enemy> enemyList = new ArrayList<Enemy>();
 void setup() {
   // set standard settings
   size(640,480);
+  frameRate(60);
   
   // init objects
   m = new MainMenu();
   s = new Scene();
-  h = new Highscore();
+  highscore = new Highscore();
   player = new Player();
   
   // load all images here
@@ -51,6 +56,7 @@ void keyPressed() {
         player.playerInput.add("UP");
         player.playerInputButtons.add(player.upArrow);
         player.comboCounter = 0;
+        player.checkCombo();
         // menu to update select
         if (state == 0) {
           m.buttonUp();
@@ -61,6 +67,7 @@ void keyPressed() {
         player.playerInput.add("DOWN");
         player.playerInputButtons.add(player.downArrow);
         player.comboCounter = 0;
+        player.checkCombo();
         // menu to update select
         if (state == 0) {
           m.buttonDown();
@@ -71,12 +78,14 @@ void keyPressed() {
         player.playerInput.add("LEFT");
         player.playerInputButtons.add(player.leftArrow);
         player.comboCounter = 0;
+        player.checkCombo();
       break;
       case RIGHT:
         player.rightPressed = true;
         player.playerInput.add("RIGHT");
         player.playerInputButtons.add(player.rightArrow);
         player.comboCounter = 0;
+        player.checkCombo();
       break;
     }
   }
@@ -115,6 +124,9 @@ void keyPressed() {
       break;
       case '2':
         state = 2; 
+      break;
+      case '3':
+        state = 3; 
       break;
       case '9':
         state = 9; 
