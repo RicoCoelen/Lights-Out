@@ -50,9 +50,9 @@ class Scene8 {
     // draw text
     fill(255);
     textSize(60);
-    text("Oops, Lights out buddy!", width / 8, 90);
+    text("Oops, Lights Out buddy!", width / 8, 90);
     textSize(40);
-    text("Enter 3 Initials: ", width / 8, 130);
+    text("Enter your initials: ", width / 8, 130);
     
     if (selectedWheel == 1) { fill(255, 255, 0); } else { fill(255); }
     text(char1 + " ", width * 0.13, 200);

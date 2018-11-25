@@ -81,6 +81,34 @@ class Enemy {
            comboGenerator(7, 10);  //  Generate combo between 7 and 10 buttons
          }
       break;
+      
+      // mini enemy
+      case 4:
+         health = 1;
+         damage = 2;
+         h = 28;
+         w = 30;
+         dcw = 100;
+         ds = 5;
+         sprite = loadImage("data/sprites/Mini.png");
+         if (health > 0) {
+           comboGenerator(1, 1);  //  Generate combo of 1 button
+         }
+      break;
+      
+      // boss
+      case 5:
+         health = (int) random(3, 5);
+         damage = 40;
+         h = 154;
+         w = 50;
+         dcw = 400;
+         ds = 0.3;
+         sprite = loadImage("data/sprites/Boss.png");
+         if (health > 0) {
+           comboGenerator(7, 10);  //  Generate combo between 7 and 10 buttons
+         }
+      break;
     }
     
     // set postion by parameters
@@ -128,7 +156,7 @@ class Enemy {
     fill(255, 255, 255, 150);
     
     // draw collision box
-    rect(cx, y, cw, h);
+    //rect(cx, y, cw, h);
     
     // draw combo block if in range // magic numbers for positioning above enemy character
     if (checkRange())  {
@@ -246,6 +274,11 @@ class Enemy {
            comboGenerator(7, 10);  //  Generate combo between 7 and 10 buttons
          }
       break;
+      case 5:
+         if (health > 0) {
+           comboGenerator(7, 10);  //  Generate combo between 10 and 15 buttons
+         }
+      break;
     }
   }
   
@@ -253,14 +286,21 @@ class Enemy {
     enemyList.remove(enemyList.indexOf(this));  //  Gets current index of object in array and removes it
     switch (enemyType) {
       case 1:
-          score += 100;
+        score += 100;
         break;
       case 2:
-          score += 500;
+        score += 200;
         break;
       case 3:
-          score += 200;
+        score += 500;
         break;
+      case 4:
+        score += 10;
+        break;
+      case 5:
+        score += 1000;
+        break;
+      
     }
   }
   

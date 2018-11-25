@@ -1,5 +1,4 @@
 class MainMenu{
-  
   // important mechanics
   int selectedButton = 1;
   float delayCounter;
@@ -16,8 +15,10 @@ class MainMenu{
   /*
   setup function
   */
+  
   MainMenu() {
-    
+    background = new AudioController(lightsOut, "audio/main_menu.mp3");
+    background.loop();
   }
   
   /*
@@ -113,6 +114,9 @@ class MainMenu{
     if (delayCounter >= delay) {
       if (selectedButton == 1) {
         state = 1;
+        background.stop();
+        background.changeSource(lightsOut, "audio/level_1.mp3");
+        background.loop();
       }
       if (selectedButton == 2) {
         state = 7;

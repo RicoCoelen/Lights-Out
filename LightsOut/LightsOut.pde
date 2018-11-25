@@ -13,8 +13,7 @@ Player player;
 MainScene scene;
 Highscore highscore;
 Minim minim;
-AudioPlayer audio;
-
+AudioController background;
 
 // global vars
 int state = 0;  
@@ -23,6 +22,7 @@ int dashCoolTime = 90;
 int dashDistance = 50;
 int score;
 int wave;
+LightsOut lightsOut = this;
 
 //  Sets ground height
 float groundHeight = 410;
@@ -40,15 +40,11 @@ void setup() {
   highscore = new Highscore();
   scene = new MainScene();
   player = new Player();
-  minim = new Minim(this);
   
   // load all images here
   player.texture = loadImage("data/sprites/player_right.png");
   bg = loadImage("data/sprites/background.jpg");
   bgDeath = loadImage("data/sprites/deathbackground.jpg");
-  
-  audio = minim.loadFile("audio/main_menu.wav");
-  audio.loop();
   
   // load fonts here
   font = loadFont("m5x7.vlw");
@@ -147,6 +143,16 @@ void keyPressed() {
       break;
       case '9':
         state = 9; 
+      break;
+      case '+':
+        wave++;
+        enemyList.clear();
+        scene.scene1.waveSwitcher();
+      break;
+      case '-':
+        wave--;
+        enemyList.clear();
+        scene.scene1.waveSwitcher();
       break;
     }
   }
