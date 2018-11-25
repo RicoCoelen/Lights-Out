@@ -40,6 +40,7 @@ class Scene7 {
       text("ID   " + id + "   Name: " + name + "   Score: " + score + "   Time: " + time, 10, scoreY); // print score
       // add 100 for position
       scoreY += 25;
+
     }
      // if arrow return
     if (state == 7 && player.leftPressed) {

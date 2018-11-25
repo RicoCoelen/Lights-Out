@@ -29,7 +29,6 @@ class Enemy {
   int result;
 
   ArrayList<String> enemyCombo = new ArrayList<String>();
-  ArrayList<String> enemyComboCorrect = new ArrayList<String>();
   ArrayList<PImage> enemyComboButtons = new ArrayList<PImage>();
 
   /*

@@ -7,11 +7,14 @@ class Scene8 {
   int selectedWheel = 1;
   
   String name = "AAA";
+  float delayCounter;
+  float delay = 0.15; //  sets delay in seconds 
   
   /*
   setup function
   */
   Scene8() {
+    
 
   }
  
@@ -51,24 +54,36 @@ class Scene8 {
     textSize(40);
     text("Enter 3 Initials: ", width / 8, 130);
     
-    text(char1 + " " + char2 + " " + char3, width / 8, 200);
-  }
+    if (selectedWheel == 1) { fill(255, 255, 0); } else { fill(255); }
+    text(char1 + " ", width * 0.13, 200);
+    
+    if (selectedWheel == 2) { fill(255, 255, 0); } else { fill(255); }
+    text(char2 + " ", width * 0.16, 200);
+    
+    if (selectedWheel == 3) { fill(255, 255, 0); } else { fill(255); }
+    text(char3 + " ", width * 0.19, 200);
   
+  }
+    
   void charUp() {
-    if(selectedWheel == 1) {
-      if (char1 > 'A') {
-        char1--;
+    delayCounter+=(float)1/60;
+    if (delayCounter >= delay) {
+      if(selectedWheel == 1) {
+        if (char1 > 'A') {
+          char1--;
+        }
       }
-    }
-    if(selectedWheel == 2) {
-      if (char2 > 'A') {
-        char2--;
+      if(selectedWheel == 2) {
+        if (char2 > 'A') {
+          char2--;
+        }
       }
-    }
-    if(selectedWheel == 3) {
-      if (char3 > 'A') {
-        char3--;
+      if(selectedWheel == 3) {
+        if (char3 > 'A') {
+          char3--;
+        }
       }
+      delayCounter = 0;
     }
   }
   
@@ -76,26 +91,34 @@ class Scene8 {
   Function to update select down
   */
   void charDown() {
-    if(selectedWheel == 1) {
-      if (char1 < 'Z') {
-        char1++; 
+    delayCounter+=(float)1/60;
+    if (delayCounter >= delay) {
+      if(selectedWheel == 1) {
+        if (char1 < 'Z') {
+          char1++; 
+        }
       }
-    }
-    if(selectedWheel == 2) {
-      if (char2 < 'Z') {
-        char2++; 
+      if(selectedWheel == 2) {
+        if (char2 < 'Z') {
+          char2++; 
+        }
       }
-    }
-    if(selectedWheel == 3) {
-      if (char3 < 'Z') {
-        char3++; 
+      if(selectedWheel == 3) {
+        if (char3 < 'Z') {
+          char3++; 
+        }
       }
+      delayCounter = 0;
     }
   }
   
   void wheelLeft() {
-    if (selectedWheel > 1) {
-      selectedWheel--;
+    delayCounter+=(float)1/60;
+    if (delayCounter >= delay) {
+      if (selectedWheel > 1) {
+        selectedWheel--;
+      }
+      delayCounter =0;
     }
   }
   
@@ -103,8 +126,12 @@ class Scene8 {
   Function to update select down
   */
   void wheelRight() {
-    if (selectedWheel < 3) {
-      selectedWheel++; 
+    delayCounter+=(float)1/60;
+    if (delayCounter >= delay) {
+      if (selectedWheel < 3) {
+        selectedWheel++; 
+      }
+      delayCounter =0;
     }
   }
   

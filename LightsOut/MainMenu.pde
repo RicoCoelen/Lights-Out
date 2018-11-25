@@ -8,11 +8,14 @@ class MainMenu{
   int center = (width / 2) - (buttonWidth / 2);
   int textX = center - 85;
   
+  // images
+  PImage logo = loadImage("data/sprites/logo.png");
+  
   /*
   setup function
   */
   MainMenu() {
-   
+    
   }
 
   /*
@@ -47,10 +50,9 @@ class MainMenu{
     
     // color and fill
     background(bgDeath);
-    fill(255);
     
-    // logo // magic numbers for width
-    rect(center - 100, 50, 400, 100);
+    
+    fill(255);
     
     // start
     rect(center, 200, buttonWidth, 50);
@@ -64,10 +66,9 @@ class MainMenu{
     // quit
     rect(center, 380, buttonWidth, 50);
     
-    // placeholder text
-    fill(0);
-    textSize(102);
-    text("LIGHTS OUT!", textX, 122);
+    imageMode(CENTER);
+    image(logo, width/2, 80S);
+    imageMode(CORNER);
   }
   
 }

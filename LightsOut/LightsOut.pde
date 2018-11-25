@@ -1,3 +1,6 @@
+// imports
+import ddf.minim.*;
+
 // global loaded images
 PImage bg;
 PImage bgDeath;
@@ -10,6 +13,9 @@ Player player;
 MainMenu m;
 MainScene scene;
 Highscore highscore;
+Minim minim;
+AudioPlayer backgroundAudio;
+
 
 // global vars
 int state = 0;  
@@ -36,11 +42,15 @@ void setup() {
   highscore = new Highscore();
   scene = new MainScene();
   player = new Player();
+  minim = new Minim(this);
   
   // load all images here
   player.texture = loadImage("data/sprites/player_right.png");
   bg = loadImage("data/sprites/background.jpg");
   bgDeath = loadImage("data/sprites/deathbackground.jpg");
+  
+  backgroundAudio = minim.loadFile("audio/main_menu.wav");
+  backgroundAudio.loop();
   
   // load fonts here
   font = loadFont("m5x7.vlw");
