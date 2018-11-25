@@ -48,34 +48,107 @@ class Scene1 {
   void waveSwitcher() {
     switch (wave) {
       case 1:
-        enemyList.add(new Enemy(700, groundHeight, 1));
-        enemyList.add(new Enemy(-1000, groundHeight, 1));
-        enemyList.add(new Enemy(1500, groundHeight, 1));
-        enemyList.add(new Enemy(2000, groundHeight, 1));
-        break;
-       case 2:
-        enemyList.add(new Enemy(700, groundHeight, 2));
-        enemyList.add(new Enemy(-1000, groundHeight, 1));
-        enemyList.add(new Enemy(1500, groundHeight, 2));
-        enemyList.add(new Enemy(2000, groundHeight, 1));
-        break;
-       case 3:
-        enemyList.add(new Enemy(700, groundHeight, 1));
-        enemyList.add(new Enemy(-1000, groundHeight, 1));
-        enemyList.add(new Enemy(1500, groundHeight, 3));
-        enemyList.add(new Enemy(2000, groundHeight, 1));
-        break;
-       case 4:
-        enemyList.add(new Enemy(800, groundHeight, 1));
-        enemyList.add(new Enemy(900, groundHeight, 1));
-        enemyList.add(new Enemy(1000, groundHeight, 1));
-        enemyList.add(new Enemy(1100, groundHeight, 1));
-        enemyList.add(new Enemy(1200, groundHeight, 1));
-        enemyList.add(new Enemy(-800, groundHeight, 1));
+        // LEFT
         enemyList.add(new Enemy(-900, groundHeight, 1));
-        enemyList.add(new Enemy(-1000, groundHeight, 1));
-        enemyList.add(new Enemy(-1100, groundHeight, 1));
-        enemyList.add(new Enemy(-1200, groundHeight, 1));
+        enemyList.add(new Enemy(-1500, groundHeight, 1));
+        enemyList.add(new Enemy(-1800, groundHeight, 1));
+        enemyList.add(new Enemy(-2200, groundHeight, 1));
+        enemyList.add(new Enemy(-2500, groundHeight, 1));
+        
+        // RIGHT
+        enemyList.add(new Enemy(1000, groundHeight, 1));
+        enemyList.add(new Enemy(1500, groundHeight, 1));
+        enemyList.add(new Enemy(3000, groundHeight, 1));
+        enemyList.add(new Enemy(3200, groundHeight, 1));
+        enemyList.add(new Enemy(3500, groundHeight, 1));
+        enemyList.add(new Enemy(4000, groundHeight, 2));
+        
+        break;
+      case 2:
+        // LEFT
+        enemyList.add(new Enemy(-200, groundHeight, 4));
+        enemyList.add(new Enemy(-250, groundHeight, 4));
+        enemyList.add(new Enemy(-300, groundHeight, 4));
+        enemyList.add(new Enemy(-350, groundHeight, 4));
+        enemyList.add(new Enemy(-400, groundHeight, 4));
+        enemyList.add(new Enemy(-450, groundHeight, 4));
+        enemyList.add(new Enemy(-500, groundHeight, 4));
+        enemyList.add(new Enemy(-550, groundHeight, 4));
+        enemyList.add(new Enemy(-600, groundHeight, 4));
+        enemyList.add(new Enemy(-650, groundHeight, 4));
+        enemyList.add(new Enemy(-700, groundHeight, 4));
+        enemyList.add(new Enemy(-750, groundHeight, 4));
+        
+        // RIGHT
+        enemyList.add(new Enemy(1400, groundHeight, 4));
+        enemyList.add(new Enemy(1450, groundHeight, 4));
+        enemyList.add(new Enemy(1500, groundHeight, 4));
+        enemyList.add(new Enemy(1550, groundHeight, 4));
+        enemyList.add(new Enemy(1600, groundHeight, 4));
+        enemyList.add(new Enemy(1650, groundHeight, 4));
+        enemyList.add(new Enemy(1700, groundHeight, 4));
+        enemyList.add(new Enemy(1750, groundHeight, 4));
+        enemyList.add(new Enemy(1800, groundHeight, 4));
+        enemyList.add(new Enemy(1850, groundHeight, 4));
+        enemyList.add(new Enemy(1900, groundHeight, 4));
+        enemyList.add(new Enemy(1950, groundHeight, 4));
+        
+        enemyList.add(new Enemy(2300, groundHeight, 2));
+        
+        break;
+      case 3:
+        // LEFT
+        
+        // RIGHT
+        
+        break;
+      case 4:
+        // LEFT
+        
+        // RIGHT
+        
+        break;
+      case 5:
+        // LEFT
+        
+        // RIGHT
+        
+        break;
+      case 6:
+        // LEFT
+        
+        // RIGHT
+        
+        break;
+      case 7:
+        // LEFT
+        
+        // RIGHT
+        
+        break;
+      case 8:
+        // LEFT
+        
+        // RIGHT
+        
+        break;
+      case 9:
+        // LEFT
+        
+        // RIGHT
+        
+        break;
+      case 10:
+        // LEFT
+        
+        // RIGHT
+        enemyList.add(new Enemy(-200, groundHeight, 5));
+        
+        break;
+      case 11:
+        //  CALL VICTORY SCENE
+        //  (NEW HIGH SCORE)
+        
         break;
     }
   }

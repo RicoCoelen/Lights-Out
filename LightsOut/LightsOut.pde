@@ -16,7 +16,6 @@ Highscore highscore;
 Minim minim;
 AudioPlayer backgroundAudio;
 
-
 // global vars
 int state = 0;  
 int dashCoolDown = 0;
@@ -44,14 +43,16 @@ void setup() {
   player = new Player();
   minim = new Minim(this);
   
+
   // load all images here
   player.texture = loadImage("data/sprites/player_right.png");
   bg = loadImage("data/sprites/background.jpg");
   bgDeath = loadImage("data/sprites/deathbackground.jpg");
   
+  
   backgroundAudio = minim.loadFile("audio/main_menu.wav");
   backgroundAudio.loop();
-  
+    
   // load fonts here
   font = loadFont("m5x7.vlw");
   textFont(font);
