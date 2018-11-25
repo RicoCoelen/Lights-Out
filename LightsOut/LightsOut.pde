@@ -76,10 +76,6 @@ void keyPressed() {
         player.playerInputButtons.add(player.upArrow);
         player.comboCounter = 0;
         player.checkCombo();
-        // menu to update select
-        if (state == 0) {
-          m.buttonUp();
-        }
       break;
       case DOWN:
         player.downPressed = true;
@@ -87,10 +83,6 @@ void keyPressed() {
         player.playerInputButtons.add(player.downArrow);
         player.comboCounter = 0;
         player.checkCombo();
-        // menu to update select
-        if (state == 0) {
-          m.buttonDown();
-        }
       break;
       case LEFT:
         player.leftPressed = true;
