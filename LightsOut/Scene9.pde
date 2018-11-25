@@ -39,7 +39,6 @@ class Scene9 {
         // get from object
         int id = item.getInt("id");
         String name = item.getString("name");
-        String time = item.getString("time");
         int score = item.getInt("score");
         // draw score
         if (id == highscore.highscores.size() - 1) {

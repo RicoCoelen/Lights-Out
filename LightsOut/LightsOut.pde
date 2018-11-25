@@ -10,11 +10,10 @@ PFont font;
 
 //global objects
 Player player;
-MainMenu m;
 MainScene scene;
 Highscore highscore;
 Minim minim;
-AudioPlayer backgroundAudio;
+AudioPlayer audio;
 
 
 // global vars
@@ -38,7 +37,6 @@ void setup() {
   frameRate(60);
   
   // init objects
-  m = new MainMenu();
   highscore = new Highscore();
   scene = new MainScene();
   player = new Player();
@@ -49,8 +47,8 @@ void setup() {
   bg = loadImage("data/sprites/background.jpg");
   bgDeath = loadImage("data/sprites/deathbackground.jpg");
   
-  backgroundAudio = minim.loadFile("audio/main_menu.wav");
-  backgroundAudio.loop();
+  audio = minim.loadFile("audio/main_menu.wav");
+  audio.loop();
   
   // load fonts here
   font = loadFont("m5x7.vlw");
