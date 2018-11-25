@@ -15,7 +15,6 @@ int dashCoolTime = 90;
 int dashDistance = 50;
 int score;
 int wave;
-String name;
 
 //  Sets ground height
 float groundHeight = 410;
@@ -107,6 +106,7 @@ void keyPressed() {
       break;
       case 'q':
       case 'Q':
+        player.qPressed = true;
         if (dashCoolDown + dashCoolTime < frameCount) {
         player.velocityX = player.velocityX - dashDistance; 
         dashCoolDown = frameCount;
@@ -114,6 +114,7 @@ void keyPressed() {
       break;
       case 'e':
       case 'E':
+        player.ePressed = true;
         if(dashCoolDown + dashCoolTime  < frameCount){
         player.velocityX = player.velocityX + dashDistance;
         dashCoolDown = frameCount;

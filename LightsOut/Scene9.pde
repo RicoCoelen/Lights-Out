@@ -4,7 +4,7 @@ class Scene9 {
   setup function
   */
   Scene9() {
-
+    
   }
  
   /*
@@ -32,18 +32,20 @@ class Scene9 {
     int scoreY = 180;
     
     // get json array and max ten scores
-    for (int i = 0; i < 10; i++) {
-      // get json object from higscore class
-      JSONObject item = highscore.highscores.getJSONObject(i); 
-      // get from object
-      int id = item.getInt("id");
-      String name = item.getString("name");
-      String time = item.getString("time");
-      int score = item.getInt("score");
-      // draw score
-      text("Name: " + name + "   Score: " + score, width / 8, scoreY); // print score
-      // add 100 for position
-      scoreY += 25;
+    for (int i = 0; i < highscore.highscores.size(); i++) {
+      if (i < 10) {
+        // get json object from higscore class
+        JSONObject item = highscore.highscores.getJSONObject(i); 
+        // get from object
+        int id = item.getInt("id");
+        String name = item.getString("name");
+        String time = item.getString("time");
+        int score = item.getInt("score");
+        // draw score
+        text("Name: " + name + "   Score: " + score, width / 8, scoreY); // print score
+        // add 100 for position
+        scoreY += 25;
+      }
     }
     text("You might want to try again by pressing 0.", width / 8, 450);
   }

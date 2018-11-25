@@ -82,8 +82,7 @@ class Player {
     health -= damage;
     // death / save score to file
     if (health <= 0) {
-      state = 9;
-      highscore.saveScore("Random Joe", score);
+      state = 8;
     }
   }
   

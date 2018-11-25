@@ -37,15 +37,15 @@ class Highscore {
   void draw() {
     text("Score: " + score, 0, 0, 1000, 80);  // Text wraps within text box
   }
-
+  
   /*
   Function to save the json array to file
   */
   void saveScore(String name, int currentScore) {
     // loop trough all scores
-    for (int i = 0; i < highscores.size(); i++) {
+    for (int i = 0; i < highscore.highscores.size(); i++) {
       // add current score at the end of array
-      if(i == highscores.size() - 1) {
+      if(i == highscore.highscores.size() - 1) {
         // create temp json object
         JSONObject tempObject = new JSONObject();
         // declare all object variables
@@ -54,11 +54,11 @@ class Highscore {
         tempObject.setString("time", day() + "-" + month() + "-" + year() + " " + hour() + ":" + minute());
         tempObject.setInt("score", currentScore);
         // set all variables in json array
-        highscores.setJSONObject(i, tempObject);
+        highscore.highscores.setJSONObject(i, tempObject);
       }
     }
     // save json array to file
-    saveJSONArray(highscores, "data/highscores.json");
+    saveJSONArray(highscore.highscores, "data/highscores.json");
   }
 
   /*
