@@ -24,9 +24,9 @@ class Scene9 {
  
     // draw text
     fill(255);
-    textSize(40);
+    textSize(60);
     text("Oops, Lights out buddy!", width / 8, 90);
-    textSize(20);
+    textSize(30);
     text("Top 10 Highscores:", width / 8, 130);
     
     int scoreY = 180;

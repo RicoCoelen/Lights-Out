@@ -66,7 +66,7 @@ class MainMenu{
     
     // placeholder text
     fill(0);
-    textSize(60);
+    textSize(102);
     text("LIGHTS OUT!", textX, 122);
   }
   

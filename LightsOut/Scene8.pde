@@ -46,9 +46,9 @@ class Scene8 {
     background(bgDeath);
     // draw text
     fill(255);
-    textSize(40);
+    textSize(60);
     text("Oops, Lights out buddy!", width / 8, 90);
-    textSize(20);
+    textSize(40);
     text("Enter 3 Initials: ", width / 8, 130);
     
     text(char1 + " " + char2 + " " + char3, width / 8, 200);

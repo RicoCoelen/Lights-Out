@@ -2,6 +2,9 @@
 PImage bg;
 PImage bgDeath;
 
+// global loaded fonts
+PFont font;
+
 //global objects
 Player player;
 MainMenu m;
@@ -38,6 +41,10 @@ void setup() {
   player.texture = loadImage("data/sprites/player_right.png");
   bg = loadImage("data/sprites/background.jpg");
   bgDeath = loadImage("data/sprites/deathbackground.jpg");
+  
+  // load fonts here
+  font = loadFont("m5x7.vlw");
+  textFont(font);
 }
 
 void draw() {
