@@ -7,6 +7,7 @@ class Scene {
   Function to draw
   */
   void draw() {
+    println(state);
     switch (state) { 
       case 0:
         m.draw();
@@ -23,6 +24,10 @@ class Scene {
         scene2Update();
         scene2Draw();
       break;  
+      case 8:
+        scene8Update();
+        scene8Draw();
+      break; 
       case 9:
         scene9Update();
         scene9Draw();
@@ -59,7 +64,40 @@ class Scene {
   }
   
   void scene2Draw() {
-    background(bg);
+    background(0);
+  }
+  
+  void scene8Update() {
+  }
+  
+  void scene8Draw() {
+    // drawing background
+    background(255); 
+    // top part
+    fill(50);
+    // change text
+    textSize(20);
+    text("Highscores:", 10, 50); 
+    // scorey postion for loop
+    int scoreY = 90;
+    // get json array from higscore class
+    for (int i = 0; i < highscore.highscores.size(); i++) {
+      // get json object from higscore class
+      JSONObject item = highscore.highscores.getJSONObject(i); 
+      // get from object
+      int id = item.getInt("id");
+      String name = item.getString("name");
+      String time = item.getString("time");
+      int score = item.getInt("score");
+      // draw score
+      text("ID   " + id + "   Name: " + name + "   Score: " + score + "   Time: " + time, 10, scoreY); // print score
+      // add 100 for position
+      scoreY += 25;
+    }
+     // if arrow return
+    if (state == 8 && player.leftPressed) {
+      state = 0;
+    }
   }
   
   void scene9Update() {
@@ -69,13 +107,32 @@ class Scene {
   
   void scene9Draw() { 
     // drawing background
-    background(255);
+    background(bgDeath);
+ 
     // draw text
-    fill(0);
+    fill(255);
     textSize(40);
-    text("Oops, Lights out buddy!", width / 8, 100);
+    text("Oops, Lights out buddy!", width / 8, 90);
     textSize(20);
-    text("You might want to try again by pressing 1.", width / 8, 200);
+    text("Top 10 Highscores:", width / 8, 130);
+    
+    int scoreY = 180;
+    
+    // get json array and max ten scores
+    for (int i = 0; i < 10; i++) {
+      // get json object from higscore class
+      JSONObject item = highscore.highscores.getJSONObject(i); 
+      // get from object
+      int id = item.getInt("id");
+      String name = item.getString("name");
+      String time = item.getString("time");
+      int score = item.getInt("score");
+      // draw score
+      text("Name: " + name + "   Score: " + score, width / 8, scoreY); // print score
+      // add 100 for position
+      scoreY += 25;
+    }
+    text("You might want to try again by pressing 1.", width / 8, 450);
   }
   
    void healthBar () {

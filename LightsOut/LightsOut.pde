@@ -1,5 +1,6 @@
 // global loaded images
 PImage bg;
+PImage bgDeath;
 
 //global objects
 Player player;
@@ -29,13 +30,14 @@ void setup() {
   
   // init objects
   m = new MainMenu();
-  s = new Scene();
   highscore = new Highscore();
+  s = new Scene();
   player = new Player();
   
   // load all images here
   player.texture = loadImage("data/sprites/player_right.png");
   bg = loadImage("data/sprites/background.jpg");
+  bgDeath = loadImage("data/sprites/deathbackground.jpg");
 }
 
 void draw() {
@@ -127,6 +129,9 @@ void keyPressed() {
       break;
       case '3':
         state = 3; 
+      break;
+      case '8':
+        state = 8; 
       break;
       case '9':
         state = 9; 

@@ -37,7 +37,7 @@ class MainMenu{
   Function to update menu
   */
   void update() {
-    println(selectedButton);
+    //println(selectedButton);
   }
   
   /*

@@ -62,22 +62,9 @@ class Highscore {
   }
 
   /*
-  Function to get and print json data from file
+  Function to get score sorted Json array
   */
-  void getPrintJson() {
-
-    JSONArray values = highscores;
-
-    for (int i = 0; i < values.size(); i++) {
-
-      JSONObject item = values.getJSONObject(i); 
-
-      int id = item.getInt("id");
-      String name = item.getString("name");
-      String time = item.getString("time");
-      int score = item.getInt("score");
-
-      println(id, name, time, score);
-    }
+  void getSortedJson() {
+   // todo
   }
 }
