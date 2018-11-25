@@ -5,7 +5,7 @@ PImage bgDeath;
 //global objects
 Player player;
 MainMenu m;
-Scene s;
+MainScene scene;
 Highscore highscore;
 
 // global vars
@@ -32,7 +32,7 @@ void setup() {
   // init objects
   m = new MainMenu();
   highscore = new Highscore();
-  s = new Scene();
+  scene = new MainScene();
   player = new Player();
   
   // load all images here
@@ -43,7 +43,7 @@ void setup() {
 
 void draw() {
   // draw / update / setup scenes
-  s.draw();
+  scene.update();
 }
 
 /*
