@@ -7,7 +7,6 @@ class Scene {
   Function to draw
   */
   void draw() {
-    println(state);
     switch (state) { 
       case 0:
         m.draw();
@@ -23,7 +22,11 @@ class Scene {
       case 2:
         scene2Update();
         scene2Draw();
-      break;  
+      break; 
+      case 7:
+        scene7Update();
+        scene7Draw();
+      break; 
       case 8:
         scene8Update();
         scene8Draw();
@@ -67,10 +70,10 @@ class Scene {
     background(0);
   }
   
-  void scene8Update() {
+  void scene7Update() {
   }
   
-  void scene8Draw() {
+  void scene7Draw() {
     // drawing background
     background(255); 
     // top part
@@ -95,9 +98,26 @@ class Scene {
       scoreY += 25;
     }
      // if arrow return
-    if (state == 8 && player.leftPressed) {
+    if (state == 7 && player.leftPressed) {
       state = 0;
     }
+  }
+  
+  void scene8Update() {
+    int selectX = 0;
+    int selectY = 0;
+    
+  }
+  
+  void scene8Draw() {
+    // drawing background
+    background(bgDeath);
+    // draw text
+    fill(255);
+    textSize(40);
+    text("Oops, Lights out buddy!", width / 8, 90);
+    textSize(20);
+    text("Enter 3 Initials: ", width / 8, 130);
   }
   
   void scene9Update() {
@@ -132,7 +152,7 @@ class Scene {
       // add 100 for position
       scoreY += 25;
     }
-    text("You might want to try again by pressing 1.", width / 8, 450);
+    text("You might want to try again by pressing 0.", width / 8, 450);
   }
   
    void healthBar () {
