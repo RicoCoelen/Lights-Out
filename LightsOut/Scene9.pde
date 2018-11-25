@@ -42,7 +42,13 @@ class Scene9 {
         String time = item.getString("time");
         int score = item.getInt("score");
         // draw score
+        if (id == highscore.highscores.size() - 1) {
+          fill(255, 255, 0);
+        }
         text("Name: " + name + "   Score: " + score, width / 8, scoreY); // print score
+        if (id == highscore.highscores.size() - 1) {
+          fill(255);
+        }
         // add 100 for position
         scoreY += 25;
       }
