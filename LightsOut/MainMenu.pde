@@ -46,7 +46,7 @@ class MainMenu{
   void draw() {
     
     // color and fill
-    background (139, 64, 32);
+    background(bgDeath);
     fill(255);
     
     // logo // magic numbers for width
@@ -66,7 +66,7 @@ class MainMenu{
     
     // placeholder text
     fill(0);
-    textSize(60);
+    textSize(102);
     text("LIGHTS OUT!", textX, 122);
   }
   

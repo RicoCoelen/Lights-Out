@@ -80,14 +80,9 @@ class Player {
   //  Player takes damage
   void takeDamage(int damage) {
     health -= damage;
+    // death / save score to file
     if (health <= 0) {
-      state = 9;
-      wave = 0;
-      enemyList.clear();
-      highscores = new JSONObject();
-      highscores.setString("date", day() + "-" + month() + "-" + year() + " " + hour() + ":" + minute());
-      highscores.setInt("score", score);
-      saveJSONObject(highscores, "data/highscores.json");
+      state = 8;
     }
   }
   
@@ -139,10 +134,12 @@ class Player {
   }
 
   void drawButtons() {
-    float debugPos = 0;
+    float debugPos = 150;
     for (int i = 0; i < playerInputButtons.size(); i++) {
-      image(playerInputButtons.get(i), debugPos, 50);
-      debugPos += 20;
+      if (i < 15) {
+        image(playerInputButtons.get(i), debugPos, 10);
+        debugPos += 20;
+      }
     }
   }
 
