@@ -1,8 +1,10 @@
 class MainScene {
   
-  // init scenes 1,2 - 7,8,9
+  // init scenes mainmenu, 1,2 - 6,7,8,9
+  MainMenu mainmenu = new MainMenu();
   Scene1 scene1 = new Scene1();
   Scene2 scene2 = new Scene2();
+  Scene6 scene6 = new Scene6();
   Scene7 scene7 = new Scene7();
   Scene8 scene8 = new Scene8();
   Scene9 scene9 = new Scene9();
@@ -14,8 +16,8 @@ class MainScene {
     switch (state) { 
       case 0:
       // main menu
-        m.draw();
-        m.update();
+        mainmenu.draw();
+        mainmenu.update();
       break;
       // endless survival
       case 1:
@@ -26,6 +28,11 @@ class MainScene {
       // maybe tutorial and switch later with 1?
         scene2.update();
         scene2.draw();
+      break; 
+      case 6:
+      // Option screen
+        scene6.update();
+        scene6.draw();
       break; 
       case 7:
       // highscore screen

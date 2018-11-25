@@ -286,14 +286,21 @@ class Enemy {
     enemyList.remove(enemyList.indexOf(this));  //  Gets current index of object in array and removes it
     switch (enemyType) {
       case 1:
-          score += 100;
+        score += 100;
         break;
       case 2:
-          score += 500;
+        score += 200;
         break;
       case 3:
-          score += 200;
+        score += 500;
         break;
+      case 4:
+        score += 10;
+        break;
+      case 5:
+        score += 1000;
+        break;
+      
     }
   }
   

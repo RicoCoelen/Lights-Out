@@ -4,7 +4,8 @@ class Scene1 {
   setup function
   */
   Scene1() {
-    
+    //background = new AudioController(lightsOut, "audio/level_1.wav");
+    //background.play();
   }
  
   /*
@@ -98,8 +99,28 @@ class Scene1 {
         break;
       case 3:
         // LEFT
+        enemyList.add(new Enemy(-2500, groundHeight, 3));
+        enemyList.add(new Enemy(-3000, groundHeight, 2));
+        
+        enemyList.add(new Enemy(-6000, groundHeight, 2));
+        enemyList.add(new Enemy(-6100, groundHeight, 1));
+        enemyList.add(new Enemy(-6300, groundHeight, 1));
+        enemyList.add(new Enemy(-6400, groundHeight, 2));
         
         // RIGHT
+        enemyList.add(new Enemy(1000, groundHeight, 2));
+        enemyList.add(new Enemy(1500, groundHeight, 2));
+        
+        enemyList.add(new Enemy(4000, groundHeight, 1));
+        enemyList.add(new Enemy(4200, groundHeight, 1));
+        enemyList.add(new Enemy(4500, groundHeight, 1));
+        
+        enemyList.add(new Enemy(5000, groundHeight, 4));
+        enemyList.add(new Enemy(5050, groundHeight, 4));
+        enemyList.add(new Enemy(5100, groundHeight, 4));
+        enemyList.add(new Enemy(5150, groundHeight, 4));
+        enemyList.add(new Enemy(5200, groundHeight, 4));
+        
         
         break;
       case 4:

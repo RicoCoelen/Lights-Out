@@ -83,6 +83,9 @@ class Player {
     // death / save score to file
     if (health <= 0) {
       state = 8;
+      background.stop();
+      background.changeSource(lightsOut, "audio/death_screen.mp3");
+      background.loop();
     }
   }
   
