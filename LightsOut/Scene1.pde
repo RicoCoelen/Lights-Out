@@ -28,8 +28,8 @@ class Scene1 {
   void draw() {
     background(bg); // drawing background
     fill(50);
-    textSize(25);
-    text("Wave: " + wave, width/2, 0, 1000, 80);  // Text wraps within text box
+    textSize(40);
+    text("Wave: " + wave, 5, 30, 1000, 80);  // Text wraps within text box
     highscore.draw();
     player.display(); // draw player
     healthBar();
@@ -40,9 +40,9 @@ class Scene1 {
   
   void healthBar () {
     fill(0);
-    rect(0, 30, 100, 10);
+    rect(5, 10, 100, 10);
     fill(255, 0, 0);
-    rect(0, 30, player.health, 10);
+    rect(5, 10, player.health, 10);
   }
   
   void waveSwitcher() {

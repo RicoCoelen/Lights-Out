@@ -35,7 +35,7 @@ class Highscore {
   Function to draw score
   */
   void draw() {
-    text("Score: " + score, 0, 0, 1000, 80);  // Text wraps within text box
+    text("Score: " + score, 5, 55, 1000, 80);  // Text wraps within text box
   }
   
   /*
