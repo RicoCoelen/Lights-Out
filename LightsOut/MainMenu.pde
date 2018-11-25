@@ -67,7 +67,7 @@ class MainMenu{
     rect(center, 380, buttonWidth, 50);
     
     imageMode(CENTER);
-    image(logo, width/2, 80S);
+    image(logo, width/2, 80);
     imageMode(CORNER);
   }
   
