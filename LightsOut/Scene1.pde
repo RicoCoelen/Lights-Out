@@ -1,36 +1,16 @@
-class Scene {
-  
-  // setup for single run
-  boolean runOnce1 = true;
+class Scene1 {
    
   /*
-  Function to draw
+  setup function
   */
-  void draw() {
-    switch (state) { 
-      case 0:
-        m.draw();
-        m.update();
-      break;
-      case 1:
-        if (runOnce1 == true) {
-          runOnce1 = false;
-        }
-        scene1Update();
-        scene1Draw();
-      break; 
-      case 2:
-        scene2Update();
-        scene2Draw();
-      break;  
-      case 9:
-        scene9Update();
-        scene9Draw();
-      break; 
-    }  
+  Scene1() {
+
   }
-  
-  void scene1Update() {
+ 
+  /*
+  Function to update Scene1
+  */
+  void update() {
     player.update(); // update player
     if (enemyList.size() == 0) {
       wave++;
@@ -41,13 +21,16 @@ class Scene {
       enemyList.get(i).update();
     }
   }
-  
-  void scene1Draw() {
+
+  /*
+  Function to draw Scene1
+  */
+  void draw() {
     background(bg); // drawing background
     fill(50);
     textSize(25);
-    text("Score: " + score, 0, 0, 1000, 80);  // Text wraps within text box
     text("Wave: " + wave, width/2, 0, 1000, 80);  // Text wraps within text box
+    highscore.draw();
     player.display(); // draw player
     healthBar();
     for (int i = 0; i < enemyList.size(); i++) {
@@ -55,30 +38,7 @@ class Scene {
     }
   }
   
-  void scene2Update() {
-  }
-  
-  void scene2Draw() {
-    background(bg);
-  }
-  
-  void scene9Update() {
-    // update game mechanics here
-    frameCount = -1;
-  }
-  
-  void scene9Draw() { 
-    // drawing background
-    background(255);
-    // draw text
-    fill(0);
-    textSize(40);
-    text("Oops, Lights out buddy!", width / 8, 100);
-    textSize(20);
-    text("You might want to try again by pressing 1.", width / 8, 200);
-  }
-  
-   void healthBar () {
+  void healthBar () {
     fill(0);
     rect(0, 30, 100, 10);
     fill(255, 0, 0);

@@ -80,12 +80,9 @@ class Player {
   //  Player takes damage
   void takeDamage(int damage) {
     health -= damage;
+    // death / save score to file
     if (health <= 0) {
-      state = 9;
-      highscores = new JSONObject();
-      highscores.setString("date", day() + "-" + month() + "-" + year() + " " + hour() + ":" + minute());
-      highscores.setInt("score", score);
-      saveJSONObject(highscores, "data/highscores.json");
+      state = 8;
     }
   }
   

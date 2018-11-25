@@ -1,11 +1,12 @@
 // global loaded images
 PImage bg;
+PImage bgDeath;
 
 //global objects
 Player player;
 MainMenu m;
-Scene s;
-JSONObject highscores;
+MainScene scene;
+Highscore highscore;
 
 // global vars
 int state = 0;  
@@ -14,6 +15,7 @@ int dashCoolTime = 90;
 int dashDistance = 50;
 int score;
 int wave;
+
 //  Sets ground height
 float groundHeight = 410;
 
@@ -28,17 +30,19 @@ void setup() {
   
   // init objects
   m = new MainMenu();
-  s = new Scene();
+  highscore = new Highscore();
+  scene = new MainScene();
   player = new Player();
   
   // load all images here
   player.texture = loadImage("data/sprites/player_right.png");
   bg = loadImage("data/sprites/background.jpg");
+  bgDeath = loadImage("data/sprites/deathbackground.jpg");
 }
 
 void draw() {
   // draw / update / setup scenes
-  s.draw();
+  scene.update();
 }
 
 /*
@@ -102,6 +106,7 @@ void keyPressed() {
       break;
       case 'q':
       case 'Q':
+        player.qPressed = true;
         if (dashCoolDown + dashCoolTime < frameCount) {
         player.velocityX = player.velocityX - dashDistance; 
         dashCoolDown = frameCount;
@@ -109,6 +114,7 @@ void keyPressed() {
       break;
       case 'e':
       case 'E':
+        player.ePressed = true;
         if(dashCoolDown + dashCoolTime  < frameCount){
         player.velocityX = player.velocityX + dashDistance;
         dashCoolDown = frameCount;
@@ -125,6 +131,12 @@ void keyPressed() {
       break;
       case '3':
         state = 3; 
+      break;
+      case '7':
+        state = 7; 
+      break;
+      case '8':
+        state = 8; 
       break;
       case '9':
         state = 9; 
