@@ -4,7 +4,7 @@ class Scene7 {
   setup function
   */
   Scene7() {
-
+  
   }
  
   /*
@@ -23,7 +23,7 @@ class Scene7 {
   */
   void draw() {
     // get max highscores
-    String aantal = str(highscore.highscores.size());
+    String aantal = str(highscore.scoreList.size());
     
     // drawing background
     background(bgDeath); 
@@ -38,16 +38,15 @@ class Scene7 {
     textSize(20);
     
     // get json array from higscore class
-    for (int i = 0; i < highscore.highscores.size(); i++) {
-      // get json object from higscore class
-      JSONObject item = highscore.highscores.getJSONObject(i); 
-      // get from object
-      int id = item.getInt("id");
-      String name = item.getString("name");
-      String time = item.getString("time");
-      int score = item.getInt("score");
+    for (int i = 0; i < highscore.scoreList.size(); i++) {
+     
+      // get from Score
+      int id = highscore.scoreList.get(i).getPID();
+      String name = highscore.scoreList.get(i).getPName();
+      String time = highscore.scoreList.get(i).getPTime();
+      int score = highscore.scoreList.get(i).getPScore();
       // draw score
-      text("ID   " + id + "   Name: " + name + "   Score: " + score + "   Time: " + time, 10, scoreY); // print score
+      text("ID: " + id + "   Name: " + name + "   Score: " + score + "   Time: " + time, 10, scoreY); // print score
       // add 15 for position
       scoreY += 15;
     }
