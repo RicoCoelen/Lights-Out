@@ -180,7 +180,7 @@ class Enemy {
   boolean collisionPlayer(){ 
     if(x + w >= player.positionX &&
       x <= player.positionX + player.w){
-      ds *= 0;
+      vx *= 0;
        return true;
     }
     else{
