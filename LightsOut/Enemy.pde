@@ -316,6 +316,11 @@ class Enemy {
         comboWidth += w;
         }
       }
+      comboWidth += 20;
+       
+      //  draws enemy health, needs some styling...
+      fill(255, 0, 0);
+      text(health, debugPos, y - 15);
     }
   }
 }
