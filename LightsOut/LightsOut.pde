@@ -1,5 +1,6 @@
 // imports
 import ddf.minim.*;
+import java.util.*;
 
 // global loaded images
 PImage bg;
@@ -49,6 +50,10 @@ void setup() {
   // load fonts here
   font = loadFont("m5x7.vlw");
   textFont(font);
+  
+  //  sorts highscores
+  highscore.sortScores();
+
 }
 
 void draw() {

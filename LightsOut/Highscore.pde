@@ -1,5 +1,6 @@
 class Highscore {
-
+  
+  ArrayList<Score> scoreList = new ArrayList<Score>();
   JSONArray highscores;
   boolean highscoresCheck = true;
 
@@ -62,9 +63,25 @@ class Highscore {
   }
 
   /*
-  Function to get score sorted Json array
+  Function to get score sorted Score array
   */
-  void getSortedJson() {
-   // todo
+  void sortScores() {
+    
+    for(int i = 0; i < highscores.size(); i++) {
+      //  gets values from JSON array 
+      int id = highscores.getJSONObject(i).getInt("id");
+      String name = highscores.getJSONObject(i).getString("name");
+      String time = highscores.getJSONObject(i).getString("time");
+      int score = highscores.getJSONObject(i).getInt("score");
+      
+      scoreList.add(new Score(id, name, time, score));
+    }
+    
+    //  Sorts Score object by score (descending)
+    Collections.sort(scoreList, new Comparator<Score>() {
+      public int compare(Score s1, Score s2) {
+        return Integer.valueOf(s2.getPScore()).compareTo(s1.getPScore());
+      }
+    }); 
   }
 }
