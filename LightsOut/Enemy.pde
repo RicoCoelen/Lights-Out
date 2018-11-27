@@ -1,6 +1,7 @@
 class Enemy {
   
   // vars
+  PImage sprite;
   PImage upArrow = loadImage("data/sprites/up-arrow.png");
   PImage downArrow = loadImage("data/sprites/down-arrow.png");
   PImage leftArrow = loadImage("data/sprites/left-arrow.png");
