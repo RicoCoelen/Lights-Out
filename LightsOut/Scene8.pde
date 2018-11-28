@@ -141,6 +141,8 @@ class Scene8 {
   void saveName() {
     name = str(char1) + str(char2) + str(char3);
     highscore.saveScore(name, score);
+    //  sorts highscores
+    highscore.sortScores();
     state = 9;
   }
 }
