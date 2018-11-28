@@ -1,10 +1,10 @@
-class Scene2 {
+class Scene3 {
    
   /*
   setup function
   */
-  Scene2() {
-  
+  Scene3() {
+    
   }
  
   /*
@@ -26,8 +26,8 @@ class Scene2 {
   Function to draw Scene1
   */
   void draw() {
-    background(bgMountains);
-    fill(50);
+    background(bgCity);
+    fill(255);
     textSize(40);
     text("Wave: " + wave, 5, 30, 1000, 80);  // Text wraps within text box
     highscore.draw();
