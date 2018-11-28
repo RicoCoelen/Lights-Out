@@ -58,6 +58,15 @@ void draw() {
   scene.update();
 }
 
+void reset() {
+  player.health = 100;
+  player.playerInput.clear();
+  player.playerInputButtons.clear();
+  enemyList.clear();
+  wave = 0;
+  score = 0;
+}
+
 /*
 ========= user input ===========
 */

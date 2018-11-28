@@ -12,7 +12,6 @@ class Scene9 {
   */
   void update() {
     // update game mechanics here
-    frameCount = -1;
   }
 
   /*
