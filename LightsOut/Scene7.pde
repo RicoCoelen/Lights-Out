@@ -4,7 +4,7 @@ class Scene7 {
   setup function
   */
   Scene7() {
-
+    highscore.sortScores();
   }
  
   /*
@@ -32,7 +32,6 @@ class Scene7 {
     textSize(60);
     text(aantal + " Highscores:", 10, 50); 
     
-    
     // scorey postion for loop
     int scoreY = 70;
     textSize(20);
@@ -45,8 +44,15 @@ class Scene7 {
       String name = highscore.scoreList.get(i).getPName();
       String time = highscore.scoreList.get(i).getPTime();
       int score = highscore.scoreList.get(i).getPScore();
+      if (id == highscore.scoreList.size() - 1) {
+          fill(255, 255, 0);
+      }
       // draw score
       text("ID: " + id + "   Name: " + name + "   Score: " + score + "   Time: " + time, 10, scoreY); // print score
+      
+      if (id == highscore.scoreList.size() - 1) {
+          fill(255);
+        }
       // add 15 for position
       scoreY += 15;
     }

@@ -1,5 +1,5 @@
 class Scene9 {
-   
+  
   /*
   setup function
   */
@@ -11,7 +11,8 @@ class Scene9 {
   Function to update Scene1
   */
   void update() {
-    // update game mechanics here
+    highscore.sortScores();
+    reset();
   }
 
   /*

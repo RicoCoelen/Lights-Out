@@ -15,6 +15,7 @@ MainScene scene;
 Highscore highscore;
 Minim minim;
 AudioController background;
+LightsOut lightsOut = this;
 
 // global vars
 int state = 0;  
@@ -23,7 +24,6 @@ int dashCoolTime = 90;
 int dashDistance = 50;
 int score;
 int wave;
-LightsOut lightsOut = this;
 
 //  Sets ground height
 float groundHeight = 410;
@@ -39,8 +39,8 @@ void setup() {
   
   // init objects
   highscore = new Highscore();
-  scene = new MainScene();
   player = new Player();
+  scene = new MainScene();
   
   // load all images here
   player.texture = loadImage("data/sprites/player_right.png");

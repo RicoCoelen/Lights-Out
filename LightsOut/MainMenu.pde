@@ -119,8 +119,6 @@ class MainMenu{
         background.loop();
       }
       if (selectedButton == 2) {
-        //  sorts highscores
-        highscore.sortScores();
         state = 7;
       }
       if (selectedButton == 3) {

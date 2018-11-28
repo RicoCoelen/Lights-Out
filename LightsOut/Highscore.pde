@@ -66,14 +66,16 @@ class Highscore {
   Function to get score sorted Score array
   */
   void sortScores() {
-    
+    // clear old scores
+    scoreList.clear();
+    // loop trough all json data
     for(int i = 0; i < highscores.size(); i++) {
       //  gets values from JSON array 
       int id = highscores.getJSONObject(i).getInt("id");
       String name = highscores.getJSONObject(i).getString("name");
       String time = highscores.getJSONObject(i).getString("time");
       int score = highscores.getJSONObject(i).getInt("score");
-      
+      // add to array list
       scoreList.add(new Score(id, name, time, score));
     }
     
