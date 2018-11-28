@@ -51,9 +51,6 @@ void setup() {
   font = loadFont("m5x7.vlw");
   textFont(font);
   
-  //  sorts highscores
-  highscore.sortScores();
-
 }
 
 void draw() {

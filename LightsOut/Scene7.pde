@@ -4,7 +4,7 @@ class Scene7 {
   setup function
   */
   Scene7() {
-  
+
   }
  
   /*
