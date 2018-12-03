@@ -13,6 +13,8 @@ class Player {
   PImage downArrow = loadImage("data/sprites/down-arrow.png");
   PImage leftArrow = loadImage("data/sprites/left-arrow.png");
   PImage rightArrow = loadImage("data/sprites/right-arrow.png");
+  
+  AudioController playerDamageSound;
 
   Player() {
     aPressed = false;
@@ -79,6 +81,8 @@ class Player {
   
   //  Player takes damage
   void takeDamage(int damage) {
+     playerDamageSound = new AudioController(lightsOut, "audio/steve.mp3");
+     playerDamageSound.play();
     health -= damage;
     // death / save score to file
     if (health <= 0) {

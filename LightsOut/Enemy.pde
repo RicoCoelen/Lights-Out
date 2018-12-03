@@ -30,6 +30,8 @@ class Enemy {
 
   ArrayList<String> enemyCombo = new ArrayList<String>();
   ArrayList<PImage> enemyComboButtons = new ArrayList<PImage>();
+  
+  AudioController enemyDeathSound = new AudioController(lightsOut, "audio/oof.mp3");
 
   /*
   Function to instantiate the enemy
@@ -263,6 +265,7 @@ class Enemy {
       
       // medium enemy
       case 2:
+         score += 10;
          if (health > 0) {
            comboGenerator(4, 7);  //  Generate combo between 4 and 7 buttons
          }
@@ -270,11 +273,13 @@ class Enemy {
       
       // heavy enemy
       case 3:
+         score += 50;
          if (health > 0) {
            comboGenerator(7, 10);  //  Generate combo between 7 and 10 buttons
          }
       break;
       case 5:
+         score += 75;
          if (health > 0) {
            comboGenerator(7, 10);  //  Generate combo between 10 and 15 buttons
          }
@@ -283,7 +288,8 @@ class Enemy {
   }
   
   void kill() {
-    enemyList.remove(enemyList.indexOf(this));  //  Gets current index of object in array and removes it
+    enemyList.remove(enemyList.indexOf(this));  //  Gets current index of object in array and removes itop();
+    enemyDeathSound.play();
     switch (enemyType) {
       case 1:
         score += 100;

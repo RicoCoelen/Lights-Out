@@ -165,9 +165,14 @@ void keyPressed() {
         scene.scene1.waveSwitcher();
       break;
       case '-':
-        wave--;
+        wave++;
         enemyList.clear();
-        scene.scene1.waveSwitcher();
+        scene.scene2.waveSwitcher();
+      break;
+      case '*':
+        wave++;
+        enemyList.clear();
+        scene.scene3.waveSwitcher();
       break;
     }
   }
