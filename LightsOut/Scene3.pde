@@ -1,11 +1,10 @@
-class Scene1 {
+class Scene3 {
    
   /*
   setup function
   */
-  Scene1() {
-    //background = new AudioController(lightsOut, "audio/level_1.wav");
-    //background.play();
+  Scene3() {
+    
   }
  
   /*
@@ -27,8 +26,8 @@ class Scene1 {
   Function to draw Scene1
   */
   void draw() {
-    background(bg); // drawing background
-    fill(50);
+    background(bgCity);
+    fill(255);
     textSize(40);
     text("Wave: " + wave, 5, 30, 1000, 80);  // Text wraps within text box
     highscore.draw();
@@ -47,7 +46,7 @@ class Scene1 {
   }
   
   void waveSwitcher() {
-    if (state == 1) {
+    if (state == 3) {
       switch (wave) {
         case 1:
           // LEFT
@@ -168,16 +167,13 @@ class Scene1 {
           
           break;
         case 11:
-          // go to next level scene2
-          player.health = 100;
-          player.playerInput.clear();
-          player.playerInputButtons.clear();
-          enemyList.clear();
-          wave = 0;
-          background.stop();
-          background.changeSource(lightsOut, "audio/death_screen.mp3");
-          background.loop();
-          state = 2;
+          //  CALL VICTORY SCENE
+          //  (NEW HIGH SCORE)
+            background.stop();
+            // win sounds
+            background.changeSource(lightsOut, "audio/death_screen.mp3");
+            background.loop();
+            state = 8;
           break;
       }
     }

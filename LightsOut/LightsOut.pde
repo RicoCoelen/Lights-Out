@@ -5,6 +5,8 @@ import java.util.*;
 // global loaded images
 PImage bg;
 PImage bgDeath;
+PImage bgMountains;
+PImage bgCity;
 
 // global loaded fonts
 PFont font;
@@ -46,6 +48,8 @@ void setup() {
   player.texture = loadImage("data/sprites/player_right.png");
   bg = loadImage("data/sprites/background.jpg");
   bgDeath = loadImage("data/sprites/deathbackground.jpg");
+  bgMountains = loadImage("data/sprites/mountainbackground.png");
+  bgCity = loadImage("data/sprites/citybackground.jpg");
   
   // load fonts here
   font = loadFont("m5x7.vlw");
@@ -161,9 +165,14 @@ void keyPressed() {
         scene.scene1.waveSwitcher();
       break;
       case '-':
-        wave--;
+        wave++;
         enemyList.clear();
-        scene.scene1.waveSwitcher();
+        scene.scene2.waveSwitcher();
+      break;
+      case '*':
+        wave++;
+        enemyList.clear();
+        scene.scene3.waveSwitcher();
       break;
     }
   }

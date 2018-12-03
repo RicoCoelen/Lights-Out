@@ -4,6 +4,7 @@ class MainScene {
   MainMenu mainmenu = new MainMenu();
   Scene1 scene1 = new Scene1();
   Scene2 scene2 = new Scene2();
+  Scene3 scene3 = new Scene3();
   Scene6 scene6 = new Scene6();
   Scene7 scene7 = new Scene7();
   Scene8 scene8 = new Scene8();
@@ -28,6 +29,11 @@ class MainScene {
       // maybe tutorial and switch later with 1?
         scene2.update();
         scene2.draw();
+      break; 
+      case 3:
+      // maybe tutorial and switch later with 1?
+        scene3.update();
+        scene3.draw();
       break; 
       case 6:
       // Option screen
