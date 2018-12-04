@@ -27,10 +27,10 @@ class MainMenu{
   void update() {
     // menu to update select
     if (state == 0) {
-       if(player.upPressed) {
+       if(player.wPressed) {
         buttonUp();
       }
-      if(player.downPressed) {
+      if(player.sPressed) {
         buttonDown();
       }
       if(player.rightPressed) {

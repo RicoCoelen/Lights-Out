@@ -23,19 +23,19 @@ class Scene8 {
   */
   void update() {
     if (state == 8) {
-      if(player.leftPressed) {
+      if(player.aPressed) {
         wheelLeft();
       }
-      if(player.rightPressed) {
+      if(player.dPressed) {
         wheelRight();
       }
-      if(player.downPressed) {
+      if(player.sPressed) {
         charDown();
       }
-      if(player.upPressed) {
+      if(player.wPressed) {
         charUp();
       }
-      if(player.ePressed) {
+      if(player.rightPressed) {
         saveName();
       }
     }

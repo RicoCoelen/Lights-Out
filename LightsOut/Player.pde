@@ -2,10 +2,8 @@ class Player {
   
   // global variables
   float positionX, positionY, velocityX, velocityY, speed, w, h, left, right, top, bottom, comboCounter;
-  
-  boolean aPressed, dPressed, qPressed, ePressed, upPressed, downPressed, leftPressed, rightPressed;
-  boolean playerFacingLeft;
-  
+  boolean aPressed, dPressed, qPressed, ePressed, upPressed, downPressed, leftPressed, rightPressed, wPressed, sPressed, playerFacingLeft;
+
   int health;
   
   ArrayList<String> playerInput = new ArrayList<String>();
@@ -16,6 +14,7 @@ class Player {
   PImage downArrow = loadImage("data/sprites/down-arrow.png");
   PImage leftArrow = loadImage("data/sprites/left-arrow.png");
   PImage rightArrow = loadImage("data/sprites/right-arrow.png");
+  PImage comboBackground = loadImage("data/sprites/combo-background.png");
   
   Animation playerRight = new Animation("sprites/player/player_right", 1);
   Animation playerPunchRight = new Animation("sprites/player/player_punch_right", 6);
@@ -168,10 +167,11 @@ class Player {
   }
 
   void drawButtons() {
-    float debugPos = 150;
+    float debugPos = 10;
+    image(comboBackground, 0, height - 36);
     for (int i = 0; i < playerInputButtons.size(); i++) {
       if (i < 15) {
-        image(playerInputButtons.get(i), debugPos, 10);
+        image(playerInputButtons.get(i), debugPos, height - 26);
         debugPos += 20;
       }
     }
