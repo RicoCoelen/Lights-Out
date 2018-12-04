@@ -137,7 +137,15 @@ void keyPressed() {
         player.velocityX = player.velocityX + dashDistance;
         dashCoolDown = frameCount;
         }
-      break;    
+      break;
+      case 'w':
+      case 'W':
+         player.wPressed = true;
+      break;
+      case 's':
+      case 'S':
+         player.sPressed = true;
+      break;
       case '0':
         state = 0; 
       break;
@@ -217,7 +225,15 @@ void keyReleased(){
       case 'e':
       case 'E':
         player.ePressed = false;
-      break;    
+      break;
+       case 'w':
+      case 'W':
+         player.wPressed = false;
+      break;
+      case 's':
+      case 'S':
+         player.sPressed = false;
+      break;
     }
   }  
 }
