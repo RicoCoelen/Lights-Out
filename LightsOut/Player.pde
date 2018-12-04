@@ -2,7 +2,7 @@ class Player {
   
   // global variables
   float positionX, positionY, velocityX, velocityY, speed, w, h, left, right, top, bottom, comboCounter;
-  boolean aPressed, dPressed, qPressed, ePressed, upPressed, downPressed, leftPressed, rightPressed;
+  boolean aPressed, dPressed, qPressed, ePressed, upPressed, downPressed, leftPressed, rightPressed,wPressed,sPressed;
   int health;
 
   ArrayList<String> playerInput = new ArrayList<String>();
