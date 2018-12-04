@@ -226,7 +226,7 @@ void keyReleased(){
       case 'E':
         player.ePressed = false;
       break;
-       case 'w':
+      case 'w':
       case 'W':
          player.wPressed = false;
       break;
