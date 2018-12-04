@@ -13,6 +13,7 @@ class Player {
   PImage downArrow = loadImage("data/sprites/down-arrow.png");
   PImage leftArrow = loadImage("data/sprites/left-arrow.png");
   PImage rightArrow = loadImage("data/sprites/right-arrow.png");
+  PImage comboBackground = loadImage("data/sprites/combo-background.png");
   
   AudioController playerDamageSound;
 
@@ -141,10 +142,11 @@ class Player {
   }
 
   void drawButtons() {
-    float debugPos = 150;
+    float debugPos = 10;
+    image(comboBackground, 0, height - 36);
     for (int i = 0; i < playerInputButtons.size(); i++) {
       if (i < 15) {
-        image(playerInputButtons.get(i), debugPos, 10);
+        image(playerInputButtons.get(i), debugPos, height - 26);
         debugPos += 20;
       }
     }
