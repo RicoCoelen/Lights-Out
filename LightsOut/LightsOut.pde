@@ -115,12 +115,12 @@ void keyPressed() {
       case 'a':
       case 'A':
         player.aPressed = true;
-        player.texture = loadImage("data/sprites/player_left.png");
+        player.playerFacingLeft = true;
       break;
       case 'd':
       case 'D':
         player.dPressed = true;
-        player.texture = loadImage("data/sprites/player_right.png");
+        player.playerFacingLeft = false;
       break;
       case 'q':
       case 'Q':

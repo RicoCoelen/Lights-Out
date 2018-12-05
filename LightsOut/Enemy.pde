@@ -27,6 +27,13 @@ class Enemy {
   int health;
   int enemyType;
   int result;
+  
+  Boolean enemyLooksLeft;
+  
+  Animation smallEnemyRight = new Animation("sprites/smallenemy/smallenemy_right_", 1);
+  Animation smallEnemyPunchRight = new Animation("sprites/smallenemy/smallenemy_punchright_", 5);
+  Animation smallEnemyLeft = new Animation("sprites/smallenemy/smallenemy_left_", 1);
+  Animation smallEnemyPunchLeft = new Animation("sprites/smallenemy/smallenemy_punchleft_", 5);
 
   ArrayList<String> enemyCombo = new ArrayList<String>();
   ArrayList<PImage> enemyComboButtons = new ArrayList<PImage>();
@@ -50,7 +57,7 @@ class Enemy {
       case 1:
         health = (int) random(1, 2);
         damage = 5;
-        h = 80;
+        h = 65;
         w = 26;
         dcw = 200;
         ds = 0.8;
@@ -131,12 +138,14 @@ class Enemy {
         vx = 1;
         cw = dcw;
         cx = x + w;
+        enemyLooksLeft = true;
       }
       if (player.positionX < x) {
         //change vx in the near future default speed for every enemy is always -1
         vx = -1;
         cw = dcw * -1;
         cx = x;
+        enemyLooksLeft = false;
       }   
      
       // movement
@@ -166,12 +175,32 @@ class Enemy {
       rect(x - (20 + w), y - 40, comboWidth, 30);
     }
     
-    // enemy block view
-    if (sprite == null) {
-      rect(x, y, w, h);
-    }
-    else {
-      image(sprite, x, y);
+    // temp draw animation based on enemytype
+    switch(enemyType) {
+      // light enemy
+      case 1:
+      if(!collisionPlayer()) {
+        if (enemyLooksLeft == true) {
+          smallEnemyRight.display(x, y);
+        }
+        else {
+          smallEnemyLeft.display(x, y);
+        }   
+      }
+      else {
+          if (enemyLooksLeft == true) {
+            smallEnemyPunchRight.display(x, y);
+          }
+          else {
+            smallEnemyPunchLeft.display(x, y);
+          } 
+      }
+      break;
+      
+      
+      default:
+        image(sprite, x, y);
+      break;
     }
     
     // draw buttons
@@ -195,6 +224,13 @@ class Enemy {
      damageCounter += (float) 1/60;
      if (damageCounter >= 2) {
        player.takeDamage(this.damage);
+       // check whick way damage is given do the proper animation
+       if (enemyLooksLeft == true) {
+         smallEnemyPunchLeft.display(x, y);
+       }
+       else {
+         smallEnemyPunchRight.display(x, y);
+       }
        damageCounter = 0;
      }
    } else {

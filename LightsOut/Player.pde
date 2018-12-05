@@ -2,9 +2,10 @@ class Player {
   
   // global variables
   float positionX, positionY, velocityX, velocityY, speed, w, h, left, right, top, bottom, comboCounter;
-  boolean aPressed, dPressed, qPressed, ePressed, upPressed, downPressed, leftPressed, rightPressed,wPressed,sPressed;
-  int health;
+  boolean aPressed, dPressed, qPressed, ePressed, upPressed, downPressed, leftPressed, rightPressed, wPressed, sPressed, playerFacingLeft;
 
+  int health;
+  
   ArrayList<String> playerInput = new ArrayList<String>();
   ArrayList<PImage> playerInputButtons = new ArrayList<PImage>();
   
@@ -15,6 +16,11 @@ class Player {
   PImage rightArrow = loadImage("data/sprites/right-arrow.png");
   PImage comboBackground = loadImage("data/sprites/combo-background.png");
   
+  Animation playerRight = new Animation("sprites/player/player_right", 1);
+  Animation playerPunchRight = new Animation("sprites/player/player_punch_right", 6);
+  Animation playerLeft = new Animation("sprites/player/player_left", 1);
+  Animation playerPunchLeft = new Animation("sprites/player/player_punch_left", 6);
+ 
   AudioController playerDamageSound;
 
   Player() {
@@ -25,7 +31,7 @@ class Player {
     health = 100;
     speed = 5;
     w = 60;
-    h = 110;
+    h = 96;
     positionX = width/2;
     positionY = groundHeight - h;
     left = positionX - (w/2);
@@ -36,7 +42,26 @@ class Player {
 
   //displaying player
   void display() {
-    image(texture, positionX, positionY);
+    
+    // display user punching
+    if(upPressed == true || leftPressed == true || rightPressed == true || downPressed == true) {
+      if (playerFacingLeft == true) {
+        playerPunchLeft.display(positionX, positionY);
+      }
+      else {
+        playerPunchRight.display(positionX, positionY);
+      }
+    }
+    else {
+      if (playerFacingLeft == true) {
+        playerLeft.display(positionX, positionY);
+      }
+      else {
+       playerRight.display(positionX, positionY);
+      }
+    }
+
+    //image(texture, positionX, positionY);
     this.drawButtons();
   }
   
