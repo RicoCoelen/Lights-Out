@@ -25,6 +25,7 @@ int dashCoolDown = 0;
 int dashCoolTime = 90;
 int dashDistance = 50;
 int score;
+int displayScore;
 int wave;
 
 //  Sets ground height
@@ -69,6 +70,7 @@ void reset() {
   enemyList.clear();
   wave = 0;
   score = 0;
+  displayScore = 0;
 }
 
 /*

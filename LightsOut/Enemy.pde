@@ -205,6 +205,9 @@ class Enemy {
     
     // draw buttons
     this.drawButtons();
+    
+    // animates score counter when enemy dies
+    scoreAnimation();
   }
   
   // collision with player
@@ -343,6 +346,12 @@ class Enemy {
         score += 1000;
         break;
       
+    }
+  }
+  
+  void scoreAnimation() {
+    if (displayScore < score) {
+      displayScore++;
     }
   }
   
