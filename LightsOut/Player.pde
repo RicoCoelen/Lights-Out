@@ -10,6 +10,7 @@ class Player {
   ArrayList<PImage> playerInputButtons = new ArrayList<PImage>();
   ArrayList<DrawScore> scoreList = new ArrayList<DrawScore>();
   ArrayList<DrawScore> healthList = new ArrayList<DrawScore>();
+  ArrayList<ParticleSystem1> particleList = new ArrayList<ParticleSystem1>();
   ArrayList<DrawScore> lifeList = new ArrayList<DrawScore>();
   
   
@@ -71,6 +72,7 @@ class Player {
     this.drawButtons();
     this.drawScores();
     this.drawDamage();
+    this.drawParticles();
     this.drawLife();
   }
   
@@ -195,6 +197,14 @@ class Player {
     }
   }
   
+  void drawParticles() {
+    for (int i = 0; i < particleList.size(); i++) {
+      particleList.get(i).addParticle();
+      particleList.get(i).run();
+      particleList.get(i).delete(2);
+    }
+  }
+  
   void drawDamage() {
     for (int i = 0; i < healthList.size(); i++) {
       healthList.get(i).drawPlayerDamage();
@@ -282,6 +292,10 @@ class Player {
               scoreList.add(new DrawScore(enemyList.get(i).x, enemyList.get(i).y, enemyList.get(i).reward, 5));
               if (enemyList.get(i).life == 1) {
                 lifeList.add(new DrawScore(enemyList.get(i).x, enemyList.get(i).y, enemyList.get(i).reward, 10));
+              }
+              if(enemyList.get(i).health <= 1){
+               PVector enemyPos = new PVector(enemyList.get(i).x,enemyList.get(i).y);
+               particleList.add(new ParticleSystem1(enemyPos));
               }
               enemyList.get(i).takeDamage();
               clearInput();
