@@ -9,6 +9,7 @@ class Player {
   ArrayList<String> playerInput = new ArrayList<String>();
   ArrayList<PImage> playerInputButtons = new ArrayList<PImage>();
   ArrayList<DrawScore> scoreList = new ArrayList<DrawScore>();
+  ArrayList<DrawScore> healthList = new ArrayList<DrawScore>();
   
   PImage texture;
   PImage upArrow = loadImage("data/sprites/up-arrow.png");
@@ -67,6 +68,7 @@ class Player {
     //image(texture, positionX, positionY);
     this.drawButtons();
     this.drawScores();
+    this.drawDamage();
   }
   
   void update() {
@@ -115,11 +117,13 @@ class Player {
      playerDamageSound.setVolume(-10);
      playerDamageSound.play();
       health -= damage;
+      healthList.add(new DrawScore(positionX, positionY, damage, 5));
       // death / save score to file
       if (health <= 0) {
         state = 8;
         background.stop();
         background.changeSource(lightsOut, "audio/death_screen.mp3");
+        background.setVolume(-30);
         background.loop();
       }
   }
@@ -185,6 +189,12 @@ class Player {
   void drawScores() {
     for (int i = 0; i < scoreList.size(); i++) {
       scoreList.get(i).drawEnemyScore();
+    }
+  }
+  
+  void drawDamage() {
+    for (int i = 0; i < healthList.size(); i++) {
+      healthList.get(i).drawPlayerDamage();
     }
   }
 

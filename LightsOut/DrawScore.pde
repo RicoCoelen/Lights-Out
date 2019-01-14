@@ -22,4 +22,14 @@ class DrawScore {
       text("+" + reward, x, y);
     }
   }
+  
+  void drawPlayerDamage() {
+    counter += (float) 1/60;
+    if (counter <= time) {
+      a-=2;
+      y--;
+      fill(255, 0, 0, a);
+      text("-" + reward, x, y);
+    }
+  }
 }

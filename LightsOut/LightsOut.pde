@@ -67,6 +67,8 @@ void reset() {
   player.health = 100;
   player.playerInput.clear();
   player.playerInputButtons.clear();
+  player.healthList.clear();
+  player.scoreList.clear();
   enemyList.clear();
   wave = 0;
   score = 0;
