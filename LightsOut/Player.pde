@@ -10,6 +10,8 @@ class Player {
   ArrayList<PImage> playerInputButtons = new ArrayList<PImage>();
   ArrayList<DrawScore> scoreList = new ArrayList<DrawScore>();
   ArrayList<DrawScore> healthList = new ArrayList<DrawScore>();
+  ArrayList<DrawScore> lifeList = new ArrayList<DrawScore>();
+  
   
   PImage texture;
   PImage upArrow = loadImage("data/sprites/up-arrow.png");
@@ -69,6 +71,7 @@ class Player {
     this.drawButtons();
     this.drawScores();
     this.drawDamage();
+    this.drawLife();
   }
   
   void update() {
@@ -197,6 +200,12 @@ class Player {
       healthList.get(i).drawPlayerDamage();
     }
   }
+  
+  void drawLife() {
+    for (int i = 0; i < lifeList.size(); i++) {
+      lifeList.get(i).drawLife();
+    }
+  }
 
   void checkCombo() {
     if (health > 0) {
@@ -271,6 +280,9 @@ class Player {
             //  checks if the correct input by the player has the same length as the enemy combo
             if (enemyList.get(i).result == enemyList.get(i).enemyCombo.size()) {
               scoreList.add(new DrawScore(enemyList.get(i).x, enemyList.get(i).y, enemyList.get(i).reward, 5));
+              if (enemyList.get(i).life == 1) {
+                lifeList.add(new DrawScore(enemyList.get(i).x, enemyList.get(i).y, enemyList.get(i).reward, 10));
+              }
               enemyList.get(i).takeDamage();
               clearInput();
             }

@@ -70,7 +70,7 @@ class MainMenu{
     if (selectedButton == 2) { fill(255, 255, 0); } else { fill(255); }
     text("Highscores", center + 20, 295);
     if (selectedButton == 3) { fill(255, 255, 0); } else { fill(255); }
-    text("How to play", center + 20, 355);
+    text("Tutorial", center + 20, 355);
     if (selectedButton == 4) { fill(255, 255, 0); } else { fill(255); }
     text("Quit", center + 20, 415);
     fill(255);

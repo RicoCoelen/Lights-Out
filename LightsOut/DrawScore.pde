@@ -32,4 +32,19 @@ class DrawScore {
       text("-" + reward, x, y);
     }
   }
+  
+  void drawLife() {
+    counter += (float) 1/60;
+    if (counter <= time) {
+      a-=0.25;
+      y-=0.25;
+      PImage life = loadImage("data/sprites/life.png");
+      image(life, x, y);
+      fill(255, 0, 0, a);
+      text("HEALTH BONUS", x, y - 30);
+      player.health = 100;
+    }
+  }
+  
+  
 }

@@ -28,6 +28,7 @@ class Enemy {
   int enemyType;
   int result;
   int reward;
+  int life;
   
   Boolean enemyLooksLeft;
   
@@ -57,6 +58,7 @@ class Enemy {
       // light enemy
       case 1:
         health = (int) random(1, 2);
+        life = (int) random(1, 20);
         reward = 100;
         damage = 5;
         h = 65;
@@ -70,6 +72,7 @@ class Enemy {
       // medium enemy
       case 2:
          health = (int) random(2, 4);
+         life = (int) random(1, 15);
          reward = 200;
          damage = 20;
          h = 160;
@@ -83,6 +86,7 @@ class Enemy {
       // heavy enemy
       case 3:
          health = (int) random(2, 4);
+         life = 1;
          damage = 40;
          reward = 500;
          h = 154;
@@ -98,6 +102,7 @@ class Enemy {
       // mini enemy
       case 4:
          health = 1;
+         life = (int) random(1, 100);
          reward = 10;
          damage = 2;
          h = 28;
@@ -113,6 +118,7 @@ class Enemy {
       // boss
       case 5:
          health = (int) random(3, 5);
+         life = 1;
          damage = 40;
          reward = 1000;
          h = 154;
