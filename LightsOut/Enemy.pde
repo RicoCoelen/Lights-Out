@@ -328,6 +328,7 @@ class Enemy {
   
   void kill() {
     enemyList.remove(enemyList.indexOf(this));  //  Gets current index of object in array and removes itop();
+    enemyDeathSound.setVolume(-20);
     enemyDeathSound.play();
     switch (enemyType) {
       case 1:
