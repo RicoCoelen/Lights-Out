@@ -206,18 +206,43 @@ class Player {
                 else if (enemyList.get(i).enemyComboButtons.get(j) == enemyList.get(i).rightArrow) {
                   enemyList.get(i).enemyComboButtons.set(j, enemyList.get(i).rightArrowCorrect);
                 }
-                correctComboSound[0] = new AudioController(lightsOut, "audio/combo1.mp3");
-                correctComboSound[1] = new AudioController(lightsOut, "audio/combo2.mp3");
-                correctComboSound[2] = new AudioController(lightsOut, "audio/combo3.mp3");
-                correctComboSound[3] = new AudioController(lightsOut, "audio/combo4.mp3");
-                correctComboSound[4] = new AudioController(lightsOut, "audio/combo5.mp3");
-                correctComboSound[5] = new AudioController(lightsOut, "audio/combo6.mp3");
-                correctComboSound[6] = new AudioController(lightsOut, "audio/combo7.mp3");
-                correctComboSound[7] = new AudioController(lightsOut, "audio/combo8.mp3");
-                correctComboSound[8] = new AudioController(lightsOut, "audio/combo9.mp3");
-                correctComboSound[9] = new AudioController(lightsOut, "audio/combo10.mp3");
+                // check which sound needs to be loaded based on loop number
+                switch(j) {
+                case 0: 
+                  correctComboSound[0] = new AudioController(lightsOut, "audio/combo1.mp3");
+                  break;
+                case 1: 
+                  correctComboSound[1] = new AudioController(lightsOut, "audio/combo2.mp3");
+                  break;
+                case 2: 
+                  correctComboSound[2] = new AudioController(lightsOut, "audio/combo3.mp3");
+                  break;
+                case 3: 
+                  correctComboSound[3] = new AudioController(lightsOut, "audio/combo4.mp3");
+                  break;
+                case 4: 
+                  correctComboSound[4] = new AudioController(lightsOut, "audio/combo5.mp3");
+                  break;
+                case 5: 
+                  correctComboSound[5] = new AudioController(lightsOut, "audio/combo6.mp3");
+                  break;
+                case 6: 
+                  correctComboSound[6] = new AudioController(lightsOut, "audio/combo7.mp3");
+                  break;
+                case 7: 
+                  correctComboSound[7] = new AudioController(lightsOut, "audio/combo8.mp3");
+                  break;
+                case 8: 
+                  correctComboSound[8] = new AudioController(lightsOut, "audio/combo9.mp3");
+                  break;
+                case 9: 
+                  correctComboSound[9] = new AudioController(lightsOut, "audio/combo10.mp3");
+                  break;
+                }
+                // play correct sound
                 correctComboSound[j].play();
               } 
+            // if wrong key play wrong sound
             } else if (enemyList.get(i).enemyCombo.get(j) != playerInput.get(j) && enemyList.get(i).result > 0){
               wrongComboSound = new AudioController(lightsOut, "audio/wrongCombo.mp3");
               wrongComboSound.play();
