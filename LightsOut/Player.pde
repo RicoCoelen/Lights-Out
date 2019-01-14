@@ -22,6 +22,7 @@ class Player {
   Animation playerPunchLeft = new Animation("sprites/player/player_punch_left", 6);
  
   AudioController playerDamageSound;
+  AudioController[] correctComboSound = new AudioController[10];
 
   Player() {
     aPressed = false;
@@ -38,6 +39,17 @@ class Player {
     right = positionX + (w/2);
     top = positionY - (h/2);
     bottom = positionY + (h/2);
+    
+    correctComboSound[0] = new AudioController(lightsOut, "audio/combo1.mp3");
+    correctComboSound[1] = new AudioController(lightsOut, "audio/combo2.mp3");
+    correctComboSound[2] = new AudioController(lightsOut, "audio/combo3.mp3");
+    correctComboSound[3] = new AudioController(lightsOut, "audio/combo4.mp3");
+    correctComboSound[4] = new AudioController(lightsOut, "audio/combo5.mp3");
+    correctComboSound[5] = new AudioController(lightsOut, "audio/combo6.mp3");
+    correctComboSound[6] = new AudioController(lightsOut, "audio/combo7.mp3");
+    correctComboSound[7] = new AudioController(lightsOut, "audio/combo8.mp3");
+    correctComboSound[8] = new AudioController(lightsOut, "audio/combo9.mp3");
+    correctComboSound[9] = new AudioController(lightsOut, "audio/combo10.mp3");
   }
 
   //displaying player
@@ -204,6 +216,7 @@ class Player {
                 else if (enemyList.get(i).enemyComboButtons.get(j) == enemyList.get(i).rightArrow) {
                   enemyList.get(i).enemyComboButtons.set(j, enemyList.get(i).rightArrowCorrect);
                 }
+                correctComboSound[j].play();
               } 
             }
           }
