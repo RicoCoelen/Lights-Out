@@ -198,7 +198,7 @@ class Player {
     for (int i = 0; i < particleList.size(); i++) {
       particleList.get(i).addParticle();
       particleList.get(i).run();
-      particleList.get(i).delete(2);
+      particleList.get(i).delete(0.6);
     }
   }
   
