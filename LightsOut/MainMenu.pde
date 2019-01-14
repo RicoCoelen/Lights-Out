@@ -18,7 +18,6 @@ class MainMenu{
   
   MainMenu() {
     background = new AudioController(lightsOut, "audio/main_menu.mp3");
-    background.setVolume(-20);
     background.loop();
   }
   
@@ -28,10 +27,10 @@ class MainMenu{
   void update() {
     // menu to update select
     if (state == 0) {
-       if(player.wPressed) {
+       if(player.upPressed) {
         buttonUp();
       }
-      if(player.sPressed) {
+      if(player.downPressed) {
         buttonDown();
       }
       if(player.rightPressed) {
@@ -117,7 +116,6 @@ class MainMenu{
         state = 1;
         background.stop();
         background.changeSource(lightsOut, "audio/level_1.mp3");
-        background.setVolume(-20);
         background.loop();
       }
       if (selectedButton == 2) {
