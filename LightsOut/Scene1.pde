@@ -27,7 +27,7 @@ class Scene1 {
   Function to draw Scene1
   */
   void draw() {
-    background(bg); // drawing background
+    background(bgMountains); // drawing background
     fill(50);
     textSize(40);
     text("Wave: " + wave, 5, 30, 1000, 80);  // Text wraps within text box
@@ -168,12 +168,6 @@ class Scene1 {
           
           break;
         case 11:
-          // go to next level scene2
-          player.health = 100;
-          player.playerInput.clear();
-          player.playerInputButtons.clear();
-          enemyList.clear();
-          wave = 0;
           background.stop();
           background.changeSource(lightsOut, "audio/death_screen.mp3");
           background.setVolume(-30);
