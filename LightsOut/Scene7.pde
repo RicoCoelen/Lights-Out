@@ -12,7 +12,7 @@ class Scene7 {
   */
   void update() {
     if (state == 7) {
-      if(player.downPressed) {
+      if(player.leftPressed) {
         state = 0;
       }
     }

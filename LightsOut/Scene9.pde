@@ -1,7 +1,4 @@
 class Scene9 {
-  float delayCounter;
-  float delay = 0.15; //  sets delay in seconds 
-
   
   /*
   setup function
@@ -15,16 +12,7 @@ class Scene9 {
   */
   void update() {
     highscore.sortScores();
-    if (state == 9) {
-      delayCounter+=(float)1/60;
-      if (delayCounter >= delay) {
-        if(player.rightPressed) {
-          reset();
-          state = 0;
-          delayCounter = 0;
-        } 
-      }
-    }
+    reset();
   }
 
   /*

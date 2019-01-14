@@ -2,10 +2,9 @@ class Player {
   
   // global variables
   float positionX, positionY, velocityX, velocityY, speed, w, h, left, right, top, bottom, comboCounter;
-  boolean aPressed, dPressed, qPressed, ePressed, upPressed, downPressed, leftPressed, rightPressed, wPressed, sPressed, playerFacingLeft;
-
+  boolean aPressed, dPressed, qPressed, ePressed, upPressed, downPressed, leftPressed, rightPressed;
   int health;
-  
+
   ArrayList<String> playerInput = new ArrayList<String>();
   ArrayList<PImage> playerInputButtons = new ArrayList<PImage>();
   ArrayList<DrawScore> scoreList = new ArrayList<DrawScore>();
@@ -18,16 +17,8 @@ class Player {
   PImage downArrow = loadImage("data/sprites/down-arrow.png");
   PImage leftArrow = loadImage("data/sprites/left-arrow.png");
   PImage rightArrow = loadImage("data/sprites/right-arrow.png");
-  PImage comboBackground = loadImage("data/sprites/combo-background.png");
   
-  Animation playerRight = new Animation("sprites/player/player_right", 1);
-  Animation playerPunchRight = new Animation("sprites/player/player_punch_right", 6);
-  Animation playerLeft = new Animation("sprites/player/player_left", 1);
-  Animation playerPunchLeft = new Animation("sprites/player/player_punch_left", 6);
- 
   AudioController playerDamageSound;
-  AudioController wrongComboSound;
-  AudioController[] correctComboSound = new AudioController[10];
 
   Player() {
     aPressed = false;
@@ -37,7 +28,7 @@ class Player {
     health = 100;
     speed = 5;
     w = 60;
-    h = 96;
+    h = 110;
     positionX = width/2;
     positionY = groundHeight - h;
     left = positionX - (w/2);
@@ -48,26 +39,7 @@ class Player {
 
   //displaying player
   void display() {
-    
-    // display user punching
-    if(upPressed == true || leftPressed == true || rightPressed == true || downPressed == true) {
-      if (playerFacingLeft == true) {
-        playerPunchLeft.display(positionX, positionY);
-      }
-      else {
-        playerPunchRight.display(positionX, positionY);
-      }
-    }
-    else {
-      if (playerFacingLeft == true) {
-        playerLeft.display(positionX, positionY);
-      }
-      else {
-       playerRight.display(positionX, positionY);
-      }
-    }
-
-    //image(texture, positionX, positionY);
+    image(texture, positionX, positionY);
     this.drawButtons();
     this.drawScores();
     this.drawDamage();
@@ -179,11 +151,10 @@ class Player {
   }
 
   void drawButtons() {
-    float debugPos = 10;
-    image(comboBackground, 0, height - 36);
+    float debugPos = 150;
     for (int i = 0; i < playerInputButtons.size(); i++) {
       if (i < 15) {
-        image(playerInputButtons.get(i), debugPos, height - 26);
+        image(playerInputButtons.get(i), debugPos, 10);
         debugPos += 20;
       }
     }
@@ -208,74 +179,33 @@ class Player {
   }
 
   void checkCombo() {
-    if (health > 0) {
-      for (int i = 0; i < enemyList.size(); i++) {
-        //  resets result if combo doesn't match player input
-        enemyList.get(i).result = 0;
-        if (enemyList.get(i).checkRange()) {
-          //  loops through all enemies 
-          for (int j = 0; j < enemyList.get(i).enemyCombo.size(); j++) {
-            //  checks if index is in range of array
-            if (playerInput.size() > j && enemyList.get(i).enemyCombo.size() > j) {
-              //  checks if player input matches enemy combo
-              if (enemyList.get(i).enemyCombo.get(j) == playerInput.get(j)) {
-                enemyList.get(i).result++;
-                // checks if the entered combo is correct
-                if (enemyList.get(i).result == playerInput.size()) {
-                  //  if statements below replace the black combo icons with green ones if entered correctly by the player
-                  if (enemyList.get(i).enemyComboButtons.get(j) == enemyList.get(i).upArrow) {
-                    enemyList.get(i).enemyComboButtons.set(j, enemyList.get(i).upArrowCorrect);
-                  } 
-                  else if (enemyList.get(i).enemyComboButtons.get(j) == enemyList.get(i).downArrow) {
-                    enemyList.get(i).enemyComboButtons.set(j, enemyList.get(i).downArrowCorrect);
-                  } 
-                  else if (enemyList.get(i).enemyComboButtons.get(j) == enemyList.get(i).leftArrow) {
-                    enemyList.get(i).enemyComboButtons.set(j, enemyList.get(i).leftArrowCorrect);
-                  } 
-                  else if (enemyList.get(i).enemyComboButtons.get(j) == enemyList.get(i).rightArrow) {
-                    enemyList.get(i).enemyComboButtons.set(j, enemyList.get(i).rightArrowCorrect);
-                  }
-                  // check which sound needs to be loaded based on loop number
-                  switch(j) {
-                  case 0: 
-                    correctComboSound[0] = new AudioController(lightsOut, "audio/combo1.mp3");
-                    break;
-                  case 1: 
-                    correctComboSound[1] = new AudioController(lightsOut, "audio/combo2.mp3");
-                    break;
-                  case 2: 
-                    correctComboSound[2] = new AudioController(lightsOut, "audio/combo3.mp3");
-                    break;
-                  case 3: 
-                    correctComboSound[3] = new AudioController(lightsOut, "audio/combo4.mp3");
-                    break;
-                  case 4: 
-                    correctComboSound[4] = new AudioController(lightsOut, "audio/combo5.mp3");
-                    break;
-                  case 5: 
-                    correctComboSound[5] = new AudioController(lightsOut, "audio/combo6.mp3");
-                    break;
-                  case 6: 
-                    correctComboSound[6] = new AudioController(lightsOut, "audio/combo7.mp3");
-                    break;
-                  case 7: 
-                    correctComboSound[7] = new AudioController(lightsOut, "audio/combo8.mp3");
-                    break;
-                  case 8: 
-                    correctComboSound[8] = new AudioController(lightsOut, "audio/combo9.mp3");
-                    break;
-                  case 9: 
-                    correctComboSound[9] = new AudioController(lightsOut, "audio/combo10.mp3");
-                    break;
-                  }
-                  // play correct sound
-                  correctComboSound[j].play();
+    for (int i = 0; i < enemyList.size(); i++) {
+      //  resets result if combo doesn't match player input
+      enemyList.get(i).result = 0;
+      if (enemyList.get(i).checkRange()) {
+        //  loops through all enemies 
+        for (int j = 0; j < enemyList.get(i).enemyCombo.size(); j++) {
+          //  checks if index is in range of array
+          if (playerInput.size() > j && enemyList.get(i).enemyCombo.size() > j) {
+            //  checks if player input matches enemy combo
+            if (enemyList.get(i).enemyCombo.get(j) == playerInput.get(j)) {
+              enemyList.get(i).result++;
+              // checks if the entered combo is correct
+              if (enemyList.get(i).result == playerInput.size()) {
+                //  if statements below replace the black combo icons with green ones if entered correctly by the player
+                if (enemyList.get(i).enemyComboButtons.get(j) == enemyList.get(i).upArrow) {
+                  enemyList.get(i).enemyComboButtons.set(j, enemyList.get(i).upArrowCorrect);
                 } 
-              // if wrong key play wrong sound
-              } else if (enemyList.get(i).enemyCombo.get(j) != playerInput.get(j) && enemyList.get(i).result > 0){
-                wrongComboSound = new AudioController(lightsOut, "audio/wrongCombo.mp3");
-                wrongComboSound.play();
-              }
+                else if (enemyList.get(i).enemyComboButtons.get(j) == enemyList.get(i).downArrow) {
+                  enemyList.get(i).enemyComboButtons.set(j, enemyList.get(i).downArrowCorrect);
+                } 
+                else if (enemyList.get(i).enemyComboButtons.get(j) == enemyList.get(i).leftArrow) {
+                  enemyList.get(i).enemyComboButtons.set(j, enemyList.get(i).leftArrowCorrect);
+                } 
+                else if (enemyList.get(i).enemyComboButtons.get(j) == enemyList.get(i).rightArrow) {
+                  enemyList.get(i).enemyComboButtons.set(j, enemyList.get(i).rightArrowCorrect);
+                }
+              } 
             }
             //  checks if the correct input by the player has the same length as the enemy combo
             if (enemyList.get(i).result == enemyList.get(i).enemyCombo.size()) {
@@ -287,8 +217,14 @@ class Player {
               clearInput();
             }
           }
+          //  checks if the correct input by the player has the same length as the enemy combo
+          if (enemyList.get(i).result == enemyList.get(i).enemyCombo.size()) {
+            enemyList.get(i).takeDamage();
+            clearInput();
+          }
         }
       }
     }
   }
+  
 }
