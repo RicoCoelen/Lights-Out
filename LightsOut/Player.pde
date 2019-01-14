@@ -70,10 +70,6 @@ class Player {
 
     //image(texture, positionX, positionY);
     this.drawButtons();
-    this.drawScores();
-    this.drawDamage();
-    this.drawParticles();
-    this.drawLife();
   }
   
   void update() {
@@ -190,32 +186,6 @@ class Player {
       }
     }
   }
-  
-  void drawScores() {
-    for (int i = 0; i < scoreList.size(); i++) {
-      scoreList.get(i).drawEnemyScore();
-    }
-  }
-  
-  void drawParticles() {
-    for (int i = 0; i < particleList.size(); i++) {
-      particleList.get(i).addParticle();
-      particleList.get(i).run();
-      particleList.get(i).delete(2);
-    }
-  }
-  
-  void drawDamage() {
-    for (int i = 0; i < healthList.size(); i++) {
-      healthList.get(i).drawPlayerDamage();
-    }
-  }
-  
-  void drawLife() {
-    for (int i = 0; i < lifeList.size(); i++) {
-      lifeList.get(i).drawLife();
-    }
-  }
 
   void checkCombo() {
     if (health > 0) {
@@ -289,14 +259,6 @@ class Player {
             }
             //  checks if the correct input by the player has the same length as the enemy combo
             if (enemyList.get(i).result == enemyList.get(i).enemyCombo.size()) {
-              scoreList.add(new DrawScore(enemyList.get(i).x, enemyList.get(i).y, enemyList.get(i).reward, 5));
-              if (enemyList.get(i).life == 1) {
-                lifeList.add(new DrawScore(enemyList.get(i).x, enemyList.get(i).y, enemyList.get(i).reward, 10));
-              }
-              if(enemyList.get(i).health <= 1){
-               PVector enemyPos = new PVector(enemyList.get(i).x,enemyList.get(i).y);
-               particleList.add(new ParticleSystem1(enemyPos));
-              }
               enemyList.get(i).takeDamage();
               clearInput();
             }
