@@ -22,4 +22,8 @@ class AudioController {
   void stop() {
     audio.close();
   }
+  
+  void setVolume(int volume) {
+    audio.setGain(volume);
+  }
 }
