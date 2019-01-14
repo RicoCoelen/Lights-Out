@@ -26,14 +26,22 @@ class MainScene {
         scene1.draw();
       break; 
       case 2:
-      // maybe tutorial and switch later with 1?
+      // victory scene
         scene2.update();
         scene2.draw();
       break; 
       case 3:
-      // maybe tutorial and switch later with 1?
+      // victory scene
         scene3.update();
         scene3.draw();
+      break; 
+      case 4:
+      // extra level?
+       
+      break; 
+      case 5:
+      // extra level?
+       
       break; 
       case 6:
       // tutorial screen

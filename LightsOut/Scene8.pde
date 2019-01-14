@@ -50,18 +50,19 @@ class Scene8 {
     // draw text
     fill(255);
     textSize(60);
-    text("Oops, Lights Out buddy!", width / 8, 90);
+    text("Oops, Lights Out Buddy!", width / 8, 90);
     textSize(40);
-    text("Enter your initials: ", width / 8, 130);
+    text("You made it to wave " + wave, width / 8, 130);
+    text("Enter your initials: ", width / 8, 200);
     
     if (selectedWheel == 1) { fill(255, 255, 0); } else { fill(255); }
-    text(char1 + " ", width * 0.13, 200);
+    text(char1 + " ", width * 0.13, 240);
     
     if (selectedWheel == 2) { fill(255, 255, 0); } else { fill(255); }
-    text(char2 + " ", width * 0.16, 200);
+    text(char2 + " ", width * 0.16, 240);
     
     if (selectedWheel == 3) { fill(255, 255, 0); } else { fill(255); }
-    text(char3 + " ", width * 0.19, 200);
+    text(char3 + " ", width * 0.19, 240);
   
   }
     

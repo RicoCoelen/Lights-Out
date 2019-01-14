@@ -30,14 +30,17 @@ class Scene7 {
     
     // draw top part
     textSize(60);
-    text(aantal + " Highscores:", 10, 50); 
+    text(aantal + " Highscores (Top 25):", 10, 50); 
     
     // scorey postion for loop
-    int scoreY = 70;
+    int scoreY = 90;
     textSize(20);
     
+    // draw score
+      text("Name:    Score:    Time:" , 10 , 72); // print score
+      
     // get json array from higscore class
-    for (int i = 0; i < highscore.scoreList.size(); i++) {
+    for (int i = 0; i < 25; i++) {
      
       // get from Score
       int id = highscore.scoreList.get(i).getPID();
@@ -48,7 +51,7 @@ class Scene7 {
           fill(255, 255, 0);
       }
       // draw score
-      text("ID: " + id + "   Name: " + name + "   Score: " + score + "   Time: " + time, 10, scoreY); // print score
+      text(name + "        " + score + "        " + time, 10, scoreY); // print score
       
       if (id == highscore.scoreList.size() - 1) {
           fill(255);
