@@ -176,6 +176,7 @@ class Scene1 {
           wave = 0;
           background.stop();
           background.changeSource(lightsOut, "audio/death_screen.mp3");
+          background.setVolume(-30);
           background.loop();
           state = 2;
           break;

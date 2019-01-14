@@ -25,6 +25,7 @@ int dashCoolDown = 0;
 int dashCoolTime = 90;
 int dashDistance = 50;
 int score;
+int displayScore;
 int wave;
 
 //  Sets ground height
@@ -36,7 +37,7 @@ ArrayList<Enemy> enemyList = new ArrayList<Enemy>();
 
 void setup() {
   // set standard settings
-  size(640,480);
+  size(640,480,P2D);
   frameRate(60);
   
   // init objects
@@ -66,9 +67,12 @@ void reset() {
   player.health = 100;
   player.playerInput.clear();
   player.playerInputButtons.clear();
+  player.healthList.clear();
+  player.scoreList.clear();
   enemyList.clear();
   wave = 0;
   score = 0;
+  displayScore = 0;
 }
 
 /*

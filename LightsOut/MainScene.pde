@@ -36,7 +36,7 @@ class MainScene {
         scene3.draw();
       break; 
       case 6:
-      // Option screen
+      // tutorial screen
         scene6.update();
         scene6.draw();
       break; 
