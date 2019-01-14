@@ -26,6 +26,6 @@ class Scene6 {
     background(bgDeath); 
     textSize(20);
     // draw text
-    text("Press Left Arrow to return.", 10, height - 10);
+    text("Press B to return.", 10, height - 10);
   }
 }

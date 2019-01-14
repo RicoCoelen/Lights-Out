@@ -61,6 +61,6 @@ class Scene7 {
     }
     
     // draw text
-    text("Press Left Arrow to return.", 10, height - 10);
+    text("Press B to return.", 10, height - 10);
   }
 }

@@ -64,6 +64,6 @@ class Scene3 {
         position++;
       }
     }
-    text("You might want to try again by pressing 0.", width / 8, 450);
+    text("You might want to try again by pressing B.", width / 8, 450);
   }
 }
