@@ -22,6 +22,7 @@ class Player {
   Animation playerPunchLeft = new Animation("sprites/player/player_punch_left", 6);
  
   AudioController playerDamageSound;
+  AudioController wrongComboSound = new AudioController(lightsOut, "audio/wrongCombo.mp3");
   AudioController[] correctComboSound = new AudioController[10];
 
   Player() {
@@ -218,6 +219,8 @@ class Player {
                 }
                 correctComboSound[j].play();
               } 
+            } else {
+              wrongComboSound.play();
             }
           }
           //  checks if the correct input by the player has the same length as the enemy combo
