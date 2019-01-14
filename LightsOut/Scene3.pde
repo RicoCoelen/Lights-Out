@@ -18,7 +18,7 @@ class Scene3 {
     if (state == 3) {
       delayCounter+=(float)1/60;
       if (delayCounter >= delay) {
-        if(player.rightPressed) {
+        if(player.downPressed) {
           reset();
           state = 0;
           delayCounter = 0;
@@ -64,6 +64,6 @@ class Scene3 {
         position++;
       }
     }
-    text("You might want to try again by pressing B.", width / 8, 450);
+    text("You might want to try again by pressing A.", width / 8, 450);
   }
 }

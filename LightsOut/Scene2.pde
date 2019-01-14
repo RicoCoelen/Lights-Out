@@ -35,7 +35,7 @@ class Scene2 {
       if(player.wPressed) {
         charUp();
       }
-      if(player.rightPressed) {
+      if(player.downPressed) {
         saveName();
       }
     }

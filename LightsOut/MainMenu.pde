@@ -34,7 +34,7 @@ class MainMenu{
       if(player.sPressed) {
         buttonDown();
       }
-      if(player.rightPressed) {
+      if(player.downPressed) {
         buttonRight();
       }
     }

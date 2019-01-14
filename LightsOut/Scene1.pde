@@ -172,6 +172,7 @@ class Scene1 {
           background.changeSource(lightsOut, "audio/victory.mp3");
           background.setVolume(-20);
           background.loop();
+          player.clearInput();
           state = 2;
           break;
       }
