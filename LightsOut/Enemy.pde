@@ -41,7 +41,6 @@ class Enemy {
   ArrayList<PImage> enemyComboButtons = new ArrayList<PImage>();
   
   AudioController enemyDeathSound = new AudioController(lightsOut, "audio/oof.mp3");
-  ParticleSystem1 ps = new ParticleSystem1(new PVector(width/2, 100));
 
   /*
   Function to instantiate the enemy
@@ -62,14 +61,12 @@ class Enemy {
         life = (int) random(1, 20);
         reward = 100;
         damage = 5;
-        h = 80;
+        h = 65;
         w = 26;
         dcw = 200;
         ds = 0.8;
         sprite = loadImage("data/sprites/Scout.png");
         comboGenerator(2, 4);  //  Generate combo between 2 and 4 buttons
-        ps.addParticle();
-        ps.run();
       break;
       
       // medium enemy
@@ -153,12 +150,14 @@ class Enemy {
         vx = 1;
         cw = dcw;
         cx = x + w;
+        enemyLooksLeft = true;
       }
       if (player.positionX < x) {
         //change vx in the near future default speed for every enemy is always -1
         vx = -1;
         cw = dcw * -1;
         cx = x;
+        enemyLooksLeft = false;
       }   
      
       // movement
@@ -176,7 +175,6 @@ class Enemy {
   */
   void draw() {
     
-  
     // give white background
     fill(255, 255, 255, 150);
     
@@ -189,17 +187,39 @@ class Enemy {
       rect(x - (20 + w), y - 40, comboWidth, 30);
     }
     
-    // enemy block view
-    if (sprite == null) {
-      rect(x, y, w, h);
-    }
-    else {
-      image(sprite, x, y);
+    // temp draw animation based on enemytype
+    switch(enemyType) {
+      // light enemy
+      case 1:
+      if(!collisionPlayer()) {
+        if (enemyLooksLeft == true) {
+          smallEnemyRight.display(x, y);
+        }
+        else {
+          smallEnemyLeft.display(x, y);
+        }   
+      }
+      else {
+          if (enemyLooksLeft == true) {
+            smallEnemyPunchRight.display(x, y);
+          }
+          else {
+            smallEnemyPunchLeft.display(x, y);
+          } 
+      }
+      break;
+      
+      
+      default:
+        image(sprite, x, y);
+      break;
     }
     
     // draw buttons
     this.drawButtons();
     
+    // animates score counter when enemy dies
+    scoreAnimation();
   }
   
   // collision with player
@@ -219,6 +239,13 @@ class Enemy {
      damageCounter += (float) 1/60;
      if (damageCounter >= 2) {
        player.takeDamage(this.damage);
+       // check whick way damage is given do the proper animation
+       if (enemyLooksLeft == true) {
+         smallEnemyPunchLeft.display(x, y);
+       }
+       else {
+         smallEnemyPunchRight.display(x, y);
+       }
        damageCounter = 0;
      }
    } else {
@@ -227,7 +254,7 @@ class Enemy {
  }
   
  Boolean checkRange(){
-    // set true if in range of enemy // 
+    // set true if in range of enemy // long ass if statement
     if ((player.positionX >= cx && player.positionX <= cx + cw) || (player.positionX + w >= cx && player.positionX + w <= cx + cw) || 
         (player.positionX >= cx + cw && player.positionX <= cx) || (player.positionX + w >= cx + cw && player.positionX + w <= cx))  {
       return true;
@@ -314,7 +341,6 @@ class Enemy {
   void kill() {
     enemyDeathSound.setVolume(-20);
     enemyDeathSound.play();
-    
     switch (enemyType) {
       case 1:
         score += reward;
@@ -333,6 +359,12 @@ class Enemy {
         break;
     }
     enemyList.remove(enemyList.indexOf(this));  //  Gets current index of object in array and removes itop();
+  }
+  
+  void scoreAnimation() {
+    if (displayScore < score) {
+      displayScore++;
+    }
   }
   
   void drawButtons() {

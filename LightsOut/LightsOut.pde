@@ -18,7 +18,6 @@ Highscore highscore;
 Minim minim;
 AudioController background;
 LightsOut lightsOut = this;
-ParticleSystem1 ps;
 
 // global vars
 int state = 0;  
@@ -26,6 +25,7 @@ int dashCoolDown = 0;
 int dashCoolTime = 90;
 int dashDistance = 50;
 int score;
+int displayScore;
 int wave;
 
 //  Sets ground height
@@ -44,7 +44,6 @@ void setup() {
   highscore = new Highscore();
   player = new Player();
   scene = new MainScene();
-  ps = new ParticleSystem1(new PVector(width/2, 100));
   
   // load all images here
   player.texture = loadImage("data/sprites/player_right.png");
@@ -73,6 +72,7 @@ void reset() {
   enemyList.clear();
   wave = 0;
   score = 0;
+  displayScore = 0;
 }
 
 /*
@@ -119,12 +119,12 @@ void keyPressed() {
       case 'a':
       case 'A':
         player.aPressed = true;
-        player.texture = loadImage("data/sprites/player_left.png");
+        player.playerFacingLeft = true;
       break;
       case 'd':
       case 'D':
         player.dPressed = true;
-        player.texture = loadImage("data/sprites/player_right.png");
+        player.playerFacingLeft = false;
       break;
       case 'q':
       case 'Q':
@@ -141,7 +141,15 @@ void keyPressed() {
         player.velocityX = player.velocityX + dashDistance;
         dashCoolDown = frameCount;
         }
-      break;    
+      break;
+      case 'w':
+      case 'W':
+         player.wPressed = true;
+      break;
+      case 's':
+      case 'S':
+         player.sPressed = true;
+      break;
       case '0':
         state = 0; 
       break;
@@ -221,7 +229,15 @@ void keyReleased(){
       case 'e':
       case 'E':
         player.ePressed = false;
-      break;    
+      break;
+      case 'w':
+      case 'W':
+         player.wPressed = false;
+      break;
+      case 's':
+      case 'S':
+         player.sPressed = false;
+      break;
     }
   }  
 }
