@@ -27,6 +27,7 @@ class Enemy {
   int health;
   int enemyType;
   int result;
+  int reward;
   
   Boolean enemyLooksLeft;
   
@@ -56,6 +57,7 @@ class Enemy {
       // light enemy
       case 1:
         health = (int) random(1, 2);
+        reward = 100;
         damage = 5;
         h = 65;
         w = 26;
@@ -68,6 +70,7 @@ class Enemy {
       // medium enemy
       case 2:
          health = (int) random(2, 4);
+         reward = 200;
          damage = 20;
          h = 160;
          w = 50;
@@ -81,6 +84,7 @@ class Enemy {
       case 3:
          health = (int) random(2, 4);
          damage = 40;
+         reward = 500;
          h = 154;
          w = 50;
          dcw = 400;
@@ -94,6 +98,7 @@ class Enemy {
       // mini enemy
       case 4:
          health = 1;
+         reward = 10;
          damage = 2;
          h = 28;
          w = 30;
@@ -109,6 +114,7 @@ class Enemy {
       case 5:
          health = (int) random(3, 5);
          damage = 40;
+         reward = 1000;
          h = 154;
          w = 50;
          dcw = 400;
@@ -267,7 +273,7 @@ class Enemy {
   void comboGenerator(float min, float max) {
     int comboAmount = Math.round(random(min, max));
     for(int i = 0; i < comboAmount; i++) {
-      int buttonChoice = (int) random(1, 4);
+      int buttonChoice = (int) random(1, 5);
       switch (buttonChoice) {
         case 1:
           enemyCombo.add("UP");
@@ -327,27 +333,26 @@ class Enemy {
   }
   
   void kill() {
-    enemyList.remove(enemyList.indexOf(this));  //  Gets current index of object in array and removes itop();
     enemyDeathSound.setVolume(-20);
     enemyDeathSound.play();
     switch (enemyType) {
       case 1:
-        score += 100;
+        score += reward;
         break;
       case 2:
-        score += 200;
+        score += reward;
         break;
       case 3:
-        score += 500;
+        score += reward;
         break;
       case 4:
-        score += 10;
+        score += reward;
         break;
       case 5:
-        score += 1000;
+        score += reward;
         break;
-      
     }
+    enemyList.remove(enemyList.indexOf(this));  //  Gets current index of object in array and removes itop();
   }
   
   void scoreAnimation() {

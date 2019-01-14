@@ -8,6 +8,7 @@ class Player {
   
   ArrayList<String> playerInput = new ArrayList<String>();
   ArrayList<PImage> playerInputButtons = new ArrayList<PImage>();
+  ArrayList<DrawScore> scoreList = new ArrayList<DrawScore>();
   
   PImage texture;
   PImage upArrow = loadImage("data/sprites/up-arrow.png");
@@ -65,6 +66,7 @@ class Player {
 
     //image(texture, positionX, positionY);
     this.drawButtons();
+    this.drawScores();
   }
   
   void update() {
@@ -112,14 +114,14 @@ class Player {
      playerDamageSound = new AudioController(lightsOut, "audio/steve.mp3");
      playerDamageSound.setVolume(-10);
      playerDamageSound.play();
-    health -= damage;
-    // death / save score to file
-    if (health <= 0) {
-      state = 8;
-      background.stop();
-      background.changeSource(lightsOut, "audio/death_screen.mp3");
-      background.loop();
-    }
+      health -= damage;
+      // death / save score to file
+      if (health <= 0) {
+        state = 8;
+        background.stop();
+        background.changeSource(lightsOut, "audio/death_screen.mp3");
+        background.loop();
+      }
   }
   
   //  Counter for player input
@@ -177,6 +179,12 @@ class Player {
         image(playerInputButtons.get(i), debugPos, height - 26);
         debugPos += 20;
       }
+    }
+  }
+  
+  void drawScores() {
+    for (int i = 0; i < scoreList.size(); i++) {
+      scoreList.get(i).drawEnemyScore();
     }
   }
 
@@ -252,6 +260,7 @@ class Player {
             }
             //  checks if the correct input by the player has the same length as the enemy combo
             if (enemyList.get(i).result == enemyList.get(i).enemyCombo.size()) {
+              scoreList.add(new DrawScore(enemyList.get(i).x, enemyList.get(i).y, enemyList.get(i).reward, 5));
               enemyList.get(i).takeDamage();
               clearInput();
             }
