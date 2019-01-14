@@ -110,6 +110,7 @@ class Player {
   //  Player takes damage
   void takeDamage(int damage) {
      playerDamageSound = new AudioController(lightsOut, "audio/steve.mp3");
+     playerDamageSound.setVolume(-10);
      playerDamageSound.play();
     health -= damage;
     // death / save score to file
