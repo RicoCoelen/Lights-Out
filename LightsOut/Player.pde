@@ -201,7 +201,7 @@ class Player {
     for (int i = 0; i < particleList.size(); i++) {
       particleList.get(i).addParticle();
       particleList.get(i).run();
-      particleList.get(i).delete(2);
+      particleList.get(i).delete(0.7);
     }
   }
   
@@ -294,7 +294,7 @@ class Player {
                 lifeList.add(new DrawScore(enemyList.get(i).x, enemyList.get(i).y, enemyList.get(i).reward, 10));
               }
               if(enemyList.get(i).health <= 1){
-               PVector enemyPos = new PVector(enemyList.get(i).x,enemyList.get(i).y);
+               PVector enemyPos = new PVector(enemyList.get(i).x,enemyList.get(i).y+enemyList.get(i).h/2);
                particleList.add(new ParticleSystem1(enemyPos));
               }
               enemyList.get(i).takeDamage();

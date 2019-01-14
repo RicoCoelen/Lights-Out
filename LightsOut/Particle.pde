@@ -22,7 +22,7 @@ class Particle {
   void update() {
     velocity.add(acceleration);
     position.add(velocity);
-    lifespan -= 1.5;
+    lifespan -= 4;
   }
 
   // Method to display
