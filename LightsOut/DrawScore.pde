@@ -5,6 +5,7 @@ class DrawScore {
   float x;
   float y;
   int a = 255;
+  AudioController lifeAudio = new AudioController(lightsOut, "audio/life.mp3");;
   
   DrawScore(float xPos, float yPos, int enemyReward, float visibleTime) {  
     reward = enemyReward;
@@ -38,6 +39,8 @@ class DrawScore {
     if (counter <= time) {
       a-=0.25;
       y-=0.25;
+      lifeAudio.setVolume(-20);
+      lifeAudio.play();
       PImage life = loadImage("data/sprites/life.png");
       image(life, x, y);
       fill(255, 0, 0, a);
@@ -45,6 +48,4 @@ class DrawScore {
       player.health = 100;
     }
   }
-  
-  
 }
