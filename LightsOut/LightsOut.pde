@@ -69,7 +69,11 @@ void reset() {
   player.playerInputButtons.clear();
   player.healthList.clear();
   player.scoreList.clear();
+  player.particleList.clear();
+  player.lifeList.clear();
   enemyList.clear();
+  player.positionX = width/2;
+  fill(255);
   wave = 0;
   score = 0;
   displayScore = 0;

@@ -164,13 +164,13 @@ class Scene1 {
           // LEFT
           
           // RIGHT
-          enemyList.add(new Enemy(-200, groundHeight, 5));
+          enemyList.add(new Enemy(800, groundHeight, 5));
           
           break;
         case 11:
           background.stop();
-          background.changeSource(lightsOut, "audio/death_screen.mp3");
-          background.setVolume(-30);
+          background.changeSource(lightsOut, "audio/victory.mp3");
+          background.setVolume(-20);
           background.loop();
           state = 2;
           break;
