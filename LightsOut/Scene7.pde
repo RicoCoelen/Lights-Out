@@ -40,24 +40,26 @@ class Scene7 {
       text("Name:    Score:    Time:" , 10 , 72); // print score
       
     // get json array from higscore class
-    for (int i = 0; i < 25; i++) {
-     
-      // get from Score
-      int id = highscore.scoreList.get(i).getPID();
-      String name = highscore.scoreList.get(i).getPName();
-      String time = highscore.scoreList.get(i).getPTime();
-      int score = highscore.scoreList.get(i).getPScore();
-      if (id == highscore.scoreList.size() - 1) {
-          fill(255, 255, 0);
-      }
-      // draw score
-      text(name + "        " + score + "        " + time, 10, scoreY); // print score
+    for (int i = 0; i < highscore.scoreList.size(); i++) {
+      // max 25
+      if (i < 25) {
+        // get from Score
+        int id = highscore.scoreList.get(i).getPID();
+        String name = highscore.scoreList.get(i).getPName();
+        String time = highscore.scoreList.get(i).getPTime();
+        int score = highscore.scoreList.get(i).getPScore();
+        if (id == highscore.scoreList.size() - 1) {
+            fill(255, 255, 0);
+        }
+        // draw score
+        text(name + "        " + score + "        " + time, 10, scoreY); // print score
       
       if (id == highscore.scoreList.size() - 1) {
           fill(255);
         }
       // add 15 for position
       scoreY += 15;
+      }
     }
     
     // draw text
