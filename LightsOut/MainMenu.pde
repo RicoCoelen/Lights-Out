@@ -57,8 +57,6 @@ class MainMenu{
     rect(center, 260, buttonWidth, 50);
     // option
     rect(center, 320, buttonWidth, 50);
-    // quit
-    rect(center, 380, buttonWidth, 50);
     
     
     
@@ -70,9 +68,7 @@ class MainMenu{
     if (selectedButton == 2) { fill(255, 255, 0); } else { fill(255); }
     text("Highscores", center + 20, 295);
     if (selectedButton == 3) { fill(255, 255, 0); } else { fill(255); }
-    text("Tutorial", center + 20, 355);
-    if (selectedButton == 4) { fill(255, 255, 0); } else { fill(255); }
-    text("Quit", center + 20, 415);
+    text("Exit", center + 20, 355);
     fill(255);
     
     textSize(100);
@@ -101,7 +97,7 @@ class MainMenu{
   void buttonDown() {
     delayCounter+=(float)1/60;
     if (delayCounter >= delay) {
-      if (selectedButton < 4) {
+      if (selectedButton < 3) {
         selectedButton++; 
       }
       delayCounter = 0;
@@ -125,9 +121,6 @@ class MainMenu{
         state = 7;
       }
       if (selectedButton == 3) {
-        state = 6;
-      }
-      if (selectedButton == 4) {
        exit();
       }
       delayCounter = 0;
