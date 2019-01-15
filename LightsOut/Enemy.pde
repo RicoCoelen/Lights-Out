@@ -47,6 +47,11 @@ class Enemy {
   Animation heavyEnemyLeft = new Animation("sprites/heavyenemy/heavyenemy_left_", 1);
   Animation heavyEnemyPunchLeft = new Animation("sprites/heavyenemy/heavyenemy_punchleft_", 5);
 
+  Animation bearEnemyRight = new Animation("sprites/bearenemy/bearenemy_right_", 1);
+  Animation bearEnemyPunchRight = new Animation("sprites/bearenemy/bearenemy_punchright_", 5);
+  Animation bearEnemyLeft = new Animation("sprites/bearenemy/bearenemy_left_", 1);
+  Animation bearEnemyPunchLeft = new Animation("sprites/bearenemy/bearenemy_punchleft_", 5);
+
   ArrayList<String> enemyCombo = new ArrayList<String>();
   ArrayList<PImage> enemyComboButtons = new ArrayList<PImage>();
   
@@ -125,14 +130,14 @@ class Enemy {
          }
       break;
       
-      // boss
+      // boss - bear
       case 5:
          health = (int) random(3, 5);
          life = 1;
          damage = 40;
          reward = 1000;
-         h = 154;
-         w = 50;
+         h = 65;
+         w = 45;
          dcw = 400;
          ds = 0.3;
          sprite = loadImage("data/sprites/Boss.png");
@@ -255,6 +260,26 @@ class Enemy {
           }
           else {
             heavyEnemyPunchLeft.display(x, y);
+          } 
+      }
+      break;
+      
+      // boss - bear enemy
+      case 5:
+      if(!collisionPlayer()) {
+        if (enemyLooksLeft == true) {
+          bearEnemyRight.display(x, y);
+        }
+        else {
+          bearEnemyLeft.display(x, y);
+        }   
+      }
+      else {
+          if (enemyLooksLeft == true) {
+            bearEnemyPunchRight.display(x, y);
+          }
+          else {
+            bearEnemyPunchLeft.display(x, y);
           } 
       }
       break;
