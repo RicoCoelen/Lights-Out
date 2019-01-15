@@ -36,6 +36,11 @@ class Enemy {
   Animation smallEnemyPunchRight = new Animation("sprites/smallenemy/smallenemy_punchright_", 5);
   Animation smallEnemyLeft = new Animation("sprites/smallenemy/smallenemy_left_", 1);
   Animation smallEnemyPunchLeft = new Animation("sprites/smallenemy/smallenemy_punchleft_", 5);
+  
+  Animation mediumEnemyRight = new Animation("sprites/mediumenemy/mediumenemy_right_", 1);
+  Animation mediumEnemyPunchRight = new Animation("sprites/mediumenemy/mediumenemy_punchright_", 5);
+  Animation mediumEnemyLeft = new Animation("sprites/mediumenemy/mediumenemy_left_", 1);
+  Animation mediumEnemyPunchLeft = new Animation("sprites/mediumenemy/mediumenemy_punchleft_", 5);
 
   ArrayList<String> enemyCombo = new ArrayList<String>();
   ArrayList<PImage> enemyComboButtons = new ArrayList<PImage>();
@@ -75,8 +80,8 @@ class Enemy {
          life = (int) random(1, 15);
          reward = 200;
          damage = 20;
-         h = 160;
-         w = 50;
+         h = 78;
+         w = 26;
          dcw = 300;
          ds = 0.5;
          sprite = loadImage("data/sprites/Soldier.png");
@@ -205,6 +210,26 @@ class Enemy {
           }
           else {
             smallEnemyPunchLeft.display(x, y);
+          } 
+      }
+      break;
+      
+      // medium enemy
+      case 2:
+      if(!collisionPlayer()) {
+        if (enemyLooksLeft == true) {
+          mediumEnemyRight.display(x, y);
+        }
+        else {
+          mediumEnemyLeft.display(x, y);
+        }   
+      }
+      else {
+          if (enemyLooksLeft == true) {
+            mediumEnemyPunchRight.display(x, y);
+          }
+          else {
+            mediumEnemyPunchLeft.display(x, y);
           } 
       }
       break;

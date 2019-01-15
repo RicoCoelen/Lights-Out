@@ -58,6 +58,7 @@ class Scene1 {
           enemyList.add(new Enemy(-2500, groundHeight, 1));
           
           // RIGHT
+          enemyList.add(new Enemy(600, groundHeight, 2));
           enemyList.add(new Enemy(1000, groundHeight, 1));
           enemyList.add(new Enemy(1500, groundHeight, 1));
           enemyList.add(new Enemy(3000, groundHeight, 1));
