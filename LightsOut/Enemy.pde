@@ -69,7 +69,7 @@ class Enemy {
         h = 65;
         w = 26;
         dcw = 200;
-        ds = 0.8;
+        ds = 1;
         sprite = loadImage("data/sprites/Scout.png");
         comboGenerator(2, 4);  //  Generate combo between 2 and 4 buttons
       break;
@@ -83,7 +83,7 @@ class Enemy {
          h = 78;
          w = 26;
          dcw = 300;
-         ds = 0.5;
+         ds = 0.8;
          sprite = loadImage("data/sprites/Soldier.png");
          comboGenerator(4, 7);  //  Generate combo between 4 and 7 buttons
       break;
@@ -113,7 +113,7 @@ class Enemy {
          h = 28;
          w = 30;
          dcw = 100;
-         ds = 5;
+         ds = 2;
          sprite = loadImage("data/sprites/Mini.png");
          if (health > 0) {
            comboGenerator(1, 1);  //  Generate combo of 1 button
@@ -152,14 +152,14 @@ class Enemy {
       // check if player is the right way
       if (player.positionX >= w) {
         //change vx in the near future default speed for every enemy is always 1
-        vx = 1;
+        vx = ds;
         cw = dcw;
         cx = x + w;
         enemyLooksLeft = true;
       }
       if (player.positionX < x) {
         //change vx in the near future default speed for every enemy is always -1
-        vx = -1;
+        vx = ds * -1;
         cw = dcw * -1;
         cx = x;
         enemyLooksLeft = false;

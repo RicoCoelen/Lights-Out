@@ -78,26 +78,26 @@ class Scene1 {
         case 4:
           // LEFT
           enemyList.add(new Enemy(700, groundHeight, 2));
-          enemyList.add(new Enemy(800, groundHeight, 1));
           enemyList.add(new Enemy(900, groundHeight, 1));
-          enemyList.add(new Enemy(1000, groundHeight, 2));
+          enemyList.add(new Enemy(1400, groundHeight, 1));
+          enemyList.add(new Enemy(1600, groundHeight, 2));
           
           
           // RIGHT
-          enemyList.add(new Enemy(-100, groundHeight, 1));
-          enemyList.add(new Enemy(-200, groundHeight, 1));
+          enemyList.add(new Enemy(-600, groundHeight, 1));
+          enemyList.add(new Enemy(-900, groundHeight, 1));
           
           break;
         case 5:
           // RIGHT
           enemyList.add(new Enemy(800, groundHeight, 2));
-          enemyList.add(new Enemy(900, groundHeight, 2));
-          enemyList.add(new Enemy(1000, groundHeight, 2));
+          enemyList.add(new Enemy(1400, groundHeight, 2));
+          enemyList.add(new Enemy(2200, groundHeight, 2));
           
           // LEFT
-          enemyList.add(new Enemy(-300, groundHeight, 2));
-          enemyList.add(new Enemy(-500, groundHeight, 2));
-          enemyList.add(new Enemy(-700, groundHeight, 2));
+          enemyList.add(new Enemy(-2500, groundHeight, 2));
+          enemyList.add(new Enemy(-2900, groundHeight, 2));
+          enemyList.add(new Enemy(-3200, groundHeight, 2));
           
           break;
         case 6:
@@ -149,7 +149,6 @@ class Scene1 {
           enemyList.add(new Enemy(900, groundHeight, 3));
           
           // LEFT
-          enemyList.add(new Enemy(-300, groundHeight, 3));
           enemyList.add(new Enemy(-800, groundHeight, 3));
           
           

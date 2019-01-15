@@ -290,12 +290,12 @@ class Player {
             //  checks if the correct input by the player has the same length as the enemy combo
             if (enemyList.get(i).result == enemyList.get(i).enemyCombo.size()) {
               scoreList.add(new DrawScore(enemyList.get(i).x, enemyList.get(i).y, enemyList.get(i).reward, 5));
-              if (enemyList.get(i).life == 1) {
-                lifeList.add(new DrawScore(enemyList.get(i).x, enemyList.get(i).y, enemyList.get(i).reward, 10));
-              }
               if(enemyList.get(i).health <= 1){
-               PVector enemyPos = new PVector(enemyList.get(i).x,enemyList.get(i).y+enemyList.get(i).h/2);
-               particleList.add(new ParticleSystem1(enemyPos));
+                if (enemyList.get(i).life == 1) {
+                lifeList.add(new DrawScore(enemyList.get(i).x, enemyList.get(i).y, enemyList.get(i).reward, 10));
+                }
+                PVector enemyPos = new PVector(enemyList.get(i).x,enemyList.get(i).y+enemyList.get(i).h/2);
+                particleList.add(new ParticleSystem1(enemyPos));
               }
               enemyList.get(i).takeDamage();
               clearInput();
