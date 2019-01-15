@@ -41,6 +41,11 @@ class Enemy {
   Animation mediumEnemyPunchRight = new Animation("sprites/mediumenemy/mediumenemy_punchright_", 5);
   Animation mediumEnemyLeft = new Animation("sprites/mediumenemy/mediumenemy_left_", 1);
   Animation mediumEnemyPunchLeft = new Animation("sprites/mediumenemy/mediumenemy_punchleft_", 5);
+  
+  Animation heavyEnemyRight = new Animation("sprites/heavyenemy/heavyenemy_right_", 1);
+  Animation heavyEnemyPunchRight = new Animation("sprites/heavyenemy/heavyenemy_punchright_", 5);
+  Animation heavyEnemyLeft = new Animation("sprites/heavyenemy/heavyenemy_left_", 1);
+  Animation heavyEnemyPunchLeft = new Animation("sprites/heavyenemy/heavyenemy_punchleft_", 5);
 
   ArrayList<String> enemyCombo = new ArrayList<String>();
   ArrayList<PImage> enemyComboButtons = new ArrayList<PImage>();
@@ -94,7 +99,7 @@ class Enemy {
          life = 1;
          damage = 40;
          reward = 500;
-         h = 154;
+         h = 145;
          w = 50;
          dcw = 400;
          ds = 0.3;
@@ -152,14 +157,14 @@ class Enemy {
       // check if player is the right way
       if (player.positionX >= w) {
         //change vx in the near future default speed for every enemy is always 1
-        vx = 1;
+        vx = ds;
         cw = dcw;
         cx = x + w;
         enemyLooksLeft = true;
       }
       if (player.positionX < x) {
         //change vx in the near future default speed for every enemy is always -1
-        vx = -1;
+        vx = ds * -1;
         cw = dcw * -1;
         cx = x;
         enemyLooksLeft = false;
@@ -234,6 +239,25 @@ class Enemy {
       }
       break;
       
+       // heavy enemy
+      case 3:
+      if(!collisionPlayer()) {
+        if (enemyLooksLeft == true) {
+          heavyEnemyRight.display(x, y);
+        }
+        else {
+          heavyEnemyLeft.display(x, y);
+        }   
+      }
+      else {
+          if (enemyLooksLeft == true) {
+            heavyEnemyPunchRight.display(x, y);
+          }
+          else {
+            heavyEnemyPunchLeft.display(x, y);
+          } 
+      }
+      break;
       
       default:
         image(sprite, x, y);
